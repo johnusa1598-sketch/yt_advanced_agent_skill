@@ -1,0 +1,5 @@
+name: "yt-hub"
+title: "yt-hub"
+description: "Route a YouTube request to the right skill in this pack and run it end to end. Use for any YouTube request when you are not sure which skill fits, or for 'run my channel workflow'."
+category: "Work and knowledge"
+include_in_prompt: true

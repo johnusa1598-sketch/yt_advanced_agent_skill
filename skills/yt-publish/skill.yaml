@@ -1,0 +1,5 @@
+name: "yt-publish"
+title: "yt-publish"
+description: "Run the last check before a video goes out: title, thumbnail, description, AI disclosure, playlist, chapters, and end screen. Use for 'ready to publish', 'check this before I post', 'upload checklist', or a video that is finished but not yet live."
+category: "Work and knowledge"
+include_in_prompt: false

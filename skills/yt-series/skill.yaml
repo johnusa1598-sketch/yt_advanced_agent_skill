@@ -1,0 +1,5 @@
+name: "yt-series"
+title: "yt-series"
+description: "Run a series and a recurring character without repeating yourself: a series bible, a character spec, and an episode log. Use for 'start a series', 'my character keeps changing', 'what should I post next in this series', or 'we already did that'."
+category: "Work and knowledge"
+include_in_prompt: false

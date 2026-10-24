@@ -1,0 +1,5 @@
+name: "yt-analytics"
+title: "yt-analytics"
+description: "Read a channel's own numbers and name one fix: views, like rate, subs per 1000 views, format averages, and outliers over the channel median. Use for 'why is growth slow', 'what is working', 'analyse my channel numbers', or a pasted list of videos with views and likes."
+category: "Work and knowledge"
+include_in_prompt: false
