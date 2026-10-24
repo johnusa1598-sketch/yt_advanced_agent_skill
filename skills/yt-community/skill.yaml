@@ -1,0 +1,5 @@
+name: "yt-community"
+title: "yt-community"
+description: "The community, poll, and pinned-comment routine: drafts for manual posting only, never automation. Use for 'what should I pin', 'write a poll', 'community post ideas', or 'keep viewers coming back between uploads'."
+category: "Work and knowledge"
+include_in_prompt: false

@@ -1,0 +1,5 @@
+name: "yt-algorithm"
+title: "yt-algorithm"
+description: "A working model of how YouTube ranks Shorts and long-form videos, and how to check each part of it against your own channel's numbers. Use for 'how does the algorithm work', 'why did this flop', 'what should I optimise', Shorts shelf behaviour, CTR vs retention, or before you package a video."
+category: "Work and knowledge"
+include_in_prompt: false

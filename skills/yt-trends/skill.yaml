@@ -1,0 +1,5 @@
+name: "yt-trends"
+title: "yt-trends"
+description: "Find what is currently moving in a niche and turn it into a hashtag and keyword pack, from evidence the user supplies. Use for 'what hashtags', 'what keywords', 'what is trending', 'find tags for this video', or before you write a title."
+category: "Work and knowledge"
+include_in_prompt: false

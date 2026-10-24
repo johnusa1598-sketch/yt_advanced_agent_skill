@@ -1,0 +1,5 @@
+name: "yt-diagnose"
+title: "yt-diagnose"
+description: "Diagnose a video from your own YouTube Studio CSV export: read the gates in order - impressions, CTR / chose-to-view, retention, return viewers - and name the one broken gate. Use for 'why did this flop', 'is it the title or the video', or 'read my analytics'."
+category: "Work and knowledge"
+include_in_prompt: false

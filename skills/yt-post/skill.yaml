@@ -1,0 +1,5 @@
+name: "yt-post"
+title: "yt-post"
+description: "The pro packaging pipeline: turn one video brief into a complete publish-ready package - titles, description, tags, thumbnail brief, timed text layers, end screen, timing, pinned comment, and an A/B test plan. Use for 'package this video', 'ready to publish', 'full upload package', 'titles and description and thumbnail together'."
+category: "Work and knowledge"
+include_in_prompt: false

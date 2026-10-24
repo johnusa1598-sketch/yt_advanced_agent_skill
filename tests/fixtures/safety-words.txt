@@ -1,0 +1,5 @@
+# Safety terms that must survive translation
+warm up
+mat
+stop
+spotter
