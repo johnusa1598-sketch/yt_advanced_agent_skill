@@ -49,6 +49,57 @@ continuity check.
    morphing face, changing glasses or jewellery side, changing
    outfit, sexualized framing, text errors, and watermarks.
 
+## Clean output
+
+Every prompt must demand a clean render: no watermark, no logo,
+no burned-in subtitles or text except the text layers the package
+itself specifies. Clean means generated clean, not cleaned after:
+never strip another tool's watermark from its output — if the
+rendering tool stamps its own mark, use that tool's watermark-free
+export instead.
+
+## Realism core (documented here; enforced by `/yt-qa`)
+
+A prompt that only names the action produces a mannequin. When
+the brief calls for a realistic human, the prompt must also
+carry the realism core — skin, hair, imperfections, effort,
+background, and optics:
+
+- **Skin:** real human skin, never plastic or airbrushed.
+  Visible pores, subtle tone variation, light shine on the
+  forehead after effort, faint flushed cheeks, natural lip
+  texture. A few tiny imperfections are GOOD.
+- **Hair physics:** hair obeys real physics — loose strands
+  escape and move with momentum, flyaway hairs bounce and
+  settle, a bun shifts slightly and resettles. Never glued,
+  frozen, or helmet-like.
+- **Human imperfections:** micro-wobbles, asymmetry (one
+  eyebrow slightly higher, uneven smile), chalk or marks on
+  hands and clothing, muscle tension and slight tremor on hard
+  moves, natural blinking and gaze refocusing (never a frozen
+  unblinking stare), fabric wrinkles at bent joints, grip and
+  contact (toes gripping, fingers pressing, surfaces
+  compressing), recovery gestures (shake out hands, wipe
+  palms, one deep breath).
+- **Sweat progression:** dry at the start, hairline dampness
+  and shine by the payoff, a quick wipe or shake-out after the
+  hardest move. Effort must look HARD — an effortless
+  execution in a hard position is an AI tell.
+- **Background life:** the location must feel alive, not an
+  empty studio — blurred background figures far behind (never
+  speaking, never distracting), dust or wear on surfaces, a
+  water bottle and towel on a bench. No perfectly clean
+  untouched surfaces.
+- **Smartphone optics:** shot on a phone — wide-angle lens,
+  deep depth of field (everything roughly in focus, no fake
+  cinema bokeh), slight auto-exposure shift, occasional subtle
+  focus hunting, crisp ambient lighting. The video must look
+  phone-shot, not cinema-shot.
+
+The tool's negative prompt already blocks the opposites
+(plastic skin, frozen hair, watermark, logo). The realism core
+is what the positive prompt must actively ask for.
+
 ## Build it with the tool
 
 ```bash

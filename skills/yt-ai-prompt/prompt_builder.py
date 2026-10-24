@@ -40,7 +40,8 @@ NEGATIVE = [
     "glasses changing shape, nose ring changing side, septum ring",
     "outfit changing colour or style mid-shot, jewellery disappearing",
     "sexualized framing, sexualized poses, close-ups on body parts",
-    "warped beam, floating props, text errors, watermark, logo",
+    "warped beam, floating props, no watermark, no logo,",
+    "no burned-in subtitles or text except the intended text layers, no text errors",
     "glossy plastic skin, cartoon look, sudden age or identity change",
 ]
 

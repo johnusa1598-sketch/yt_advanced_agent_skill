@@ -33,6 +33,10 @@ python3 publish_check.py publish.json
 - Thumbnail text is 1 to 3 words and does not repeat the title.
 - Description opens with a line that states what the video gives.
 - AI disclosure is marked when the video is AI generated.
+- Rendered video is clean: no watermark, logo, or burned-in text
+  except the text layers the package specifies. Check the render
+  itself — clean means generated clean, not stripped after (see
+  the clean-output rule in `/yt-ai-prompt`).
 - The video is assigned to a playlist, so a new viewer has a
   next video.
 - For a long video only: chapters are included and an end

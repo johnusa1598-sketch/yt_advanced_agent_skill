@@ -1,5 +1,56 @@
 # Changelog
 
+## v3.1.0, production-system tier, 24 October 2026
+
+This release includes the previously unpushed v3.0.1 clean-output
+rule below, because GitHub is still at v3.0.0 — v3.1.0 is the
+first push since v3.0.0, so it carries both. Production-system
+pieces taken from the Aria Fit final video template, rewritten
+as GENERIC skills (Aria is only the worked example, never the
+only character):
+
+- `yt-production`: the two-step pipeline (hook-frame image
+  prompt, then video prompt from that frame), separated
+  copy-paste blocks, and the director-preamble +
+  reference-discipline rules (reference mandatory on every
+  generation; the forbidden three; verbatim preamble).
+- `yt-story`: Story DNA (eight elements + arc + the QC rule
+  that a missing beat fails QC), the mandatory parasocial beat,
+  the eye-contact split rule (static = lens, dynamic = landing
+  spot), the loop bridge dual-mode (static rebound / dynamic
+  mid-takeoff cut), and the comment trigger.
+- `yt-anti-glitch`: the Skill-Safety Ladder (simplify one rung
+  on hook-frame glitch), banned multi-axis twisting combos
+  only, the approved-skills list, the face-visibility lock,
+  the single continuous shot, the separation rule for duos,
+  the variety rotation matrix, the title-first gate, the
+  never-retry-denied rule, and the glitch burst rule (two
+  fails = switch concept, no third attempt).
+- `yt-qa` + `scorecard.py`: the segment method (one generation
+  = one skill, assembled 2–4s segments), beat verification,
+  face-crop QC, the ten-point scorecard with its publish
+  threshold (total ≥ 8 AND identity ≥ 2 AND movement ≥ 2),
+  and the face gate hard fail.
+- `yt-ai-prompt` extended (tool output unchanged): the realism
+  core documented — skin, hair physics, imperfections, sweat
+  progression, background life, smartphone optics — alongside
+  the clean-output rule from v3.0.1.
+- `yt-hub` routing and workflow updated for the new skills
+  (anti-glitch → production → story → script → … → QA gate
+  before the originality gate and publish check).
+
+## v3.0.1, clean-output rule, 24 October 2026
+
+- `yt-ai-prompt`: the negative prompt now demands a clean render
+  explicitly — no watermark, no logo, no burned-in subtitles or
+  text except the text layers the package itself specifies — plus
+  a clean-output rule in the skill doc: clean means generated
+  clean, never strip another tool's watermark; use that tool's
+  watermark-free export instead.
+- `yt-publish`: the pre-publish checklist gains a clean-render
+  check (watch the render itself for watermarks, logos, and
+  burned-in text).
+
 ## v3.0.0, algorithm-aware pro tier, 24 October 2026
 
 ### Added (research finalisation, same version)

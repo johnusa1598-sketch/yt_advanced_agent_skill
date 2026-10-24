@@ -94,6 +94,15 @@ def main():
         "tests/fixtures/uploads.json"]), "repeated structures")
     ok &= check("originality_json", run(["skills/yt-originality/originality_scan.py",
         "tests/fixtures/uploads.json", "--json"]), "repeated_structures")
+    ok &= check("scorecard_pass", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2"]), "PASS")
+    ok &= check("scorecard_subgate", run(["skills/yt-qa/scorecard.py",
+        "--identity", "1", "--movement", "3", "--phone", "2",
+        "--beats", "2"]), "FAIL")
+    ok &= check("scorecard_json", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "3", "--phone", "2",
+        "--beats", "2", "--json"]), '"verdict": "PASS"')
     ok &= check("skills_structure", check_skills(), "STRUCTURE OK")
     print("ALL PASS" if ok else "SOME TESTS FAILED")
     return 0 if ok else 1

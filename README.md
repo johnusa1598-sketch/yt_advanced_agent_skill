@@ -1,26 +1,31 @@
 # The YouTube agent skill, next level
 
-Twenty-nine skills that run a YouTube channel, up from eleven.
+Thirty-three skills that run a YouTube channel, up from eleven.
 Free, MIT, no signup, no API key, nothing to connect.
 
 **Original pack, by Jake Schincariol, MIT licence:**
 https://github.com/Jakeschincariol/youtube-agent-skill
 This next-level version keeps all eleven original skills and all
-six original tools unchanged, and adds eighteen skills, ten tools,
-prompt engineering for AI video, an algorithm-aware pro tier, a
-research-finalised diagnosis, originality, bridge, testing,
-community, and monetisation tier, Muse compatibility, templates,
-tests, and worked examples.
+six original tools unchanged, and adds twenty-two skills, eleven
+tools, prompt engineering for AI video, an algorithm-aware pro
+tier, a research-finalised diagnosis, originality, bridge, testing,
+community, and monetisation tier, a production-system tier
+(two-step pipeline, story spine, anti-glitch, QA scorecard), Muse
+compatibility, templates, tests, and worked examples.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.
 You upload.
 
-## The twenty-nine
+## The thirty-three
 
 | command | what it does |
 | --- | --- |
 | `/yt-hub` | Routes any YouTube request to the right skill. |
+| `/yt-production` | NEW in v3.1 (production tier). Two-step AI video: hook-frame image first, then video from that frame, with reference discipline. |
+| `/yt-story` | NEW in v3.1 (production tier). Story DNA: eight elements in a fixed arc, parasocial beat, eye-contact rule, dual-mode loop bridge, comment trigger. |
+| `/yt-anti-glitch` | NEW in v3.1 (production tier). Skill-safety ladder, banned combos only, face-visibility lock, duo separation, glitch burst rule. |
+| `/yt-qa` | NEW in v3.1 (production tier). Pre-publish QA: segment method, beat verification, face-crop QC, ten-point scorecard with publish threshold, face gate. |
 | `/yt-diagnose` | NEW in v3 (research finalisation). A Studio CSV export read gate by gate: reach, hook, retention, return viewers - and the one fix. |
 | `/yt-originality` | NEW in v3 (research finalisation). The pre-publish gate: substance variation, AI disclosure, health claims, dangerous moves, human sign-off. |
 | `/yt-bridge` | NEW in v3 (research finalisation). Shorts views into long-form watch time: Related Video routing, Shorts Series, series bible. |
@@ -50,7 +55,7 @@ You upload.
 | `/yt-chapters` | Chapters from a transcript, validated against YouTube's own rules so they render. |
 | `/yt-audit` | The whole channel, ending in ONE fix rather than twenty. |
 
-## The sixteen tools
+## The seventeen tools
 
 Every one runs on a clean Python 3 with no dependencies.
 
@@ -71,6 +76,7 @@ python3 skills/yt-viral-loop/retention_plan.py brief.json
 python3 skills/yt-diagnose/diagnose.py studio-export.csv
 python3 skills/yt-sound/srt_qa.py captions.srt --safety-words safety.txt
 python3 skills/yt-originality/originality_scan.py uploads.json
+python3 skills/yt-qa/scorecard.py --identity 3 --movement 2 --phone 2 --beats 2
 ```
 
 ## Install
