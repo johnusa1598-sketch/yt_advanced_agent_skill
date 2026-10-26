@@ -2,7 +2,7 @@
 
 Channel: Aria Fit (AI gymnastics Shorts). Character lock: curly dark
 hair in a big messy bun, thin GOLD wire-frame glasses, SMALL gold
-nose ring in the RIGHT nostril only, SMALL silver hoop earrings,
+nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings, SMALL silver hoop earrings,
 light thin freckles, purple leotard. The full AI prompt for this
 video is built from `ai-brief.json` by `prompt_builder.py`; what
 follows is everything that happens after the prompt.

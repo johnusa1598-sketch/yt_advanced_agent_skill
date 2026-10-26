@@ -193,6 +193,29 @@ stays locked.
   episode (`/yt-series`), so the next video never repeats
   the last colour by accident and the cycle stays in order.
 
+## Nose ring side, stated without ambiguity (v3.3.5)
+
+"RIGHT nostril only" on its own is ambiguous to a video
+model: it does not say whether RIGHT means the character's
+right or the image's right, and when the character turns
+her head, a small side ring drifts to the centre or
+duplicates (one on the wing, one at the nose tip), as
+happened in the October 2026 arabesque video. From now on,
+every prompt states it in full, and `prompt_builder.py`
+writes it into the character lock, the continuity line,
+and the negative prompt:
+
+- **Character's RIGHT nostril wing only** — not the
+  character's left, not the image's right.
+- **In a frontal view, it appears on the image's LEFT
+  side.** That sentence is part of the lock, not a note.
+- **Never septum, never centre, never nose tip, never
+  two rings.** A centre ring alongside a correct wing
+  ring is still a fail, not a pass.
+- The negative prompt now bans centre nose ring, nose
+  ring on nose tip, and two nose rings, as well as septum
+  ring and changing side.
+
 ## Check it before you ship it
 
 - Run the continuity checklist against the draft, frame by

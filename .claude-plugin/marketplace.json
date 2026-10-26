@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "youtube-agent",
-      "description": "Thirty-three skills that run a YouTube channel, including AI video prompt engineering, algorithm model, Shorts-first workflow, diagnosis, originality and AI-disclosure gate, the 2026 signals update, the v3.3.0 audit fixes, and the v3.3.1 algorithm update (retrieval vs ranking), and the v3.3.2 production gates, and the v3.3.3 leotard colour rotation, and the v3.3.4 format clarification.",
+      "description": "Thirty-three skills that run a YouTube channel, including AI video prompt engineering, algorithm model, Shorts-first workflow, diagnosis, originality and AI-disclosure gate, the 2026 signals update, the v3.3.0 audit fixes, and the v3.3.1 algorithm update (retrieval vs ranking), and the v3.3.2 production gates, and the v3.3.3 leotard colour rotation, and the v3.3.4 format clarification, and the v3.3.5 nose ring clarification.",
       "source": "./",
       "category": "productivity",
       "homepage": "https://github.com/Jakeschincariol/youtube-agent-skill"

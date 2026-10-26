@@ -51,6 +51,7 @@ job: lock one perfect frame first, then animate only that frame.
    directs only realistic motion, audio, and the loop back to
    frame 1. It invents nothing new about who or where.
 4. **Gate before Step 2.** If the hook frame shows any glitch —
+   a centre, septum, or nose-tip nose ring (v3.3.5),
    detached limbs, floaty anatomy, face morph, impossible
    physics — do NOT proceed. Simplify one rung down the
    skill-safety ladder (see `/yt-anti-glitch`) and re-lock the

@@ -37,7 +37,7 @@ every number with your own channel's numbers before using it.
 
 - Hair: curly dark hair in a big messy bun.
 - Face: thin GOLD wire-frame glasses, SMALL gold nose ring in
-  the RIGHT nostril only, never a septum ring, SMALL silver
+  the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings, SMALL silver
   hoop earrings, light thin freckles.
 - Outfit: purple leotard.
 - What this character never does: claims a real performance that

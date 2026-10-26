@@ -13,7 +13,7 @@ per the plan in SKILL.md; it never changes mid-shot.
 Input JSON example:
     {"character": {"name": "Aria", "hair": "curly dark hair in a big messy bun",
                    "glasses": "thin GOLD wire-frame glasses",
-                   "nose_ring": "SMALL gold nose ring in the RIGHT nostril only",
+                   "nose_ring": "SMALL gold nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings",
                    "earrings": "SMALL silver hoop earrings",
                    "freckles": "light thin freckles",
                    "outfit": "purple leotard"},
@@ -43,7 +43,7 @@ import sys
 
 NEGATIVE = [
     "extra limbs, extra fingers, distorted hands, morphing face",
-    "glasses changing shape, nose ring changing side, septum ring",
+    "glasses changing shape, nose ring changing side, septum ring, centre nose ring, nose ring on nose tip, two nose rings",
     "outfit changing colour or style mid-shot, jewellery disappearing",
     "sexualized framing, sexualized poses, close-ups on body parts",
     "warped beam, floating props, no watermark, no logo",
@@ -97,7 +97,8 @@ def build(data):
         "face only for a reaction, no sexualized angle.\n"
         f"[STYLE AND LIGHT] {style}\n"
         f"[LOOP] {loop}\n"
-        "[CONTINUITY] Same hair, glasses, nose ring side, earrings, "
+        "[CONTINUITY] Same hair, glasses, nose ring on the character's "
+        "RIGHT nostril wing only, earrings, "
         "freckles, and outfit in every frame. No morphing between beats."
     )
     short = (
@@ -113,7 +114,7 @@ def build(data):
         "flip apex and the landing absorption only, normal speed elsewhere.",
     }
     checklist = [
-        "Hair, bun, glasses, nose ring side, earrings, freckles unchanged",
+        "Hair, bun, glasses, nose ring on character's RIGHT nostril wing only (frontal view: image LEFT), never centre/septum/tip, earrings, freckles unchanged",
         "Outfit colour and style unchanged",
         "Hands and feet anatomically correct in every beat",
         "Landing absorbs with bent knees, no floating or snapping",

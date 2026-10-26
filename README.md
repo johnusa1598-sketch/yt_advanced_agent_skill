@@ -35,6 +35,10 @@ burgundy), one planned slot per video, everything else locked.
 v3.3.4 (26 October 2026): format clarification — hard gate
 is ratio + iPhone look, 1080x1920 is preferred, 720x1280 at
 the same ratio passes, phone-look scores look not pixels.
+v3.3.5 (26 October 2026): nose ring clarification — character's
+RIGHT nostril wing only, frontal view me image ke LEFT side
+par, kabhi septum, centre, nose tip ya do rings nahi, aur
+QA me side sirf frontal frame par check hogi.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

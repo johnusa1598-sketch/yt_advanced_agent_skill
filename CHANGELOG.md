@@ -1,5 +1,39 @@
 # Changelog
 
+## v3.3.5, nose ring clarification, 26 October 2026
+
+Fixes the nose ring drift found in the October 2026
+arabesque video (teal leotard, Part 5): on frontal frames
+at 300% zoom, a centre/septum-like ring appeared alongside
+the nostril ring, even though the lock said "RIGHT nostril
+only". The cause was ambiguity, not a missing ban: "RIGHT"
+alone does not say character's right or image's right, and
+a small ring drifts to the centre as the head turns and
+the face smiles. Skill count unchanged at 33, tool count
+unchanged at 17, file count unchanged at 124, original
+author credit and MIT licence unchanged. Local only at
+build time; GitHub push is a separate decision.
+
+- **Full wording, everywhere** (`yt-ai-prompt`,
+  `prompt_builder.py`, examples): "SMALL gold nose ring
+  on the character's RIGHT nostril wing only (in a
+  frontal view, on the image's LEFT side), never septum,
+  never centre, never nose tip, never two rings."
+- **Negative prompt expanded** (`prompt_builder.py`):
+  now bans centre nose ring, nose ring on nose tip, and
+  two nose rings, as well as septum ring and changing side.
+  Continuity and checklist lines carry the same wording.
+- **QA frontal-frame rule** (`yt-qa`): the nose ring side
+  must be verified on a FRONTAL frame, not a side-profile
+  frame, where side and centre cannot be told apart. A
+  centre, septum, or nose-tip ring FAILS, even if the
+  other accessories pass, and a second centre ring
+  alongside a correct wing ring also FAILS.
+- **Hook-frame gate** (`yt-production`): a centre,
+  septum, or nose-tip ring in the hook frame fails the gate.
+- **Test:** new `prompt_builder_nose` test checks that
+  the prompt output bans centre nose ring.
+
 ## v3.3.4, format clarification, 26 October 2026
 
 Fixes a contradiction found while rating the October 2026

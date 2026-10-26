@@ -51,6 +51,13 @@ earring size correct. Every concept must include at least ONE
 face-visible beat (lens grin, close-up, upright pose) so
 verification is possible. A video with no verifiable face
 frame scores 0 on identity (see the scorecard).
+**Nose ring check (v3.3.5):** verify the nose ring side
+on a FRONTAL frame, not on a side-profile frame, where
+side and centre cannot be told apart. The ring must be on
+the character's RIGHT nostril wing only (frontal view:
+image LEFT). A centre, septum, or nose-tip ring FAILS,
+even if the other accessories pass, and a second centre
+ring alongside a correct wing ring also FAILS.
 
 ## Ten-point scorecard (the verdict)
 
