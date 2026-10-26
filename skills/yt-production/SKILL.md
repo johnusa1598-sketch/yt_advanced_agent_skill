@@ -42,7 +42,9 @@ job: lock one perfect frame first, then animate only that frame.
    clean it looks. Showcase titles, which ask no question
    to answer, keep the peak-action frame.
    Format lock, same as the video: vertical 9:16 portrait,
-   1080x1920, shot on iPhone, handheld smartphone look.
+   1080x1920 preferred (720x1280 at the same ratio is the
+   minimum acceptable, v3.3.4), shot on iPhone, handheld
+   smartphone look.
    This frame locks everything the video must preserve.
 3. **Step 2 — video from the frame.** Feed the Step 1 frame as
    the starting frame into the video tool. The video prompt

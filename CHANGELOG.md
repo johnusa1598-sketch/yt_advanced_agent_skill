@@ -1,5 +1,32 @@
 # Changelog
 
+## v3.3.4, format clarification, 26 October 2026
+
+Fixes a contradiction found while rating the October 2026
+middle-split video (720x1280, 9:16): the scorecard's
+phone-look criterion scores look, not pixels, but the
+format gate's "1080x1920" wording read as a pixel-perfect
+hard fail, so a good 720p video would score 10/10 and still
+fail the gate. Skill count unchanged at 33, tool count
+unchanged at 17, file count unchanged at 124, original
+author credit and MIT licence unchanged. Local only at
+build time; GitHub push is a separate decision.
+
+- **Format gate clarified** (`yt-qa`): the hard part is
+  ratio and look — vertical 9:16, full frame, looks shot
+  on iPhone. Horizontal, letterboxed, pillarboxed, or
+  cropped-from-horizontal footage still FAILS.
+- **Resolution rule** (`yt-qa`, `yt-ai-prompt`,
+  `yt-production`, `yt-shorts-first`, `yt-publish`,
+  `templates/ai-video-prompt.md`, `prompt_builder.py`):
+  1080x1920 is the preferred target. 720x1280 at the same
+  9:16 ratio is the minimum acceptable and PASSES the gate.
+  Do not fail a video only for being 720p, and do not
+  upscale 720p to fake 1080p.
+- **Phone-look clarified** (`yt-qa`): the scorecard's
+  phone-look (single handheld phone shot, ambient light,
+  no cinema bokeh) scores the look, not the pixel count.
+
 ## v3.3.3, leotard colour rotation, 26 October 2026
 
 The user noticed every video was coming out in the purple

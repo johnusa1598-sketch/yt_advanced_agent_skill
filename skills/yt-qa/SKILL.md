@@ -59,7 +59,9 @@ Score every prepped video out of 10:
 - Identity & character match: 0–3
 - Movement realism (no glitch, no float, real effort): 0–3
 - Phone-look (single handheld phone shot, ambient light,
-  no cinema bokeh): 0–2
+  no cinema bokeh): 0–2. This scores the look, not the
+  pixel count — resolution is judged by the format gate
+  below, not here.
 - Beat completeness (all planned segments present): 0–2
 
 **Publish threshold: total ≥ 8 AND identity ≥ 2 AND movement
@@ -93,15 +95,23 @@ Every concept must therefore guarantee a face-visible beat —
 a concept that cannot show the character's face cannot be
 planned.
 
-## Format gate (hard gate — not a score, v3.3.0)
+## Format gate (hard gate — not a score, v3.3.0; clarified v3.3.4)
 
-Same status as the face gate. A video that is not vertical
-9:16 portrait (1080x1920, full frame) or does not look shot
-on iPhone — horizontal, letterboxed, pillarboxed, or cropped
-from horizontal footage — FAILS, regardless of its scorecard
-total. Do not ship it, and do not "fix" it by cropping a
-horizontal render. Re-generate with the format lock from
+Same status as the face gate. The hard part is ratio and
+look: a video that is not vertical 9:16 portrait, full
+frame, or does not look shot on iPhone — horizontal,
+letterboxed, pillarboxed, or cropped from horizontal
+footage — FAILS, regardless of its scorecard total. Do not
+ship it, and do not "fix" it by cropping a horizontal
+render. Re-generate with the format lock from
 `/yt-ai-prompt` (vertical 9:16, shot on iPhone) and re-run QA.
+**Resolution clarification (v3.3.4):** 1080x1920 is the
+preferred target. 720x1280 at the same 9:16 ratio is the
+minimum acceptable and PASSES this gate — do not fail a
+video only for being 720p, and do not upscale 720p to fake
+1080p (upscaling adds no detail). If the rendering tool
+can output 1080p, use it; if it outputs 720p, ship at
+native 720p.
 
 ## Audio, text-timing, and tail gates (v3.3.2 — checks, not scores)
 

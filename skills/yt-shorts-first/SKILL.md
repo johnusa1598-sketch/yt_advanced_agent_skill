@@ -27,9 +27,11 @@ starts from the Short itself.
 ## The shape of one Short
 
 - **Format lock: 9:16, shot on iPhone.** Vertical portrait,
-  1080x1920, full frame, handheld smartphone look. Never
-  horizontal, never letterboxed, never cropped from horizontal
-  footage. The prompt lock lives in `/yt-ai-prompt`; this skill
+  1080x1920 preferred (720x1280 at the same ratio is the
+  minimum acceptable, v3.3.4), full frame, handheld
+  smartphone look. Never horizontal, never letterboxed,
+  never cropped from horizontal footage. The prompt lock
+  lives in `/yt-ai-prompt`; this skill
   enforces it at the idea stage, not after rendering.
 - **First two seconds.** Show the hardest moment, the fail, or the
   question. No greeting, no channel intro, no setup.

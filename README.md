@@ -32,6 +32,9 @@ vote pinned comment for comparison Shorts.
 v3.3.3 (26 October 2026): leotard colour rotation — fixed
 5-colour cycle (purple anchor, teal, black, royal blue,
 burgundy), one planned slot per video, everything else locked.
+v3.3.4 (26 October 2026): format clarification — hard gate
+is ratio + iPhone look, 1080x1920 is preferred, 720x1280 at
+the same ratio passes, phone-look scores look not pixels.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

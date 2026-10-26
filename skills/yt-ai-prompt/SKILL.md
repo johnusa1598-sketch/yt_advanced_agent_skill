@@ -72,6 +72,11 @@ prompt, short prompt, and negative prompt automatically:
   footage cropped from a horizontal shoot. A Shorts feed is
   vertical; cropped horizontal footage reads as lazy and
   wastes the frame.
+  **Resolution clarification (v3.3.4):** 1080x1920 is the
+  preferred target. 720x1280 at the same 9:16 ratio is the
+  minimum acceptable and passes the format gate in
+  `/yt-qa` — do not fail a video only for being 720p, and
+  do not upscale 720p to fake 1080p.
 - **Shot on iPhone.** Handheld smartphone look, natural
   phone-camera optics, slight handheld movement. Not a
   cinematic DSLR or anamorphic look, not a studio-camera

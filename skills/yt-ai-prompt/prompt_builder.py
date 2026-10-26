@@ -79,7 +79,8 @@ def build(data):
 
     full = (
         f"[CHARACTER LOCK] {lock}. This exact character, no change.\n"
-        "[FORMAT LOCK] Vertical 9:16 portrait, 1080x1920, full frame. "
+        "[FORMAT LOCK] Vertical 9:16 portrait, 1080x1920 preferred "
+        "(720x1280 at the same ratio is acceptable, do not upscale), full frame. "
         "Shot on iPhone: handheld smartphone look, natural phone-camera "
         "optics, slight handheld movement, no cinematic DSLR look. "
         "Never horizontal, never letterboxed, never pillarboxed, "
