@@ -12,6 +12,10 @@ tier, a research-finalised diagnosis, originality, bridge, testing,
 community, and monetisation tier, a production-system tier
 (two-step pipeline, story spine, anti-glitch, QA scorecard), Muse
 compatibility, templates, tests, and worked examples.
+v3.2.0 (26 October 2026): 2026 signals update — viewed vs swiped
+away, five hook patterns, pacing and loop rules, CTR/retention
+orientation ranges, and May 2026 AI auto-labelling, all flagged
+as third-party research, not official thresholds.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

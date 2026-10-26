@@ -82,6 +82,30 @@ eligibility; consistent non-disclosure risks removal or YPP
 suspension, and YouTube may apply a label itself, including
 from C2PA metadata.
 
+## May 2026 auto-labelling, reported (v3.2.0)
+
+Reported by MediaNama and AIR Media-Tech from YouTube's
+27 May 2026 announcement — treat this as reported policy,
+not as text verified against YouTube Help in this pack:
+
+- AI disclosure labels for photorealistic, meaningfully
+  altered content are now shown more prominently and in one
+  format: directly below the player on long-form, as an
+  overlay on Shorts, and in the expanded description for
+  animated, fictional, or lightly altered content.
+- YouTube's systems now detect significant photorealistic
+  AI use and apply the label themselves, even when the
+  creator did not disclose it. Skipping disclosure therefore
+  hides nothing; it only looks evasive.
+- A mistaken auto-label can usually be corrected in Studio
+  by answering "No" to the AI-use question — except for
+  content made with YouTube's own tools (Veo, Dream Screen)
+  or files carrying C2PA "fully generative" metadata, where
+  the label is permanent.
+- Practical rule, unchanged: disclose photorealistic AI
+  yourself at upload, every time. Disclosure is free;
+  non-disclosure is the risk.
+
 ## Safety review, every video
 
 - **Health claims:** no miracle claims, no guaranteed results,

@@ -119,6 +119,36 @@ change. The Studio check is the same either way: post-watch
 surveys, like and comment sentiment, return-viewer rate, and
 session continuation, against your own median.
 
+## 2026 signals update, 26 October 2026 research (v3.2.0)
+
+Full notes, with sources, in `references/2026-signals.md`.
+Nothing there is an official YouTube threshold; every range
+is third-party orientation, and your own channel median
+overrides it.
+
+- **Shorts first gate is viewed vs swiped away.** Reported
+  healthy range roughly 70–90%, below about 60% distribution
+  reportedly collapses. Diagnose in order: big first-3-second
+  leak = hook problem; healthy VVSA but low completion =
+  promise or body problem.
+- **Hook formula:** statement in the first 3 seconds, then a
+  proof point, then a promise, all in 8–12 seconds. Five
+  patterns: visual disruption, face and voice, unexpected
+  visual, rapid scene change or beat, text curiosity.
+- **Pacing:** a visual change every 2–4 seconds, captions
+  that reinforce the hook, a loop whose final frame continues
+  the opening frame (a retention spike above 100% at second 1
+  is the Studio sign it works), and one CTA placed in the
+  payoff, not a long end-card.
+- **Length orientation:** 20–35 seconds most-cited for 2026;
+  under 15 gives the system little signal, over 45 makes the
+  retention maths much harder.
+- **Frequency:** Metricool's 2026 study finds per-post views
+  highest at 2–4 Shorts per week, but monthly totals climbing
+  with volume. Rule unchanged: post as often as quality
+  holds, timing from your own Audience heatmap, never from a
+  generic best-time table.
+
 ## What this model does not claim
 
 - No exact ranking weights, no percentage thresholds, no "the

@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "youtube-agent",
-      "description": "Seventeen skills that run a YouTube channel, including AI video prompt engineering with a locked character, timed beats, camera, physics, and negative prompts.",
+      "description": "Thirty-three skills that run a YouTube channel, including AI video prompt engineering, algorithm model, Shorts-first workflow, diagnosis, originality and AI-disclosure gate, and the 2026 signals update.",
       "source": "./",
       "category": "productivity",
       "homepage": "https://github.com/Jakeschincariol/youtube-agent-skill"

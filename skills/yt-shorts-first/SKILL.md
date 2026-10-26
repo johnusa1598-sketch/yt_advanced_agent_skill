@@ -38,6 +38,35 @@ starts from the Short itself.
 - **One call to action.** Not three. Name the next video, the poll,
   or the series, and stop.
 
+## Hook patterns and pacing (2026 research, v3.2.0)
+
+Full notes and sources: `../yt-algorithm/references/2026-signals.md`.
+These are third-party reported patterns, not YouTube rules.
+
+- **Five hook patterns:** visual disruption on frame one; a
+  face speaking to camera; an unexpected visual (fail,
+  contradiction); a rapid scene change or music beat in the
+  first 1–2 seconds; text curiosity on frame one. Pick one
+  per Short, and test two distinct hooks per concept
+  (visual vs verbal) in staggered uploads before declaring
+  a winner.
+- **Hook formula:** statement in the first 3 seconds, proof
+  point, promise — all in 8–12 seconds. If the first-3-second
+  leak is the biggest drop, rewrite the hook, not the body.
+- **Pacing:** a visual change every 2–4 seconds, captions
+  that reinforce the hook (many viewers watch muted), and a
+  loop whose final frame visually continues the opening
+  frame. In Studio, a working loop shows as retention above
+  100% at second 1.
+- **Length orientation:** 20–35 seconds most-cited for 2026;
+  18–25 for one trick, 35–55 for a short narrative arc.
+- **CTA placement:** the single CTA goes in the payoff or
+  immediately after it. Harder asks go in the pinned comment.
+- **Thumbnail, second job:** the feed does not click a
+  thumbnail, but the channel grid, search, and related-Shorts
+  panel do. A grid-readable thumbnail is worth five minutes
+  on any Short meant to live on the channel page.
+
 ## Score it before you ship it
 
 ```bash

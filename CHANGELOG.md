@@ -1,5 +1,43 @@
 # Changelog
 
+## v3.2.0, 2026 signals update, 26 October 2026
+
+Web research (26 October 2026, third-party guides and studies,
+not official YouTube thresholds — every range is orientation
+only, and a channel's own median overrides it):
+
+- `yt-algorithm` + new `references/2026-signals.md`: viewed vs
+  swiped away as the Shorts first gate (reported healthy range
+  roughly 70–90%), first-3-seconds leak vs completion diagnosis,
+  satisfaction signals (surveys, repeat viewing, session
+  continuation, shares, comment sentiment), CTR by traffic
+  source and retention by length as orientation ranges only,
+  Metricool 2026 frequency finding (per-post best at 2–4/week,
+  monthly totals climbing with volume — quality rule unchanged,
+  no generic best-time table), and Shorts thumbnails' second
+  job on grid, search, and related panels.
+- `yt-shorts-first`: five hook patterns, the statement-proof-
+  promise hook formula, visual change every 2–4 seconds,
+  caption and loop rules, 20–35 second length orientation,
+  single CTA in the payoff, two-hook staggered testing.
+- `yt-originality`: May 2026 AI auto-labelling, reported —
+  prominent single-format labels (overlay on Shorts, below
+  player on long-form), YouTube applying the label itself for
+  undisclosed photorealistic AI, correction in Studio except
+  for Veo/Dream Screen and C2PA fully-generative files, where
+  the label is permanent. Rule unchanged: disclose yourself
+  at upload, every time.
+- Deliberately NOT added: any benchmark presented as an
+  official YouTube threshold, a generic best-time table,
+  trending-sound chasing, publishing/comment automation,
+  watermark removal, or re-upload guidance.
+- Version bumped to 3.2.0; plugin and marketplace descriptions
+  corrected to thirty-three skills (they still said
+  twenty-nine / seventeen). Skill count unchanged at 33,
+  tool count unchanged at 17, original author credit and MIT
+  licence unchanged.
+
+
 ## v3.1.0, production-system tier, 24 October 2026
 
 This release includes the previously unpushed v3.0.1 clean-output
