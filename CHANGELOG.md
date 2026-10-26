@@ -1,5 +1,44 @@
 # Changelog
 
+## v3.3.3, leotard colour rotation, 26 October 2026
+
+The user noticed every video was coming out in the purple
+leotard. The cause was in the pack itself: the Aria example
+and `prompt_builder.py` defaulted to "purple leotard", and
+the character lock said the outfit never changes between
+videos — even though the user's own template already had a
+variety rotation matrix. This version fixes the pack side.
+Skill count unchanged at 33, tool count unchanged at 17,
+file count unchanged at 124, original author credit and MIT
+licence unchanged. Local only at build time; GitHub push is
+a separate decision.
+
+- **Fixed 5-colour cycle** (`yt-ai-prompt`): purple (anchor,
+  Slot 1), teal, black, royal blue, burgundy, then back to
+  purple. No other leotard colours unless a dated revision
+  adds one. Purple stays the anchor and the colour to return
+  to whenever a slot is in doubt.
+- **One planned slot per video** (`yt-ai-prompt`,
+  `yt-production`, `yt-series`): the package names the slot
+  before the hook frame is made, the hook frame and the video
+  use the same slot, and the series log records the slot per
+  episode so no colour repeats twice in a row.
+- **Tool flag** (`prompt_builder.py`): new `--outfit` flag
+  overrides the brief's outfit for one planned slot, for
+  example `--outfit "teal leotard"`. The default stays purple
+  for backward compatibility; rotation is chosen in the plan,
+  not by the tool.
+- **What never rotates** (`yt-ai-prompt`, `yt-qa`): hair,
+  messy bun, gold wire-frame glasses, nose ring side, silver
+  hoop earrings, freckles, face, and body proportions. A change
+  there is identity drift, not rotation, and QA fails it.
+  QA also fails a video in the wrong slot colour
+  (FAIL-FIXABLE: re-generate in the planned slot). Rotation
+  happens across videos, never mid-shot — the negative
+  prompt's ban on outfit changing colour mid-shot stands.
+- **Test:** new `prompt_builder_outfit` test checks that
+  `--outfit "teal leotard"` puts teal in the prompt.
+
 ## v3.3.2, production gates, 26 October 2026
 
 Fixes for the five shortcomings found in the October 2026

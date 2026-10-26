@@ -29,6 +29,9 @@ v3.3.2 (26 October 2026): production gates from the October
 2026 front-split video review — suspense hook frame, text-end
 rule, audio loudness and beat gate, parasocial beat cap, and
 vote pinned comment for comparison Shorts.
+v3.3.3 (26 October 2026): leotard colour rotation — fixed
+5-colour cycle (purple anchor, teal, black, royal blue,
+burgundy), one planned slot per video, everything else locked.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

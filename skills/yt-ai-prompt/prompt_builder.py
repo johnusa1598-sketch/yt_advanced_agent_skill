@@ -4,6 +4,11 @@
 Usage:
     python3 prompt_builder.py brief.json
     python3 prompt_builder.py brief.json --json
+    python3 prompt_builder.py brief.json --outfit "teal leotard"
+
+The --outfit flag overrides the brief's outfit for one planned
+rotation slot (v3.3.3). Outfit colour rotates across videos
+per the plan in SKILL.md; it never changes mid-shot.
 
 Input JSON example:
     {"character": {"name": "Aria", "hair": "curly dark hair in a big messy bun",
@@ -131,12 +136,17 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("brief")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--outfit", default=None,
+                        help="Override the brief's outfit for one planned "
+                             "rotation slot, e.g. 'teal leotard'")
     args = parser.parse_args()
     with open(args.brief, encoding="utf-8") as handle:
         data = json.load(handle)
     if not isinstance(data, dict) or not data.get("character"):
         print("prompt_builder.py: brief needs a character object", file=sys.stderr)
         return 2
+    if args.outfit:
+        data["character"]["outfit"] = args.outfit
     result = build(data)
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=False))

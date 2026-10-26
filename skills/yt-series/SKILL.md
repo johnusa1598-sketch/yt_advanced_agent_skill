@@ -40,6 +40,9 @@ against it:
 
 - Hair, face, glasses, jewellery, freckles, and other marks.
 - Outfit and colours, and what never changes about them.
+  For a leotard rotation (`/yt-ai-prompt` v3.3.3), the log
+  also records the colour slot per episode, in cycle order,
+  so no colour repeats twice in a row.
 - Setting, camera framing, and tone.
 - What the character never does and never claims.
 

@@ -31,7 +31,9 @@ continuity check.
 
 1. **CHARACTER LOCK.** Hair, glasses, jewellery, freckles,
    outfit, and setting, word for word, every time. This layer
-   never changes between videos in a series.
+   never changes between videos in a series, except for one
+   planned exception: outfit colour rotation (see below).
+   Hair, glasses, jewellery, freckles, and face never rotate.
 2. **SCENE LOCK.** Location, props, light, and background, so
    the next clip can be cut next to this one.
 3. **ACTION BEATS, TIMED.** Each beat with a time range, a
@@ -152,6 +154,39 @@ into a fourth prompt without checking the lock again.
   New videos reuse locks and change only beats and camera.
   That is how a channel gets a look nobody can copy by
   typing one sentence.
+
+## Leotard colour rotation (v3.3.3)
+
+Why this exists: a recurring character whose every video
+wears the same purple leotard starts to look like one
+video repeated. The fix is a planned rotation, not a random
+change — the audience must still recognise the character
+instantly, because everything except the leotard colour
+stays locked.
+
+- **Palette, in fixed cycle order:** purple (anchor, Slot 1),
+  teal, black, royal blue, burgundy, then back to purple.
+  No other leotard colours unless the plan adds one in a
+  dated revision. Purple stays the anchor: it is Slot 1,
+  the channel's example colour, and the colour to return
+  to whenever a rotation slot is in doubt.
+- **One slot per video, planned before generation.** The
+  package names the slot ("Slot 2 — teal leotard") before
+  the hook frame is made. The hook frame and the video use
+  the same slot. Use the tool flag for it:
+  `prompt_builder.py brief.json --outfit "teal leotard"`.
+- **Never the same colour twice in a row,** and never a
+  colour change mid-shot. The negative prompt's ban on
+  outfit changing colour mid-shot still stands — rotation
+  happens across videos, never within one.
+- **Everything else is locked.** Hair, messy bun, gold
+  wire-frame glasses, nose ring side, silver hoop earrings,
+  freckles, face, and body proportions do not rotate with
+  the colour. If any of those change, that is identity
+  drift, not rotation, and QA fails it.
+- **Log the slot.** The series log records the slot per
+  episode (`/yt-series`), so the next video never repeats
+  the last colour by accident and the cycle stays in order.
 
 ## Check it before you ship it
 

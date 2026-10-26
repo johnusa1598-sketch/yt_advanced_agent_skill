@@ -125,6 +125,13 @@ with a passing scorecard total.
   the CTA together must fit in 2 seconds, then cut or loop
   back to frame 1 (`/yt-story` cap). A longer tail =
   FAIL-FIXABLE: trim it.
+- **Leotard slot (v3.3.3).** The leotard colour must match
+  the package's planned rotation slot, not always purple.
+  A video in the wrong slot colour = FAIL-FIXABLE
+  (re-generate the segment in the planned slot). All other
+  identity elements — hair, glasses, nose ring side,
+  earrings, freckles — must still match exactly; a change
+  there is identity drift, not rotation.
 
 ## What to hand back
 

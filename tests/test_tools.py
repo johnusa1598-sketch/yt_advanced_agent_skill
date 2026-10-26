@@ -57,6 +57,9 @@ def main():
         "examples/aria-fit/ai-brief.json"]), "9:16")
     ok &= check("prompt_builder_iphone", run(["skills/yt-ai-prompt/prompt_builder.py",
         "examples/aria-fit/ai-brief.json"]), "iPhone")
+    ok &= check("prompt_builder_outfit", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json", "--outfit", "teal leotard"]),
+        "teal leotard")
     ok &= check("publish_check_fail", run(["skills/yt-publish/publish_check.py",
         "tests/fixtures/publish-bad.json"]), "NOT READY")
     ok &= check("publish_check_pass", run(["skills/yt-publish/publish_check.py",

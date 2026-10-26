@@ -24,6 +24,11 @@ job: lock one perfect frame first, then animate only that frame.
    frame: by default a peak-action frame — the character
    mid-skill at maximum tension, effort on the face, the
    scene, lighting, and any co-star placed.
+   **Rotation slot (v3.3.3):** the hook frame uses the
+   package's planned leotard colour slot (`/yt-ai-prompt`
+   rotation: purple, teal, black, royal blue, burgundy, in
+   cycle), not the default purple. A hook frame in the wrong
+   slot colour fails the gate like any other lock break.
    **Exception — suspense/challenge titles (v3.3.2):** if the
    title is a question whose answer IS the skill ("how low
    can she go?", "can she hold it?", "will she land it?"),
