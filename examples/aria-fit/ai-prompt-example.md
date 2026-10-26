@@ -1,5 +1,6 @@
 FULL PROMPT
 [CHARACTER LOCK] Aria; curly dark hair in a big messy bun; thin GOLD wire-frame glasses; SMALL gold nose ring in the RIGHT nostril only; SMALL silver hoop earrings; light thin freckles; purple leotard. This exact character, no change.
+[FORMAT LOCK] Vertical 9:16 portrait, 1080x1920, full frame. Shot on iPhone: handheld smartphone look, natural phone-camera optics, slight handheld movement, no cinematic DSLR look. Never horizontal, never letterboxed, never pillarboxed, never cropped from horizontal footage.
 [SCENE LOCK] bright indoor gymnastics hall, beam and mats, no crowd
 [SERIES] Skill Challenge
 [HOOK, FIRST 2 SECONDS] Did she land it?
@@ -14,10 +15,10 @@ Motion rules: weight transfers before each jump, knees bend on landing to absorb
 [CONTINUITY] Same hair, glasses, nose ring side, earrings, freckles, and outfit in every frame. No morphing between beats.
 
 NEGATIVE PROMPT
-extra limbs, extra fingers, distorted hands, morphing face, glasses changing shape, nose ring changing side, septum ring, outfit changing colour or style mid-shot, jewellery disappearing, sexualized framing, sexualized poses, close-ups on body parts, warped beam, floating props, text errors, watermark, logo, glossy plastic skin, cartoon look, sudden age or identity change
+extra limbs, extra fingers, distorted hands, morphing face, glasses changing shape, nose ring changing side, septum ring, outfit changing colour or style mid-shot, jewellery disappearing, sexualized framing, sexualized poses, close-ups on body parts, warped beam, floating props, no watermark, no logo, horizontal 16:9 video, landscape framing, letterbox bars, pillarbox bars, cropped horizontal footage, cinematic DSLR or anamorphic look, no burned-in subtitles or text except the intended text layers, no text errors, glossy plastic skin, cartoon look, sudden age or identity change
 
 SHORT PROMPT
-Aria; curly dark hair in a big messy bun; thin GOLD wire-frame glasses; SMALL gold nose ring in the RIGHT nostril only; SMALL silver hoop earrings; light thin freckles; purple leotard. bright indoor gymnastics hall, beam and mats, no crowd. Aria mounts the beam, eyes forward, arms steady She runs two steps, springs, and backflips over the beam She lands on the mat, knees bent to absorb, arms up, smiling Camera: full-body tracking shot, eye level, no cut during the flip. Style: realistic, natural light, slight film grain, not glossy.
+Aria; curly dark hair in a big messy bun; thin GOLD wire-frame glasses; SMALL gold nose ring in the RIGHT nostril only; SMALL silver hoop earrings; light thin freckles; purple leotard. Vertical 9:16 portrait, shot on iPhone. bright indoor gymnastics hall, beam and mats, no crowd. Aria mounts the beam, eyes forward, arms steady She runs two steps, springs, and backflips over the beam She lands on the mat, knees bent to absorb, arms up, smiling Camera: full-body tracking shot, eye level, no cut during the flip. Style: realistic, natural light, slight film grain, not glossy.
 
 CONTINUITY CHECKLIST
 - Hair, bun, glasses, nose ring side, earrings, freckles unchanged
@@ -25,6 +26,7 @@ CONTINUITY CHECKLIST
 - Hands and feet anatomically correct in every beat
 - Landing absorbs with bent knees, no floating or snapping
 - Camera stays athletic, full body for skills
+- Vertical 9:16, iPhone-shot look, no letterbox or cropped horizontal frame
 - AI disclosure marked in the publish checklist
 
 VARIANTS: A_safe, B_bold_camera, C_slow_detail

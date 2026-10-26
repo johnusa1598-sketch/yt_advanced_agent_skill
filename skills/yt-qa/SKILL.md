@@ -93,6 +93,16 @@ Every concept must therefore guarantee a face-visible beat —
 a concept that cannot show the character's face cannot be
 planned.
 
+## Format gate (hard gate — not a score, v3.3.0)
+
+Same status as the face gate. A video that is not vertical
+9:16 portrait (1080x1920, full frame) or does not look shot
+on iPhone — horizontal, letterboxed, pillarboxed, or cropped
+from horizontal footage — FAILS, regardless of its scorecard
+total. Do not ship it, and do not "fix" it by cropping a
+horizontal render. Re-generate with the format lock from
+`/yt-ai-prompt` (vertical 9:16, shot on iPhone) and re-run QA.
+
 ## What to hand back
 
 - The segment list with each beat marked present or missing.

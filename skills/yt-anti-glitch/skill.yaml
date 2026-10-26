@@ -1,5 +1,5 @@
 name: "yt-anti-glitch"
 title: "yt-anti-glitch"
-description: "Anti-glitch system for AI video: skill-safety ladder, banned multi-axis twisting combos only, approved-skills list, face-visibility lock, single continuous shot, duo separation, variety rotation, title-first, never-retry-denied, and the glitch burst rule. Use for 'limbs merge', 'face morphs', 'what skills are safe', or fast-motion glitches."
+description: "Keep AI video from glitching: the skill-safety ladder, the only banned combos, face-visibility lock, single continuous shot, duo separation, variety rotation, title-first, never-retry-denied, and the glitch burst rule. Use for \"limbs merge\", \"face morphs\", \"too many glitches\", \"what skills are safe\", or any AI video that falls apart on fast motion."
 category: "Work and knowledge"
 include_in_prompt: false

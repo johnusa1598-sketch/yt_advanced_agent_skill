@@ -24,7 +24,8 @@ Input JSON example:
      "camera": "full-body tracking shot, eye level, no cut during the flip",
      "style": "realistic, natural light, slight film grain, not glossy"}
 
-Output: a full 7-layer prompt, a short prompt for quick tools, a
+Output: a full 7-layer prompt plus a mandatory format lock
+(vertical 9:16, shot on iPhone), a short prompt for quick tools, a
 negative prompt, a continuity checklist, and three variants that
 keep the character lock and change only camera and motion emphasis.
 This tool writes prompts. It does not generate video, and it does
@@ -40,7 +41,8 @@ NEGATIVE = [
     "glasses changing shape, nose ring changing side, septum ring",
     "outfit changing colour or style mid-shot, jewellery disappearing",
     "sexualized framing, sexualized poses, close-ups on body parts",
-    "warped beam, floating props, no watermark, no logo,",
+    "warped beam, floating props, no watermark, no logo",
+    "horizontal 16:9 video, landscape framing, letterbox bars, pillarbox bars, cropped horizontal footage, cinematic DSLR or anamorphic look",
     "no burned-in subtitles or text except the intended text layers, no text errors",
     "glossy plastic skin, cartoon look, sudden age or identity change",
 ]
@@ -72,6 +74,11 @@ def build(data):
 
     full = (
         f"[CHARACTER LOCK] {lock}. This exact character, no change.\n"
+        "[FORMAT LOCK] Vertical 9:16 portrait, 1080x1920, full frame. "
+        "Shot on iPhone: handheld smartphone look, natural phone-camera "
+        "optics, slight handheld movement, no cinematic DSLR look. "
+        "Never horizontal, never letterboxed, never pillarboxed, "
+        "never cropped from horizontal footage.\n"
         f"[SCENE LOCK] {scene}\n"
         f"[SERIES] {series}\n"
         f"[HOOK, FIRST 2 SECONDS] {hook}\n"
@@ -88,7 +95,7 @@ def build(data):
         "freckles, and outfit in every frame. No morphing between beats."
     )
     short = (
-        f"{lock}. {scene}. "
+        f"{lock}. Vertical 9:16 portrait, shot on iPhone. {scene}. "
         + " ".join(str(beat.get("action", "")) for beat in beats)
         + f" Camera: {camera}. Style: {style}."
     )
@@ -105,6 +112,7 @@ def build(data):
         "Hands and feet anatomically correct in every beat",
         "Landing absorbs with bent knees, no floating or snapping",
         "Camera stays athletic, full body for skills",
+        "Vertical 9:16, iPhone-shot look, no letterbox or cropped horizontal frame",
         "AI disclosure marked in the publish checklist",
     ]
     negative = list(NEGATIVE)

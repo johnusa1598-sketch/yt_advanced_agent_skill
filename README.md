@@ -16,6 +16,10 @@ v3.2.0 (26 October 2026): 2026 signals update — viewed vs swiped
 away, five hook patterns, pacing and loop rules, CTR/retention
 orientation ranges, and May 2026 AI auto-labelling, all flagged
 as third-party research, not official thresholds.
+v3.3.0 (26 October 2026): audit fixes — daily planning in
+`yt-plan`, install pointing at this repo, CI, channel voice
+profile paths, aligned skill descriptions, and the video-cut
+A/B check in `yt-test`.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.
@@ -85,11 +89,12 @@ python3 skills/yt-qa/scorecard.py --identity 3 --movement 2 --phone 2 --beats 2
 
 ## Install
 
-Claude Code, as in the original pack:
+Claude Code, this pack (the original pack remains the upstream
+credit at https://github.com/Jakeschincariol/youtube-agent-skill):
 
 ```bash
-git clone https://github.com/Jakeschincariol/youtube-agent-skill.git
-cp -r youtube-agent-skill/skills/yt-* ~/.claude/skills/
+git clone https://github.com/johnusa1598-sketch/yt_advanced_agent_skill.git
+cp -r yt_advanced_agent_skill/skills/yt-* ~/.claude/skills/
 ```
 
 Muse, from this next-level folder:
@@ -110,7 +115,7 @@ python3 tests/test_tools.py
 ```
 
 No network, no YouTube login, no publishing. The test runs the
-original hook and title tools and all ten newer tools against
+original hook and title tools and all eleven newer tools against
 sample data, including the worked Aria Fit example in
 `examples/aria-fit/`.
 

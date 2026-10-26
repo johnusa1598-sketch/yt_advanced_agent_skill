@@ -1,5 +1,5 @@
 name: "yt-production"
 title: "yt-production"
-description: "Two-step AI video production: hook-frame image first, then video animated from that exact frame, with reference discipline (reference mandatory, the forbidden three, verbatim director preamble). Use for 'my AI video glitches', 'the face changes mid-video', 'how do I prompt an AI video', or any recurring-character AI video."
+description: "Produce an AI video in two steps instead of one: a hook-frame image first, then the video animated from that exact frame. Use for \"my AI video glitches\", \"the face changes mid-video\", \"how do I prompt an AI video\", \"hook frame\", \"two-step video\", or any recurring-character AI video that must stay consistent."
 category: "Work and knowledge"
 include_in_prompt: false

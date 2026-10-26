@@ -1,5 +1,5 @@
 name: "yt-test"
 title: "yt-test"
-description: "Test thumbnails and titles properly: the Test & Compare log for long-form, and the manual cover protocol for Shorts, which native testing does not cover. Use for 'A/B test this thumbnail', 'which title won', or 'change a Short's cover'."
+description: "Test thumbnails and titles properly: the Test & Compare log for long-form, the manual cover protocol for Shorts covers, and the announced video-cut A/B check. Use for \"A/B test this thumbnail\", \"which title won\", or \"change a Short's cover\"."
 category: "Work and knowledge"
 include_in_prompt: false

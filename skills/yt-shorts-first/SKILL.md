@@ -18,8 +18,7 @@ starts from the Short itself.
 1. Read the channel profile in `templates/channel.md` if it exists,
    and the series bible in `templates/series.md`. A Short that does
    not belong to a series is a one-off, and one-offs do not compound.
-2. Read `~/.claude/youtube/voice.md` if it exists, or the Muse
-   equivalent in the channel folder. If it does not exist, ask for
+2. Read the channel voice profile (`templates/voice.md`) if it exists, or `~/.claude/youtube/voice.md` on Claude Code. If it does not exist, ask for
    three of their own videos and write it first.
 3. Never invent a number, a result or a source. If a figure would
    strengthen it and you do not have one, ask for it or write the
@@ -27,6 +26,11 @@ starts from the Short itself.
 
 ## The shape of one Short
 
+- **Format lock: 9:16, shot on iPhone.** Vertical portrait,
+  1080x1920, full frame, handheld smartphone look. Never
+  horizontal, never letterboxed, never cropped from horizontal
+  footage. The prompt lock lives in `/yt-ai-prompt`; this skill
+  enforces it at the idea stage, not after rendering.
 - **First two seconds.** Show the hardest moment, the fail, or the
   question. No greeting, no channel intro, no setup.
 - **One idea only.** A Short that tries two skills is two Shorts,

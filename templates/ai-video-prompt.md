@@ -19,6 +19,7 @@ the negative prompt, and the three variants from it.
 - Loop, last line setup:
 - Action beats, timed, one per line:
 - Camera:
+- Format lock (always, do not change): vertical 9:16 portrait, 1080x1920, shot on iPhone, handheld smartphone look:
 - Style and light:
 - Negative prompt additions, if any:
 - AI disclosure marked: yes or no:

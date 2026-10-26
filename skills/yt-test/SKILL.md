@@ -2,8 +2,8 @@
 name: yt-test
 description: >-
   Test thumbnails and titles properly: the Test & Compare log
-  for long-form, and the manual cover protocol for Shorts, which
-  native testing does not cover. Use for "A/B test this
+  for long-form, the manual cover protocol for Shorts covers,
+  and the announced video-cut A/B check. Use for "A/B test this
   thumbnail", "which title won", or "change a Short's cover".
 ---
 
@@ -59,6 +59,27 @@ The manual Shorts-cover protocol:
    before and after.
 5. **Log it** in the same test log, marked "manual Shorts
    cover", with the same discipline as a native test.
+
+## Video-cut A/B testing, announced September 2026 — check Studio first
+
+Do not confuse two different tests, because the old version of
+this skill blurred them:
+
+- **Thumbnail Test & Compare: still no Shorts.** As of 2026
+  reports, Shorts remain ineligible for thumbnail/title Test &
+  Compare, and the July 2026 rollout did not change that. The
+  manual cover protocol below still applies to covers.
+- **Video-cut A/B: announced, coming 2027.** At Made on YouTube
+  (September 2026) YouTube announced A/B testing of video cuts
+  — up to three cuts of the same video, judged on watch-time
+  share, for Shorts and long videos — with availability coming
+  in 2027 per third-party reporting. Until it appears in your
+  Studio, do not assume you have it: check Studio first. If it
+  is there, run the native cut test and log it the same way as
+  a Test & Compare test. If it is not, use the manual protocol.
+- **Dynamic thumbnails** (YouTube serving different chosen
+  thumbnails to different audience segments) were announced at
+  the same event. Again: check Studio before promising it.
 
 ## What to hand back
 

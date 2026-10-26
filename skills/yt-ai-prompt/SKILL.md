@@ -58,6 +58,32 @@ never strip another tool's watermark from its output — if the
 rendering tool stamps its own mark, use that tool's watermark-free
 export instead.
 
+## Format lock — 9:16, shot on iPhone (v3.3.0, every prompt)
+
+This is not a suggestion and not a layer you can swap out. It
+applies to every Shorts prompt this skill writes, on top of the
+7 layers, and `prompt_builder.py` writes it into every full
+prompt, short prompt, and negative prompt automatically:
+
+- **Vertical 9:16 portrait, 1080x1920, full frame.** No
+  horizontal 16:9, no letterbox bars, no pillarbox bars, no
+  footage cropped from a horizontal shoot. A Shorts feed is
+  vertical; cropped horizontal footage reads as lazy and
+  wastes the frame.
+- **Shot on iPhone.** Handheld smartphone look, natural
+  phone-camera optics, slight handheld movement. Not a
+  cinematic DSLR or anamorphic look, not a studio-camera
+  look. The video must look like it was shot on a phone,
+  because that is how the audience shoots and watches Shorts.
+- **Hook frame too.** The Step 1 hook-frame image in
+  `/yt-production` carries the same lock: 9:16 portrait,
+  iPhone look. A horizontal frame cannot become a vertical
+  video later.
+- **Gate:** a render that is not 9:16, or does not look
+  phone-shot, fails `/yt-qa` regardless of its scorecard
+  total. Do not ship it and do not "fix" it by cropping.
+
+
 ## Realism core (documented here; enforced by `/yt-qa`)
 
 A prompt that only names the action produces a mannequin. When

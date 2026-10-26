@@ -1,5 +1,5 @@
 name: "yt-story"
 title: "yt-story"
-description: "Story spine for an AI Short: eight Story DNA elements in a fixed arc with a fail-QC rule, a mandatory parasocial beat, the eye-contact split rule, a dual-mode loop bridge, and a comment trigger. Use for 'this video feels flat', 'no story', 'make it rewatchable', or 'loop'."
+description: "Give an AI Short a story spine: eight Story DNA elements in a fixed arc, a parasocial beat, an eye-contact rule, a dual-mode loop bridge, and a comment trigger. Use for \"this video feels flat\", \"no story\", \"make it rewatchable\", \"loop\", or any Short that shows a trick but makes the viewer feel nothing."
 category: "Work and knowledge"
 include_in_prompt: false

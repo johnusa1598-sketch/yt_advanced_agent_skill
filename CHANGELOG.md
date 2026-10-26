@@ -1,5 +1,65 @@
 # Changelog
 
+## v3.3.0, audit fixes, 26 October 2026
+
+Fixes from a deep audit of v3.2.0 (26 October 2026). Skill count
+unchanged at 33, tool count unchanged at 17, original author
+credit and MIT licence unchanged.
+
+- `yt-plan` (FIRST change to an original skill): the old rule
+  "three uploads a week, never daily" is removed. The skill now
+  asks the cadence first — Daily Shorts mode (one Short a day
+  via `/yt-shorts-first`, plus a weekly anchor if the channel
+  makes long-form) or Weekly mode (anchor, cheap one, three
+  Shorts from the anchor). A daily Shorts channel is no longer
+  planned as if it were a weekly channel.
+- README Install: the clone URL pointed at the original
+  upstream repo, which would install v1.0, not this pack. It now
+  clones this repo (`johnusa1598-sketch/yt_advanced_agent_skill`).
+  The Test section's "ten newer tools" is corrected to eleven.
+- CI: new `.github/workflows/test.yml` runs
+  `python3 tests/test_tools.py` on every push and pull request.
+  Tests existed before; nothing ran them automatically.
+- Voice profile paths: six original skills (`yt-audit`,
+  `yt-comment`, `yt-package`, `yt-plan`, `yt-script`, `yt-seo`)
+  and `templates/voice.md` pointed only at
+  `~/.claude/youtube/voice.md`. They now point at the channel
+  voice profile (`templates/voice.md`) first, with the Claude
+  Code path as the fallback. `yt-shorts-first` is aligned to
+  the same wording.
+- `yt-test`: thumbnail Test & Compare still has no Shorts
+  (2026 reports; July 2026 rollout did not change that), but
+  video-cut A/B testing — up to three cuts, judged on
+  watch-time share, for Shorts and long videos — was announced
+  at Made on YouTube (September 2026) with availability coming
+  in 2027 per third-party reporting. The skill now tells you to
+  check Studio first instead of blurring the two tests, and
+  keeps the manual cover protocol for covers.
+- `skill.yaml` descriptions aligned to the SKILL.md frontmatter
+  for `yt-anti-glitch`, `yt-production`, `yt-qa`, `yt-story`,
+  and `yt-test` (wording only, no behaviour change).
+- Note: the original eleven skills were kept byte-identical
+  from v1.0 through v3.2.0. v3.3.0 is the first version to
+  touch them, and only for the two items above (yt-plan
+  cadence, voice paths). Everything else in them is unchanged,
+  and `workspace/youtube-agent/upstream/` is still the pristine
+  original for comparison.
+
+
+- Format lock (added to v3.3.0 at the user's request, same
+  release): every Shorts video this skill generates must be
+  vertical 9:16 portrait (1080x1920, full frame) and look shot
+  on iPhone — handheld smartphone look, natural phone-camera
+  optics. `prompt_builder.py` now writes a [FORMAT LOCK] block
+  into every full prompt, the short prompt, and the negative
+  prompt (which now also bans 16:9, letterbox, pillarbox, and
+  cropped horizontal footage). The lock is also in
+  `yt-ai-prompt`, `yt-shorts-first`, `yt-production` (hook frame
+  included), `yt-publish` (checklist), `yt-qa` (hard format gate,
+  like the face gate), and `templates/ai-video-prompt.md`. A
+  non-9:16 or non-iPhone-looking render fails QA even if its
+  scorecard passes.
+
 ## v3.2.0, 2026 signals update, 26 October 2026
 
 Web research (26 October 2026, third-party guides and studies,

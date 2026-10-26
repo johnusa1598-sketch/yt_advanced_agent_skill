@@ -1,5 +1,5 @@
 name: "yt-qa"
 title: "yt-qa"
-description: "Pre-publish QA gate for AI video: segment method, beat verification, face-crop QC, ten-point scorecard with publish threshold (total 8+, identity 2+, movement 2+), and the face gate hard fail. Use for 'is this ready to publish', 'check this video', 'score this', or 'QA'."
+description: "Score a finished AI video before it ships: the segment method, beat verification, face-crop QC, a ten-point scorecard with a hard publish threshold, and the face gate. Use for \"is this ready to publish\", \"check this video\", \"score this\", \"QA\", or any video where a missing beat or an unverifiable face would be a publish mistake."
 category: "Work and knowledge"
 include_in_prompt: false

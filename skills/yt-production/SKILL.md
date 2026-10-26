@@ -23,6 +23,8 @@ job: lock one perfect frame first, then animate only that frame.
 2. **Step 1 — hook-frame image.** Generate the exact 0.0s
    peak-action frame: the character mid-skill at maximum tension,
    effort on the face, the scene, lighting, and any co-star placed.
+   Format lock, same as the video: vertical 9:16 portrait,
+   1080x1920, shot on iPhone, handheld smartphone look.
    This frame locks everything the video must preserve.
 3. **Step 2 — video from the frame.** Feed the Step 1 frame as
    the starting frame into the video tool. The video prompt
@@ -40,7 +42,8 @@ Never paste one big prompt into both tools. Keep two blocks:
 
 - **Block A — image generator only.** Identity, peak action,
   face and eye rule, body tension, co-star placement, scene
-  realism, optics. Ends with: no watermark, no text.
+  realism, optics, and the format lock: vertical 9:16 portrait,
+  shot on iPhone. Ends with: no watermark, no text.
 - **Block B — video generator only, Step 1 image attached.**
   Story beats, camera and physics, mandatory native audio,
   loop bridge, comment detail, negative prompt.
