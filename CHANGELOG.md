@@ -1,5 +1,40 @@
 # Changelog
 
+## v3.3.1, algorithm update, 26 October 2026
+
+Only `yt-algorithm` changes. Skill count unchanged at 33,
+tool count unchanged at 17, file count unchanged at 124,
+original author credit and MIT licence unchanged. Local
+only at build time; GitHub push is a separate decision.
+
+- `yt-algorithm`: new section "retrieval vs ranking" from
+  chenxingqiang/YouTube-DNN-RecSys, an implementation of
+  Covington et al. 2016. The repo was read in code, not
+  just in its README: it implements candidate generation
+  only (last 5 watched videos averaged into a user vector,
+  16 continuous features, 500 items, old TensorFlow 1
+  code), with no ranking-model code, no live YouTube data,
+  and no Shorts-specific code.
+- The five additions, all as a working model, never as an
+  official formula: (1) retrieval failure ("barely shown")
+  vs ranking/hook failure ("shown but swiped") as two
+  different diagnoses; (2) audience cluster, not just
+  keywords, as the retrieval check; (3) freshness and an
+  exploration window — judge a direction over 5–10 Shorts,
+  not from one Short alone; (4) signal strength — swipe,
+  like on its own, and single-word comments are weak,
+  while re-watch, share, subscribe from the Short, a
+  next-skill comment, and return viewers are strong;
+  (5) a retrieval question for every Short: who should
+  the system retrieve this for, and what would prove it?
+- Deliberately NOT added: no official weights, no
+  percentage thresholds, no best-time table, no
+  trending-sound chasing, no re-upload guidance, no
+  scraping or botting, and no claim that the DNN
+  predicts Shorts performance. The DNN is 2016 long-form
+  work and does not cover swipe, loop, sound, captions,
+  AI disclosure, or originality penalties.
+
 ## v3.3.0, audit fixes, 26 October 2026
 
 Fixes from a deep audit of v3.2.0 (26 October 2026). Skill count

@@ -20,6 +20,11 @@ v3.3.0 (26 October 2026): audit fixes — daily planning in
 `yt-plan`, install pointing at this repo, CI, channel voice
 profile paths, aligned skill descriptions, and the video-cut
 A/B check in `yt-test`.
+v3.3.1 (26 October 2026): algorithm update in `yt-algorithm`
+only — retrieval vs ranking, audience cluster, freshness
+and exploration window, and weak vs strong signals, from
+YouTube-DNN-RecSys (2016 paper, candidate-generation demo
+only, no live data, no official weights).
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

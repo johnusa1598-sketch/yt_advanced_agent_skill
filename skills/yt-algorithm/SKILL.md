@@ -149,6 +149,77 @@ overrides it.
   holds, timing from your own Audience heatmap, never from a
   generic best-time table.
 
+## v3.3.1: retrieval vs ranking — what YouTube-DNN-RecSys adds (26 October 2026)
+
+Source: chenxingqiang/YouTube-DNN-RecSys, an implementation of
+Covington et al. 2016, "Deep Neural Networks for YouTube
+Recommendations". Read as a working model, not as YouTube's
+current system. The repo itself is only a candidate-generation
+demo (last 5 watched videos averaged into a user vector, 16
+continuous features, 500 items, old TensorFlow 1 code) — it
+has no ranking-model code, no live YouTube data, and no
+Shorts-specific code. Nothing below is an official threshold.
+
+- **Retrieval first, ranking second.** The system first
+  retrieves a few hundred candidates from millions, using
+  how similar a video is to what a viewer already watched,
+  and only then ranks those candidates. For a creator this
+  means two different failures: "barely shown" is a
+  retrieval failure (the system did not pick this Short for
+  that viewer at all), while "shown but swiped" is a ranking
+  / hook failure. Fixing the hook does not fix retrieval,
+  and fixing the topic does not fix a weak hook. Diagnose
+  them in that order (`/yt-diagnose` already names
+  "barely shown = not tested" — this is why).
+- **Audience cluster, not just keywords.** Ranking in the
+  DNN is similarity between a user vector and a video
+  vector, learned from viewing behaviour, not from matching
+  a hashtag. Before you publish, answer in one line: which
+  viewers, by what they already watch, should this Short be
+  retrieved for? If the answer is only a keyword, the
+  retrieval case is weak. For a niche channel, that answer
+  is a cluster (for example, viewers of gymnastics and
+  flexibility Shorts), not a tag list. `/yt-trends` still
+  supplies keywords; it does not replace this check.
+- **Freshness and the exploration window.** A new video has
+  no history, so the system must test it to learn anything
+  about it, and it uses age as a signal while doing so.
+  Treat a new Short as an exploratory test, not as a final
+  verdict: judge a direction over 5–10 Shorts in the same
+  cluster, against your own format median, not from one
+  Short alone. The 48-hour check in the validation protocol
+  still applies; the judgement window for a direction is
+  longer than the judgement window for one video.
+- **Signal strength: weak vs strong.** Watching is not the
+  same as being satisfied, and not every interaction counts
+  equally. Weak: a swipe in under a second, a like on its
+  own, a single-word comment. Strong: a re-watch, a share,
+  a subscribe from the Short itself, a comment that asks
+  for the next skill, and a viewer who returns for the next
+  Short. When you read Studio, weight the strong signals
+  more than the weak ones — a Short with many likes but no
+  shares, re-watches, or return viewers has not proved
+  satisfaction.
+- **The retrieval question for every Short.** Every
+  algorithm pass now ends with this question as well as
+  "ship it, or change it?": who should the system retrieve
+  this Short for, and what would prove it retrieved it for
+  the right people? If you cannot answer that in one line,
+  the package is not ready, however good the hook is.
+
+What this section deliberately does NOT add: no official
+weights, no percentage thresholds, no best-time table, no
+trending-sound chasing, no re-upload guidance for a failed
+Short, no scraping or botting, and no claim that this repo
+predicts Shorts performance. The DNN is 2016 long-form
+work: it optimises next-video prediction and watch time
+in minutes, not swipe, loop, and completion in seconds,
+and it has nothing on sound, captions, loops, AI
+disclosure, or originality penalties. Those Shorts parts
+already live in `/yt-shorts-first`, `/yt-originality`,
+and the 2026 signals above — this section does not
+replace them.
+
 ## What this model does not claim
 
 - No exact ranking weights, no percentage thresholds, no "the
