@@ -65,6 +65,11 @@ a co-star is present, a quick clean fist-bump. This beat must
 actually appear — never skipped, softened, or drifted past.
 It turns a viewer into a follower; a video without it is a
 performance with no one to perform to.
+**Cap (v3.3.2):** the parasocial beat is 1–2 seconds, never
+a 3–4 second end card. After the skill ends, the beat plus
+the CTA together must fit in 2 seconds, then cut or loop
+back to frame 1. A smile that runs past 2 seconds after
+the skill is a retention tail, not a beat — trim it.
 
 ## Eye-contact split rule (pick ONE by skill type)
 

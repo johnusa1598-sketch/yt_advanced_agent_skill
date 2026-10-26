@@ -103,6 +103,29 @@ total. Do not ship it, and do not "fix" it by cropping a
 horizontal render. Re-generate with the format lock from
 `/yt-ai-prompt` (vertical 9:16, shot on iPhone) and re-run QA.
 
+## Audio, text-timing, and tail gates (v3.3.2 — checks, not scores)
+
+These checks sit beside the scorecard; they do not change
+its points. A video that fails one is FAIL-FIXABLE, even
+with a passing scorecard total.
+
+- **Audio.** A beat/music track must be present (native
+  room noise alone fails), and the finished audio must be
+  normalised to a −14 LUFS target with true peak no higher
+  than −1 dBTP (`/yt-sound` loudness gate). Quiet or
+  music-less = FAIL-FIXABLE: normalise and add the track,
+  then re-check.
+- **Text timing.** Freeze the frame at each text change
+  and at the skill exit. The text on screen must match the
+  visual on screen at that second. A text layer that lingers
+  into the next beat, the exit, or a standing pose =
+  FAIL-FIXABLE: re-time the layer, no full re-render needed
+  if the edit allows it.
+- **Tail.** After the skill ends, the parasocial beat plus
+  the CTA together must fit in 2 seconds, then cut or loop
+  back to frame 1 (`/yt-story` cap). A longer tail =
+  FAIL-FIXABLE: trim it.
+
 ## What to hand back
 
 - The segment list with each beat marked present or missing.

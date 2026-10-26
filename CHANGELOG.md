@@ -1,5 +1,44 @@
 # Changelog
 
+## v3.3.2, production gates, 26 October 2026
+
+Fixes for the five shortcomings found in the October 2026
+front-split video review (10-second Short, middle split then
+front split, measured about −29 LUFS with gym noise only).
+Skill count unchanged at 33, tool count unchanged at 17,
+file count unchanged at 124, original author credit and MIT
+licence unchanged. Local only at build time; GitHub push is
+a separate decision. No tool code changed, so no test count
+change — the existing suite still covers the tools.
+
+- **Suspense hook frame** (`yt-production`, `yt-shorts-first`):
+  the old rule always wanted a 0.0s peak-action frame. That
+  rule itself answered a suspense question ("how low can she
+  go?") in frame one. Now, for a title that is a question
+  whose answer IS the skill, the 0.0s frame must show the
+  struggle or starting position, and the peak is the payoff
+  later. Showcase titles with no question to answer keep
+  the peak-action frame.
+- **Text-end rule** (`yt-post`, `yt-qa`): every text layer
+  ends when its beat ends. A layer lingering into the next
+  beat, the exit, or a standing pose fails the package and
+  fails QA — re-time it.
+- **Audio loudness and beat gate** (`yt-sound`, `yt-qa`):
+  native room noise alone fails. A beat/music track from a
+  licence-safe source must start in the first 2 seconds,
+  and finished audio must be normalised to a −14 LUFS
+  target with true peak no higher than −1 dBTP. −14 LUFS
+  is used as the publishing target (YouTube's normalisation
+  level), not as a ranking claim.
+- **Parasocial beat cap** (`yt-story`, `yt-qa`): the beat
+  stays mandatory, but it is 1–2 seconds. After the skill
+  ends, beat plus CTA together fit in 2 seconds, then cut
+  or loop. A longer smile tail is a retention tail — trim it.
+- **Vote pinned comment** (`yt-post`): for a challenge or
+  comparison Short with two skills, sides, or attempts, the
+  pinned comment must be a vote naming both sides as they
+  appear in the video, in the order they appear.
+
 ## v3.3.1, algorithm update, 26 October 2026
 
 Only `yt-algorithm` changes. Skill count unchanged at 33,

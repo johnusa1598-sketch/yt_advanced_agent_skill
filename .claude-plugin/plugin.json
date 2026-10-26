@@ -1,7 +1,7 @@
 {
   "name": "youtube-agent",
-  "description": "Thirty-three skills that run a YouTube channel: the original eleven plus Shorts-first, series and character bible, analytics, publish checklist, hub router, AI video prompt engineering, the algorithm-aware pro tier - algorithm model, trends, full packaging, sound, memes, and the viral-loop orchestrator - and the research-finalised tier: Studio diagnosis, originality and AI-disclosure gate, Shorts-to-long-form bridge, thumbnail testing, community routine, and YPP runway planner, and the 2026 signals update (viewed-vs-swiped-away, hook patterns, AI auto-labelling), and the v3.3.0 audit fixes (daily planning, install, CI, voice paths), and the v3.3.1 algorithm update (retrieval vs ranking, audience cluster, freshness, signal strength).",
-  "version": "3.3.1",
+  "description": "Thirty-three skills that run a YouTube channel: the original eleven plus Shorts-first, series and character bible, analytics, publish checklist, hub router, AI video prompt engineering, the algorithm-aware pro tier - algorithm model, trends, full packaging, sound, memes, and the viral-loop orchestrator - and the research-finalised tier: Studio diagnosis, originality and AI-disclosure gate, Shorts-to-long-form bridge, thumbnail testing, community routine, and YPP runway planner, and the 2026 signals update (viewed-vs-swiped-away, hook patterns, AI auto-labelling), and the v3.3.0 audit fixes (daily planning, install, CI, voice paths), and the v3.3.1 algorithm update (retrieval vs ranking, audience cluster, freshness, signal strength), and the v3.3.2 production gates (suspense hook frame, text-end rule, audio loudness, parasocial cap, vote comment).",
+  "version": "3.3.2",
   "author": {
     "name": "Jake Schincariol",
     "url": "https://opusjake.ai"

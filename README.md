@@ -25,6 +25,10 @@ only — retrieval vs ranking, audience cluster, freshness
 and exploration window, and weak vs strong signals, from
 YouTube-DNN-RecSys (2016 paper, candidate-generation demo
 only, no live data, no official weights).
+v3.3.2 (26 October 2026): production gates from the October
+2026 front-split video review — suspense hook frame, text-end
+rule, audio loudness and beat gate, parasocial beat cap, and
+vote pinned comment for comparison Shorts.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

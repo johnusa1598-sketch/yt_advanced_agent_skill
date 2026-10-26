@@ -57,6 +57,10 @@ These are third-party reported patterns, not YouTube rules.
 - **Hook formula:** statement in the first 3 seconds, proof
   point, promise — all in 8–12 seconds. If the first-3-second
   leak is the biggest drop, rewrite the hook, not the body.
+- **Suspense rule (v3.3.2):** if the hook is a question,
+  frame one must not answer it. Show the struggle, not
+  the payoff. A viewer who already sees the full skill in
+  frame one has no reason left to watch the answer.
 - **Pacing:** a visual change every 2–4 seconds, captions
   that reinforce the hook (many viewers watch muted), and a
   loop whose final frame visually continues the opening

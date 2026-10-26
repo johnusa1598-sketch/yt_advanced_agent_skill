@@ -151,6 +151,29 @@ language. A mistranslated safety cue is worse than no dub, and
 for a coaching channel the safety cue is the part that cannot
 be wrong.
 
+## Loudness and beat gate (v3.3.2)
+
+A Short with only native room noise is not a finished
+Short. This gate is a publishing check, not a ranking
+claim: it stops a quiet, music-less video from shipping
+unnoticed, as happened with the October 2026 front-split
+video, which measured about −29 LUFS with gym noise only.
+
+- **Beat track required.** Every Short carries a music or
+  beat track from a licence-safe source (see above), starting
+  in the first 2 seconds. Native gym, room, or camera noise
+  alone FAILS this gate, however clean the video looks.
+- **Loudness check before upload.** Measure the finished
+  audio's integrated loudness and normalise to a −14 LUFS
+  target, with true peak no higher than −1 dBTP. −14 LUFS
+  is the level YouTube normalises to, used here as the
+  publishing target; it is not a claim about ranking.
+  A measurement far below target (for example −29 LUFS)
+  must be normalised before upload, not shipped quiet.
+- **Licence still applies.** The track that passes this
+  gate must still be logged in the licence log below.
+  Loudness never excuses an unlicensed track.
+
 ## The gate
 
 Nothing here publishes. This skill writes and you publish. Every

@@ -21,8 +21,21 @@ job: lock one perfect frame first, then animate only that frame.
    (see `/yt-anti-glitch` for the title-first gate). The title
    locks the hook; the frame and the video serve it.
 2. **Step 1 — hook-frame image.** Generate the exact 0.0s
-   peak-action frame: the character mid-skill at maximum tension,
-   effort on the face, the scene, lighting, and any co-star placed.
+   frame: by default a peak-action frame — the character
+   mid-skill at maximum tension, effort on the face, the
+   scene, lighting, and any co-star placed.
+   **Exception — suspense/challenge titles (v3.3.2):** if the
+   title is a question whose answer IS the skill ("how low
+   can she go?", "can she hold it?", "will she land it?"),
+   the 0.0s frame must NOT show the peak. It shows the
+   struggle or starting position instead: chalked hands,
+   a breath before the attempt, lowering toward the skill,
+   effort before the payoff. The peak is the payoff later
+   in the video, not frame one. A peak-action frame on a
+   suspense title answers the question at 0 seconds and
+   kills the hook — that frame FAILS the gate, however
+   clean it looks. Showcase titles, which ask no question
+   to answer, keep the peak-action frame.
    Format lock, same as the video: vertical 9:16 portrait,
    1080x1920, shot on iPhone, handheld smartphone look.
    This frame locks everything the video must preserve.

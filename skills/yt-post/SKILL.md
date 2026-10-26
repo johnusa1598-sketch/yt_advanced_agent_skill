@@ -57,6 +57,12 @@ says so.
 5. **Timed text layers.** Every beat becomes on-screen text of
    five words at most, in a bold high-contrast style, because a
    Short watched on mute must still make sense.
+   **Text-end rule (v3.3.2):** every text layer ends when
+   its beat ends. A layer that lingers into the next beat,
+   into the exit, or into a standing pose FAILS the package
+   — re-time it, do not leave it. Check it by freezing the
+   frame at each text change and at the skill exit: the text
+   on screen must match the visual on screen at that second.
 6. **End screen and CTA.** One line, named before the goodbye,
    pointing at the next video in the series.
 7. **Upload timing.** Your own Studio audience data first - the
@@ -66,6 +72,13 @@ says so.
 8. **Pinned comment.** One question that invites the answer the
    next video will be built around. Comments are content strategy,
    not decoration.
+   **Vote rule (v3.3.2):** for a challenge or comparison
+   Short with two skills, sides, or attempts in the video,
+   the pinned comment MUST be a vote naming both sides as
+   they appear in the video ("Team MIDDLE or Team FRONT —
+   which split wins?"). A generic question is not enough
+   for a comparison Short, and the vote must name the sides
+   the viewer actually saw, in the order they saw them.
 9. **A/B test plan.** Title A vs title B, thumbnail held constant,
    judged on click-through in the first 48 hours against the
    channel's own median - and kept only if average view duration
