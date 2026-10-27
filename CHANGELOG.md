@@ -1,5 +1,42 @@
 # Changelog
 
+## v3.4.4, question–skill match and one way, 27 October 2026
+
+Part 11 (deep squat hold, black Slot 3) repeats the
+"good hook, dead video" pattern at the CONCEPT level,
+not the edit level: v3.4.3's edit fixes all held
+(ticking timecode, clean texts, no pill label,
+sustained hold tension), yet the video is one pose
+for 10 seconds. Skill count unchanged at 34, tool
+count unchanged at 18, file count unchanged at 141.
+
+- **Question–skill match (yt-anti-glitch title-first
+  gate, yt-production, yt-qa):** the question type
+  must match the skill type, checked before Step 1.
+  Range questions ("HOW LOW?", "HOW HIGH?", "HOW
+  FAR?") need a progressive skill — a visible journey
+  from start to peak, the answer unfolding across
+  the video, never sitting in frame 0. Duration
+  questions ("CAN SHE HOLD IT?", "HOW LONG?") take
+  a static hold, where time is the stake. A static
+  hold under a range question is an invalid concept:
+  change the question or change the skill, do not
+  generate. Part 11 is the precedent — "HOW LOW?"
+  over a deep squat hold answered itself in frame 0;
+  the same footage under "CAN SHE HOLD THIS
+  SQUAT?" would pass.
+- **One way (yt-production, yt-story, yt-qa):** a
+  video is made one way — one question, one skill,
+  one arc. The hook, every beat, every text, and
+  the body all tell the same single story. Text must
+  never promise what the body does not show (Part
+  11: "DOWN, SLOWLY" over a body that barely
+  descends), and no beat may answer a different
+  question than the title asks. A text–body split
+  is a broken promise: the viewer leaves at the
+  first frame where they notice. Both checks join
+  scorecard.py's printed human-check list.
+
 ## v3.4.3, Part 10 edit defects, 27 October 2026
 
 Part 10 (standing leg raise, teal Slot 2, rendered with

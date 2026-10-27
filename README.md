@@ -71,6 +71,12 @@ v3.4.3 (27 October 2026): Part 10 edit defects — frozen
 timecode now ticks from the timeline, text inventory gate
 (no metadata labels render), post-peak gap cap (a beat,
 never a gap, between peak and tail).
+v3.4.4 (27 October 2026): Part 11 concept rules — the
+question type must match the skill type (range question
+needs a progressive skill, duration question takes a
+static hold), and a video is made one way (one question,
+one skill, one arc; text never promises what the body
+does not show).
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

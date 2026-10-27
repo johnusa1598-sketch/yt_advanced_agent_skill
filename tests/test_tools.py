@@ -238,6 +238,12 @@ def main():
     ok &= check("scorecard_postpeak_gap_listed", run(["skills/yt-qa/scorecard.py",
         "--identity", "3", "--movement", "2", "--phone", "2",
         "--beats", "2"]), "post-peak gap")
+    ok &= check("scorecard_match_oneway_listed", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2"]), "question-skill match")
+    ok &= check("scorecard_oneway_listed", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2"]), "one-way consistency")
     ok &= check("skills_structure", check_skills(), "STRUCTURE OK")
     print("ALL PASS" if ok else "SOME TESTS FAILED")
     return 0 if ok else 1

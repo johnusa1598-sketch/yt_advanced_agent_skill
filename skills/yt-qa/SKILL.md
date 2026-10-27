@@ -47,6 +47,20 @@ replacement for one that was.
   The skill's ending (a leg lowering, a landing, a
   release) is not a beat — Part 10 died in 6–8s of
   lowering with no beat before the 9–10s payoff.
+- **Question–skill match, and one way.** Before scoring
+  beats, check the concept itself: a range question
+  ("HOW LOW?") needs a progressive skill, a duration
+  question ("CAN SHE HOLD IT?") takes a static hold
+  (see `/yt-anti-glitch` title-first gate). A static
+  hold under a range question, or a question answered
+  in frame 0, = FAIL at the concept — fix the
+  question or the skill, not a segment. Then check
+  one way: every beat and every text must serve the
+  title's single question and the body's single arc.
+  A text promising movement the body does not
+  perform (Part 11: "DOWN, SLOWLY" over a body that
+  barely descends) = FAIL-FIXABLE: re-time or
+  re-word the text, or re-cut the beat.
 
 ## Face-crop QC
 

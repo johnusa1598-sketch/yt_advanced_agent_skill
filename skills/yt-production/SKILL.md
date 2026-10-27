@@ -46,6 +46,34 @@ job: lock one perfect frame first, then animate only that frame.
    minimum acceptable, v3.3.4), shot on iPhone, handheld
    smartphone look.
    This frame locks everything the video must preserve.
+
+## Question–skill match, and one way (v3.4.4)
+
+Two concept rules, checked before Step 1 (see the
+title-first gate in `/yt-anti-glitch`):
+
+- **Match.** Range questions ("HOW LOW?", "HOW HIGH?",
+  "HOW FAR?") need a progressive skill — a visible
+  journey from start to peak. Duration questions
+  ("CAN SHE HOLD IT?", "HOW LONG?") take a static
+  hold. A static hold under a range question is an
+  invalid concept: the answer is already visible in
+  frame 0 and the body cannot progress. Part 11 is
+  the precedent — "HOW LOW?" over a deep squat hold
+  was one pose for 10 seconds; the same footage
+  under "CAN SHE HOLD THIS SQUAT?" would pass.
+- **One way.** A video is made ONE way: one question,
+  one skill, one arc. The hook, every beat, every
+  text, and the body all tell the SAME story. Text
+  must never promise what the body does not show
+  (Part 11: "DOWN, SLOWLY" over a body that barely
+  descends), and no beat may belong to a different
+  question than the title asks. If the hook promises
+  a journey, the body must travel it; if the body
+  holds, the hook must sell the hold. A video whose
+  text and body tell two stories is not two ideas —
+  it is a broken promise, and the viewer leaves at
+  the first frame where they notice.
 3. **Step 2 — video from the frame.** Feed the Step 1 frame as
    the starting frame into the video tool. The video prompt
    directs only realistic motion, audio, and the loop back to

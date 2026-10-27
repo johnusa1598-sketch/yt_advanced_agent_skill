@@ -100,6 +100,26 @@ it before Step 1. A useful shape is skill + stake/number
 ("Straddle L-Hold — Can She Hold It?!"), but the hook matters
 more than the shape.
 
+**Question–skill match (v3.4.4, checked at this gate,
+before Step 1).** The question type must match the skill
+type, or the concept is invalid — change the question or
+change the skill, do not generate:
+- Range questions ("HOW LOW?", "HOW HIGH?", "HOW FAR?")
+  need a PROGRESSIVE skill: a visible journey from
+  start to peak (a descent, a lift, an extension). The
+  answer must unfold across the video, never sit in
+  frame 0.
+- Duration questions ("CAN SHE HOLD IT?", "HOW LONG?")
+  take a STATIC hold: the hold itself is the content,
+  and the stake is time, not range.
+- A static hold paired with a range question FAILS
+  this gate. Precedent: Part 11 paired "HOW LOW?" with
+  a deep squat hold — the deepest squat sat in frame
+  0, the body never progressed, and the video was one
+  pose for 10 seconds. The same footage under "CAN
+  SHE HOLD THIS SQUAT?" would have passed: same
+  skill, matched question.
+
 ## Never-retry-denied rule
 
 If the generation tool denies a request (an outfit, a skill,

@@ -61,6 +61,19 @@ every movement.
 **QC rule:** If any Story DNA beat is missing in QC, the video
 fails QC — do not ship it and hope the next one covers it.
 
+## One way (v3.4.4)
+
+One video is made one way: one question, one skill,
+one arc. The hook question, every beat, every text,
+and the body all serve the same single claim. A text
+that promises movement the body does not perform, or
+a beat that answers a different question than the
+title asks, breaks the video — the viewer notices
+the mismatch before they notice the skill. Part 11
+is the precedent: "DOWN, SLOWLY" over a body that
+barely descends told two stories, and the video
+felt broken from the first frame where they split.
+
 ## The peak beat (sustain, never release) (v3.4.2)
 
 The peak is the PERFECTION beat — the hold, the stuck
