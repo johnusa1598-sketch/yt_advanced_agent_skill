@@ -224,6 +224,14 @@ def main():
         "--identity", "3", "--movement", "2", "--phone", "2",
         "--beats", "2", "--loop-match", "matched", "--rewatch", "yes"]),
         "Gates checked: loop, rewatch")
+    ok &= check("scorecard_peak_fail", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--peak-tension", "released"]),
+        "peak gate")
+    ok &= check("scorecard_peak_pass", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--peak-tension", "sustained"]),
+        "-> PASS")
     ok &= check("skills_structure", check_skills(), "STRUCTURE OK")
     print("ALL PASS" if ok else "SOME TESTS FAILED")
     return 0 if ok else 1

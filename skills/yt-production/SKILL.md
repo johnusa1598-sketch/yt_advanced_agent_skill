@@ -102,6 +102,23 @@ Never paste one big prompt into both tools. Keep two blocks:
   the final segment (which returns to the opening pose).
   Verify beats per segment per `/yt-qa`, not per assembled
   video only.
+- **Peak as its own segment (v3.4.2).** A single-skill
+  Short stays one generation by default — EXCEPT when
+  the skill is a static hold whose peak sits mid-video
+  (5+ seconds from the 0.0s anchor), which is exactly
+  the suspense-title shape: the hook frame anchors the
+  struggle, and the peak is invented far from it, where
+  the model drifts and tension releases (the Part 8/9
+  defect: neutral face or eyes-shut strain at the peak
+  instead of sustained tension). For those, split the
+  peak into its own segment: a setup segment (anchor
+  frame → movement toward the peak) and a peak segment
+  generated fresh from its own peak-pose start frame
+  (peak-action frame, `/yt-story` peak rule for the
+  wording), assembled in editing to the same 8–12
+  second budget. The peak segment's start frame is
+  what anchors the peak — without it, the peak is
+  always the weakest beat in the video.
 
 A prompt pasted into the wrong tool is a wasted generation and
 a glitch risk. If a block names the wrong tool, stop and split

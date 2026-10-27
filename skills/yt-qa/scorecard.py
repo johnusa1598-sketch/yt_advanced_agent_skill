@@ -34,12 +34,17 @@ fails the whole scorecard, even at 10/10):
         detail, missed moment, count, or satisfying payoff);
         "no" FAILS. A trigger claimed in the brief but absent
         from the video is "no".
+    --peak-tension: peak gate (v3.4.2). "sustained" means the
+        peak beat shows sustained tension through the hold
+        (limbs locked with no sag, tremor, set jaw, eyes per
+        the eye rule); "released" FAILS — neutral face, sagging
+        limbs, eyes shut, or peak form covered at the peak.
 
 Gates this tool CANNOT verify are printed on every run, so a
 PASS is never mistaken for a full QA pass: face gate (200-300%
 face crop), text-end rule, parasocial tail cap, and the slot
-vs previous video, plus loop match and rewatch trigger when
-their flags are not supplied. Those stay human checks in yt-qa.
+vs previous video, plus loop match, rewatch trigger, and peak
+tension when their flags are not supplied. Those stay human checks in yt-qa.
 """
 import argparse
 import json
@@ -51,7 +56,8 @@ NOT_VERIFIED = ("face gate (200-300% face crop)", "text-end rule",
                 "parasocial tail cap (beat+CTA max 2s)",
                 "leotard slot vs previous video",
                 "loop match (end frame = opening frame)",
-                "rewatch trigger (one per video)")
+                "rewatch trigger (one per video)",
+                "peak tension (sustained through the hold)")
 
 
 def main():
@@ -80,6 +86,9 @@ def main():
                         help="final frame returns to the opening frame")
     parser.add_argument("--rewatch", default=None, choices=("yes", "no"),
                         help="one rewatch trigger actually present")
+    parser.add_argument("--peak-tension", default=None,
+                        choices=("sustained", "released"),
+                        help="peak beat shows sustained tension, not release")
     args = parser.parse_args()
     scores = {name: getattr(args, name) for name in LIMITS}
     errors = [f"{n} must be 0-{LIMITS[n]}" for n, v in scores.items()
@@ -137,9 +146,16 @@ def main():
             reasons.append("rewatch gate: no rewatch trigger actually "
                            "present (one hidden detail, missed moment, "
                            "count, or satisfying payoff per video)")
+    if args.peak_tension is not None:
+        gates_checked.append("peak")
+        if args.peak_tension == "released":
+            reasons.append("peak gate: tension released at the peak beat "
+                           "(neutral face, sagging limbs, eyes shut, or "
+                           "peak form covered — see yt-story peak rule)")
     not_verified = [g for g in NOT_VERIFIED
                     if not (g.startswith("loop match") and args.loop_match is not None)
-                    and not (g.startswith("rewatch trigger") and args.rewatch is not None)]
+                    and not (g.startswith("rewatch trigger") and args.rewatch is not None)
+                    and not (g.startswith("peak tension") and args.peak_tension is not None)]
     verdict = "FAIL" if reasons else "PASS"
     if args.json:
         print(json.dumps({"scores": scores, "total": total,

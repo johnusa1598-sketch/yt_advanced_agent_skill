@@ -61,6 +61,40 @@ every movement.
 **QC rule:** If any Story DNA beat is missing in QC, the video
 fails QC — do not ship it and hope the next one covers it.
 
+## The peak beat (sustain, never release) (v3.4.2)
+
+The peak is the PERFECTION beat — the hold, the stuck
+landing, the locked save — and it is where renders most
+often go weak. The reason is structural (see
+`/yt-production`): on a suspense title the hook frame is
+the struggle, so the peak is invented mid-video, far
+from the only anchored frame, exactly where the model
+drifts. A peak written as a state ("she holds it",
+"clean!") reads to the model as rest: tension releases,
+the face goes neutral, limbs sag — or strain collapses
+into a scrunched, eyes-shut struggle. Both read as weak,
+and both fail this rule.
+
+Write the peak as SUSTAINED effort, not a state:
+- Limbs locked in the peak position for the whole beat
+  — straight legs stay straight, the hold height does
+  not drop, the shape at the end of the beat matches
+  the shape at its start.
+- Tension visible throughout: slight tremor in the
+  working muscles, braced core, set jaw, controlled
+  breath. Tension does NOT release until the lower or
+  release beat that follows the peak.
+- Face follows the eye rule at the peak: static holds
+  keep direct, intense eye contact locked on the lens;
+  a blank, neutral, or relaxed face in the peak
+  position is a fail, and so are eyes squeezed shut —
+  strain is shown through the jaw, the breath, and the
+  tremor, never by losing the eyes.
+- The peak form stays VISIBLE: no text layer, grade
+  change, or graphic may cover the working limbs or
+  the face during the peak beat. Text and grades frame
+  the peak; they never hide it.
+
 ## The parasocial beat (mandatory, never skipped)
 
 Near the end, the character looks directly into the lens with

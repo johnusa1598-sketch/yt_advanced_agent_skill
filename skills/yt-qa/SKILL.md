@@ -213,6 +213,35 @@ with a passing scorecard total.
   views without engaged views or return viewers has not
   proved anything.
 
+## Peak-tension gate (v3.4.2 — check, not score)
+
+Sits beside the scorecard like the loop and rewatch
+gates. A video that fails it is FAIL-FIXABLE, even
+with a passing scorecard total.
+
+- **Peak tension, sustained not released.** Freeze the
+  frame at the peak beat (the PERFECTION beat: the hold,
+  the stuck landing, the locked save) and check it
+  against `/yt-story`'s peak rule: limbs locked in the
+  peak position with no sag across the beat, tension
+  visible throughout (slight tremor, braced core, set
+  jaw, controlled breath), eyes per the eye rule
+  (static holds: locked on the lens). A neutral, blank,
+  or relaxed face in the peak position FAILS; limbs
+  that sag or drop height across the beat FAIL; eyes
+  squeezed shut at the peak FAIL; a text layer or
+  grade change covering the peak form FAILS. Pass the
+  verdict to `scorecard.py --peak-tension
+  sustained/released` — released fails even at 10/10.
+- **Why it exists.** On suspense titles the peak is
+  invented mid-video, far from the anchor frame, and
+  renders go weak there in every generation (Part 8
+  pistol squat, Part 9 L-sit: tension released or
+  collapsed into strain at the peak). The fix is in
+  `/yt-production` (peak as its own segment) and
+  `/yt-story` (peak-sustain wording); this gate catches
+  it when the fix was not applied.
+
 ## What to hand back
 
 - The segment list with each beat marked present or missing.

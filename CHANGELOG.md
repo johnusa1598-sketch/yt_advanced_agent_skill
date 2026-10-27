@@ -1,5 +1,106 @@
 # Changelog
 
+## v3.4.2, peak-tension fix, 27 October 2026
+
+The Part 8 pistol squat and Part 9 L-sit renders go weak
+at the peak beat: the start is strong, but mid-video the
+tension releases (L-sit: effort face on the lift, neutral
+face on the hold) or collapses into strain (pistol: eyes
+squeezed shut at the peak, peak form hidden behind text
+and grade). Cause, checked in the repo: on suspense
+titles the hook frame anchors the struggle, so the peak
+is invented mid-video, far from the anchor, where the
+model drifts — and no rule in the pack described the
+peak as sustained effort. Skill count unchanged at 34,
+tool count unchanged at 18, file count unchanged at 141.
+
+- **Peak sustain (yt-story, yt-ai-prompt):** the peak
+  beat is written as sustained effort, never as a state
+  — limbs locked with no sag across the beat, slight
+  tremor, braced core, set jaw, controlled breath,
+  eyes per the eye rule; a neutral face, sagging limbs,
+  or eyes shut at the peak is a failed peak. Peak form
+  stays visible: no text or grade may cover the working
+  limbs or the face during the peak beat. The realism
+  paragraph in `prompt_builder.py` now emits this
+  wording in every full prompt.
+- **Peak as its own segment (yt-production):** for
+  static holds whose peak sits 5+ seconds from the
+  anchor, split the peak into its own segment —
+  setup segment plus a peak segment generated fresh
+  from its own peak-pose start frame — assembled to
+  the same 8–12 second budget. Without its own anchor,
+  the peak is always the weakest beat in the video.
+- **Peak-tension gate (yt-qa, scorecard.py):** new
+  check beside the scorecard, FAIL-FIXABLE even at
+  10/10: `scorecard.py --peak-tension
+  sustained/released`. Released (neutral face, sag,
+  eyes shut, or covered peak form) fails.
+
+## v3.4.1, hyperframe-edit upgrade (HyperFrames 0.8.207), 27 October 2026
+
+The edit skill is upgraded against the upstream HyperFrames
+repo (heygen-com/hyperframes, HEAD c2b68fb, release
+0.8.207 pinned — unreleased main work is NOT pinned).
+Skill count unchanged at 34, tool count unchanged at 18,
+file count unchanged at 141. Original author credit and
+MIT licence unchanged. The upgrade was verified, not
+assumed: the old template was linted with 0.8.207 (6
+errors, as documented below), the new template lints
+with 0 errors, and the pack tests still pass ALL PASS.
+
+- **Template fixed**: the starter composition failed
+  current lint with 6 errors (no composition id, no
+  dimensions, timeline on the wrong registry, video
+  without its own data-start). Rewritten to the
+  needle-edit shape that passes 0.8.207 lint with 0
+  errors: video-as-clip, timeline on
+  window.__timelines[compositionId] (plus
+  timelines["main"]) after the tweens are built,
+  stable ids on every treatment, GSAP local.
+- **Lint gate**: `lint` now runs before `check` in the
+  workflow and in the merged pipeline (both blocking);
+  `check --json` and `check --at-transitions` added.
+  The `audio_none` info on a muted composition is
+  documented as not a failure.
+- **Native grades + audio**: grades via
+  data-color-grading / media-treatment / grade-compare
+  (CSS filters now the fallback for non-media layers
+  only); mix via native audio elements, data-automation
+  lanes, data-fx-carve, normalize-audio --lufs -14
+  (explicit — its default is -16). FFmpeg keeps only
+  the final loudness finish + mux.
+- **Transcription**: `hyperframes transcribe` is now
+  the default (Parakeet/Whisper, small.en); faster-
+  whisper stays as fallback. Output-schema mapping to
+  the skill's timings shape must be verified on first
+  use (stated in the skill).
+- **Vertical safe areas**: top 168 px clear, band
+  168–1330 px, captions at the bottom of the band,
+  frame-0 hook, must work muted — added to the
+  treatments and the ship gates (scaled for 720x1280).
+- **Registry + tools**: named caption components
+  (kinetic-slam, highlight, blend-difference,
+  pill-karaoke), text-behind-subject cutout, opt-in
+  speed ramps, sub-composition shape, themes,
+  timeline CLI edits, snapshot --review/--against,
+  render --quality draft|looks|delivery, beats +
+  audio --read for the beat grid.
+- **Pipeline fixes**: aspect-preserving scale
+  (increase + crop — plain scale stretched non-9:16
+  sources); --quality passthrough; doctor/browser
+  ensure + 0.8.204 diagnostics in the failure notes.
+- **Deliberately NOT added**: Studio/desktop flows,
+  cloud rendering, HeyGen-gated media, HDR/4K
+  supersampling, GIF/HLS/WebM transparency, decks,
+  telemetry, deprecated aliases — listed in the skill
+  so the skill does not drift again.
+- **Upgrade procedure**: probe with
+  `npx hyperframes@latest upgrade --project . --check`,
+  apply, re-run check, name old → new versions;
+  revert the pin on failure. Node requirement is
+  now 22+ (24 verified).
+
 ## v3.4.0, edit tier, 27 October 2026
 
 This push brings the local-only v3.3.6 and v3.3.7 to GitHub

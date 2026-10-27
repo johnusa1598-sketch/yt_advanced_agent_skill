@@ -14,8 +14,9 @@
 #                   composition; every swap is printed).
 #                   GSAP is vendored locally the same way if the
 #                   composition still points at the CDN.
-#   2. HyperFrames — check (must be 0 errors) -> snapshot (optional)
-#                   -> render (video-only; the base video is muted).
+#   2. HyperFrames — lint (0 errors, blocking) -> check (0 errors)
+#                   -> snapshot (optional) -> render (video-only;
+#                   the base video is muted).
 #   3. FFmpeg POST— finish the source audio (-14 LUFS / <= -1 dBTP,
 #                   limit before normalise), mux with -shortest.
 #   4. QC         — probe + loudness + frames + loop-match diff,
@@ -32,7 +33,7 @@
 # Usage:
 #   merged-pipeline.sh --project DIR --input CLIP [--name NAME]
 #     [--fps N] [--size WxH] [--denoise] [--grade warm|moody]
-#     [--snapshot "0.5,4.5,7.5"]
+#     [--snapshot "0.5,4.5,7.5"] [--quality draft|looks|delivery]
 #
 # Example (needle-hold edit shape):
 #   merged-pipeline.sh --project ~/workspace/aria-pack/needle-edit \
@@ -46,7 +47,7 @@ note() { echo "  * $*"; }
 step() { echo ""; echo "== $* =="; }
 
 PROJECT=""; INPUT=""; NAME="edited"; FPS_ARG=""; SIZE_ARG=""
-DENOISE=0; GRADE="none"; SNAPSHOT=""
+DENOISE=0; GRADE="none"; SNAPSHOT=""; QUALITY="looks"
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -58,6 +59,7 @@ while [ $# -gt 0 ]; do
     --denoise)  DENOISE=1; shift ;;
     --grade)    GRADE="$2"; shift 2 ;;
     --snapshot) SNAPSHOT="$2"; shift 2 ;;
+    --quality) QUALITY="$2"; shift 2 ;;
     --help|-h)  sed -n '2,40p' "$0"; exit 0 ;;
     *) die "unknown argument: $1 (see --help)" ;;
   esac
@@ -68,6 +70,10 @@ done
 [ -d "$PROJECT" ] || die "project dir not found: $PROJECT"
 [ -f "$INPUT" ]   || die "input clip not found: $INPUT"
 [ -f "$PROJECT/index.html" ] || die "no index.html in $PROJECT (author the composition first)"
+case "$QUALITY" in
+  draft|looks|delivery) : ;;
+  *) die "--quality must be draft, looks, or delivery" ;;
+esac
 command -v ffmpeg >/dev/null || die "ffmpeg not on PATH"
 command -v ffprobe >/dev/null || die "ffprobe not on PATH"
 command -v node >/dev/null || die "node not on PATH"
@@ -114,7 +120,9 @@ fi
 step "Stage 1 — FFmpeg pre (clean.mp4)"
 
 FILTERS=""
-[ "$SRC_W" != "$STAGE_W" ] || [ "$SRC_H" != "$STAGE_H" ] && FILTERS="scale=${STAGE_W}:${STAGE_H}"
+# Aspect-preserving scale: plain scale=W:H stretches a non-9:16
+# source into the stage. increase + crop keeps the picture intact.
+[ "$SRC_W" != "$STAGE_W" ] || [ "$SRC_H" != "$STAGE_H" ] && FILTERS="scale=${STAGE_W}:${STAGE_H}:force_original_aspect_ratio=increase,crop=${STAGE_W}:${STAGE_H}"
 [ "$SRC_FPS" != "$FPS" ] && FILTERS="${FILTERS:+$FILTERS,}fps=${FPS}"
 [ "$DENOISE" = "1" ] && FILTERS="${FILTERS:+$FILTERS,}hqdn3d=1.5:1.5:6:6"
 case "$GRADE" in
@@ -176,7 +184,11 @@ if grep -q 'cdn.jsdelivr.net/npm/gsap' index.html; then
 fi
 
 # ---------- Stage 2: HyperFrames ----------
-step "Stage 2 — HyperFrames check / snapshot / render"
+step "Stage 2 — HyperFrames lint / check / snapshot / render"
+
+LINT_OUT=$(npx hyperframes lint 2>&1 | tail -25)
+echo "$LINT_OUT"
+echo "$LINT_OUT" | grep -q '0 error(s)' || die "lint did not pass — fix the errors above, then re-run"
 
 CHECK_OUT=$(npx hyperframes check 2>&1 | tail -25)
 echo "$CHECK_OUT"
@@ -187,7 +199,7 @@ if [ -n "$SNAPSHOT" ]; then
   note "snapshots in snapshots-$NAME — review them before trusting the render"
 fi
 
-npx hyperframes render -f "$FPS" -o "renders/${NAME}-videoonly.mp4" 2>&1 | tail -6
+npx hyperframes render -f "$FPS" -q "$QUALITY" -o "renders/${NAME}-videoonly.mp4" 2>&1 | tail -6
 [ -f "renders/${NAME}-videoonly.mp4" ] || die "render produced no file"
 
 # ---------- Stage 3: FFmpeg post (audio finish + mux) ----------

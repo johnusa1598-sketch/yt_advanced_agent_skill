@@ -114,6 +114,15 @@ background, and optics:
   contact (toes gripping, fingers pressing, surfaces
   compressing), recovery gestures (shake out hands, wipe
   palms, one deep breath).
+- **Peak hold wording:** a hold is written as sustained
+  effort, never as a state. "She holds the L-sit" lets
+  the model rest; write instead: legs locked straight
+  at hold height for the whole beat, thighs trembling
+  slightly, core braced, jaw set, eyes locked on the
+  lens, breath controlled — tension holds until the
+  lower. See `/yt-story` peak rule. A neutral face,
+  sagging limbs, or eyes squeezed shut at the peak is
+  a failed peak, not a clean one.
 - **Sweat progression:** dry at the start, hairline dampness
   and shine by the payoff, a quick wipe or shake-out after the
   hardest move. Effort must look HARD — an effortless

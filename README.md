@@ -57,6 +57,16 @@ v3.4.0 (27 October 2026): edit tier — hyperframe-edit skill
 the merged FFmpeg + HyperFrames pipeline script (clean →
 check/snapshot/render → audio finish/mux → QC report);
 v3.3.6 + v3.3.7, previously local only, go live in this push.
+v3.4.1 (27 October 2026): hyperframe-edit upgrade against
+upstream HyperFrames 0.8.207 — starter template fixed (was
+failing lint with 6 errors), lint gate before check, native
+grades/audio, transcribe default, vertical safe areas,
+registry components, pipeline aspect fix.
+v3.4.2 (27 October 2026): peak-tension fix — Part 8/9 renders
+go weak at the peak beat, so the peak is now written as
+sustained effort (never a state), split into its own
+segment when it sits 5+ seconds from the anchor, and
+gated in QA (scorecard --peak-tension sustained/released).
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

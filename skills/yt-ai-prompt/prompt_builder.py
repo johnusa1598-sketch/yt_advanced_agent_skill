@@ -81,7 +81,11 @@ REALISM_CORE = (
     "Realism: visible skin pores and fine flyaway hairs, chalk dust "
     "on hands and mat, a natural blink between beats, micro-tremor "
     "on held balances, sweat building across the video, no plastic "
-    "skin, no frozen hair, no floaty weightless motion."
+    "skin, no frozen hair, no floaty weightless motion. At the peak "
+    "beat, effort is SUSTAINED, never released: limbs locked with no "
+    "sag across the beat, jaw set, eyes locked per the eye rule, "
+    "breath controlled — a neutral face, sagging limbs, or eyes "
+    "squeezed shut at the peak is a failed peak."
 )
 
 
