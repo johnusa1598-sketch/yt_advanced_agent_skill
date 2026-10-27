@@ -12,6 +12,9 @@ chapters, which is why this checks instead of trusting.
 Boundaries come from the gaps - the pauses you actually took between sections - scored by how long
 the pause was and how much the vocabulary changes across it. It is a first draft you retitle, not a
 summariser.
+
+It imports its transcript parser from the sibling skill yt-edit (deadair.py). Copied out of this
+pack alone it breaks: keep the two skills together, or vendor the parser.
 """
 import json, os, re, sys
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "yt-edit"))

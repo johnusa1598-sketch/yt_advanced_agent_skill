@@ -40,6 +40,13 @@ python3 analytics.py videos.json --subs 92 --json
 5. **The shape over time.** Daily uploads with no gaps are a
    strength. A gap, a format change, or a title change on the
    same week as a drop is a clue, not proof.
+6. **Rewatch (v3.3.7).** Average percentage viewed above
+   100% means viewers looped — read it as the loop working,
+   and read it beside engaged views: since 31 March 2025
+   every replay counts as a public view, but monetisation
+   runs on engaged views, so raw views alone overstate a
+   rewatchable clip. A Short with high views, low engaged
+   views, and no return viewers looped without converting.
 
 ## What to hand back
 
@@ -52,6 +59,22 @@ python3 analytics.py videos.json --subs 92 --json
 Never open with praise you do not mean, and never end with a
 list of twenty things. If the numbers say the video is fine and
 the problem is packaging, send them to `/yt-package`.
+
+## After publish: Studio columns to read (v3.3.6)
+
+The Content tab redesign (announced 23 June 2026, not an
+October change) replaced the Monetization and Restriction
+columns with a single "Notices" column: red means a complete
+limitation, yellow a partial limitation, grey informational
+only. Read that column before assuming a video is fully
+monetised. The "Estimated revenue" column lags about two
+days — do not judge a video's earnings on day one. New
+Account Status page on Studio mobile: check it, not just
+the desktop warnings.
+**Views (Co-Viewed), Advanced Mode:** a modelled estimate
+of TV co-viewing, delayed up to 48 hours. It is not public
+views and not earnings — never compare it to either, and
+never quote it as views.
 
 ## The gate
 

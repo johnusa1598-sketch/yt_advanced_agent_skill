@@ -81,8 +81,11 @@ previous video:
   channel; a classic competition outfit may be one option).
 - **Location zone:** rotate the set or zone.
 - **Co-star role:** motivator / challenger / partner /
-  off-camera POV — solo only as the exception, capped per
-  week by the channel's own rule.
+  off-camera POV — duo is the default, solo only as the
+  exception, capped per week by the channel's own rule
+  (Aria Fit: 2–3 solo Shorts per week, Mia the default
+  co-star). Record the solo count in the series log with
+  the rotation slot.
 - **Camera style:** handheld tracking / static tripod-style /
   slow push-in.
 
@@ -123,6 +126,11 @@ a GLITCH BURST:
 A burst is the generator declaring the concept outside its
 competence today; more attempts make worse videos, not better
 ones.
+**Counting (v3.3.6):** the count is shared. A failed hook
+frame in `/yt-production`, a failed segment regen, and a
+face-gate regen in `/yt-qa` all count toward the same two
+consecutive fails — the "regenerate once" allowances in those
+skills are not extra attempts on top of the burst.
 
 ## What to hand back
 

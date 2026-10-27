@@ -51,6 +51,13 @@ Two warnings, both honest:
   23 September 2026. Check your own Studio before building a
   workflow on it; if Series is not there yet, the playlist
   version below is the fallback.
+- Members-only episodes on mobile were reported in October
+  2026 as coming "in coming weeks" — no verified live date,
+  so do not promise members-only episodes until Studio shows
+  them. Possible future discovery surfaces (Search,
+  Recommended, Continue watching) were also reported, not
+  confirmed: discovery through Series is not guaranteed,
+  and the playlist fallback stays the reliable route.
 - For gymnastics and flexibility, the format maps directly to
   progressions: "30-day splits", "backbend ladder", "handstand
   journey". A progression is a series with a built-in reason

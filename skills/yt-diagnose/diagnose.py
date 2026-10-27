@@ -16,6 +16,23 @@ Gate logic, in the order Studio itself suggests reading it:
   - high CTR / chose-to-view + low retention: content or promise problem
   - low returning-viewer share: the video did not bring people back
 
+Two-stage diagnostic (v3.3.6, the yt-algorithm split in tool form):
+  - Low shown-in-feed vs peers = RETRIEVAL / candidate failure:
+    the system did not pick this Short for the right audience
+    cluster (wrong audience, niche mismatch). The fix is
+    re-targeting the cluster/topic, NOT rewriting the hook.
+    The NOT TESTED verdict carries this as a retrieval note.
+  - Good impressions + fast early drop-off = RANKING / retention
+    failure: if the retention-curve cliff is in the first 3
+    seconds it is a hook failure; a later slide is a pacing/beat
+    failure. This tool only sees average % viewed, so it cannot
+    place the cliff itself: the retention finding tells you where
+    to look (yt-retention reads the curve).
+Peer medians prefer same-format peers; when fewer than two
+same-format peers exist for a gate, the tool falls back to all
+formats and says so in peer_basis, instead of silently mixing
+formats (v3.3.6).
+
 Column matching is forgiving (Studio export headers vary). Any of
 these headers, matched case-insensitively by substring, is used:
   title:            "title"
@@ -119,15 +136,20 @@ def load(path):
 
 
 def peer_median(videos, key, self_idx):
+    """Return (median, basis) for a gate. Basis is 'same-format', or
+    'all-formats (fallback)' when fewer than two same-format peers
+    exist, so a mixed-format median is never silent."""
     peers = [v for i, v in enumerate(videos) if i != self_idx
              and v["format"] == videos[self_idx]["format"]
              and v[key] is not None]
+    basis = "same-format"
     if len(peers) < 2:
         peers = [v for i, v in enumerate(videos) if i != self_idx
                  and v[key] is not None]
+        basis = "all-formats (fallback)"
     if not peers:
-        return None
-    return statistics.median([v[key] for v in peers])
+        return None, basis
+    return statistics.median([v[key] for v in peers]), basis
 
 
 def relative(value, median):
@@ -141,19 +163,20 @@ def diagnose(videos):
     out = []
     for i, v in enumerate(videos):
         gates = {}
+        peer_basis = {}
         # Reach: was it even tested?
-        m_shown = peer_median(videos, "shown", i)
+        m_shown, peer_basis["reach"] = peer_median(videos, "shown", i)
         gates["reach"] = relative(v["shown"], m_shown)
         # Hook: chose-to-view rate (Shorts) or CTR (long-form)
         hook_val = v["chose_rate"] if v["format"] == "short" else v["ctr"]
         hook_key = "chose_rate" if v["format"] == "short" else "ctr"
-        m_hook = peer_median(videos, hook_key, i)
+        m_hook, peer_basis["hook"] = peer_median(videos, hook_key, i)
         gates["hook"] = relative(hook_val, m_hook)
         # Retention: average % viewed
-        m_pct = peer_median(videos, "pct_viewed", i)
+        m_pct, peer_basis["retention"] = peer_median(videos, "pct_viewed", i)
         gates["retention"] = relative(v["pct_viewed"], m_pct)
         # Return: returning-viewer share
-        m_ret = peer_median(videos, "returning", i)
+        m_ret, peer_basis["return"] = peer_median(videos, "returning", i)
         gates["return"] = relative(v["returning"], m_ret)
 
         assessed = {k: r for k, r in gates.items() if r is not None}
@@ -170,7 +193,10 @@ def diagnose(videos):
         if gates["retention"] is not None and gates["retention"] < 1:
             findings.append(
                 "retention below peer median: viewers left early - check "
-                "the retention curve for the cliff, not the average.")
+                "the retention curve for the cliff, not the average. A "
+                "cliff in the first 3 seconds is a hook/ranking failure; "
+                "a later slide is a pacing/beat failure (yt-retention "
+                "reads the curve; this tool only sees the average).")
         if gates["return"] is not None and gates["return"] < 1:
             findings.append(
                 "returning-viewer share below peer median: the video did "
@@ -180,6 +206,18 @@ def diagnose(videos):
         # "Barely tested" is a tool heuristic (shown under half the
         # peer median), not a YouTube rule: with that little reach,
         # hook and retention ratios are noise, so reach is read first.
+        # Retrieval note (v3.3.6): shown well below the peer median
+        # is also a candidate/test-audience failure - wrong audience
+        # cluster or niche mismatch. The fix is re-targeting the
+        # cluster/topic, not rewriting the hook. Wait for the test
+        # audience first; if reach stays low after testing, re-target.
+        retrieval_note = None
+        if gates["reach"] is not None and gates["reach"] < 0.5:
+            retrieval_note = (
+                "RETRIEVAL: shown well below the peer median is a "
+                "candidate/test-audience failure (wrong audience cluster "
+                "or niche mismatch). Fix by re-targeting the cluster or "
+                "topic, not by rewriting the hook.")
         if gates["reach"] is not None and gates["reach"] < 0.5:
             verdict = "NOT TESTED: reach is the broken gate. Wait for the " \
                 "test audience before judging hook or retention."
@@ -216,6 +254,8 @@ def diagnose(videos):
             "pct_viewed": v["pct_viewed"], "ctr": v["ctr"],
             "gates_vs_peer_median": {k: (round(r, 2) if r is not None else None)
                                      for k, r in gates.items()},
+            "peer_basis": peer_basis,
+            "retrieval_note": retrieval_note,
             "findings": findings,
             "verdict": verdict,
         })
@@ -234,8 +274,15 @@ def show(results):
         print("    gates vs peer median: " +
               ", ".join(f"{k}={v}" for k, v in
                         r["gates_vs_peer_median"].items() if v is not None))
+        fallbacks = [k for k, b in r["peer_basis"].items()
+                     if b.startswith("all-formats")]
+        if fallbacks:
+            print("    peer basis fallback (mixed formats): " +
+                  ", ".join(fallbacks))
         for f in r["findings"]:
             print(f"    - {f}")
+        if r["retrieval_note"]:
+            print(f"    - {r['retrieval_note']}")
         print(f"    VERDICT: {r['verdict']}")
     print("\n  note: medians are from THIS export only. They are your "
           "channel's baseline, not a YouTube rule.")

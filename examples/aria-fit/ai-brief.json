@@ -1,1 +1,33 @@
-{"action_beats":[{"action":"Aria mounts the beam, eyes forward, arms steady","time":"0-2s"},{"action":"She runs two steps, springs, and backflips over the beam","time":"2-6s"},{"action":"She lands on the mat, knees bent to absorb, arms up, smiling","time":"6-10s"}],"camera":"full-body tracking shot, eye level, no cut during the flip","character":{"earrings":"SMALL silver hoop earrings","freckles":"light thin freckles","glasses":"thin GOLD wire-frame glasses","hair":"curly dark hair in a big messy bun","name":"Aria","nose_ring":"SMALL gold nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings","outfit":"purple leotard"},"hook":"Did she land it?","loop":"The clean landing sets up the next, harder attempt","scene":"bright indoor gymnastics hall, beam and mats, no crowd","series":"Skill Challenge","style":"realistic, natural light, slight film grain, not glossy","title":"Beam backflip, clean landing"}
+{
+  "action_beats": [
+    {
+      "action": "Aria mounts the beam, eyes forward, arms steady",
+      "time": "0-2s"
+    },
+    {
+      "action": "She runs two steps, springs, and backflips over the beam",
+      "time": "2-6s"
+    },
+    {
+      "action": "She lands on the mat, knees bent to absorb, arms up, smiling",
+      "time": "6-10s"
+    }
+  ],
+  "camera": "full-body tracking shot, eye level, no cut during the flip",
+  "character": {
+    "earrings": "SMALL silver hoop earrings",
+    "freckles": "light thin freckles",
+    "glasses": "thin GOLD wire-frame glasses",
+    "hair": "curly dark hair in a big messy bun",
+    "name": "Aria",
+    "nose_ring": "SMALL gold nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings",
+    "outfit": "purple leotard"
+  },
+  "hook": "Did she land it?",
+  "loop": "The clean landing sets up the next, harder attempt",
+  "scene": "bright indoor gymnastics hall, beam and mats, no crowd",
+  "series": "Skill Challenge",
+  "style": "realistic, natural light, slight film grain, not glossy",
+  "title": "Beam backflip, clean landing",
+  "datasheet_lock": "Aria — the exact same woman in every video: warm olive skin with LIGHT, fine, scattered natural freckles on the nose bridge and upper cheeks only (soft sun freckles, never dark blotches); soft oval face, dark brown eyes, full natural brows, full natural lips; dark-brown curly hair in a large high messy bun with loose tendrils; thin gold wire-frame glasses; a SMALL gold nose ring in her RIGHT nostril only (as in the reference photo — viewer's left in front view); SMALL silver hoop earrings. Athletic gymnast body, identical in every scene: defined shoulders and arms, a full rounded bust, strong core with a narrow waist, BIG round full muscular glutes, powerful defined thighs and calves — lean and strong, never skinny or soft, never bulky. The same face, the same body, the same muscle definition in every frame."
+}

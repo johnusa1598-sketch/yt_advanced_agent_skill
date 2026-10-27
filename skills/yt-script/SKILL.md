@@ -12,7 +12,9 @@ description: >-
 
 One idea into a script somebody finishes.
 
-Two tools live in this folder and both actually run. Use them. Do not eyeball the hook.
+One tool and one data file live in this folder: `hookscore.py`
+scores, `hooks.json` holds the 21 hook formulas it matches
+against. Use them. Do not eyeball the hook.
 
 ```bash
 python3 hookscore.py hooks.txt              # rank your hook options

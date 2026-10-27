@@ -1,7 +1,7 @@
 {
   "name": "youtube-agent",
-  "description": "Thirty-three skills that run a YouTube channel: the original eleven plus Shorts-first, series and character bible, analytics, publish checklist, hub router, AI video prompt engineering, the algorithm-aware pro tier - algorithm model, trends, full packaging, sound, memes, and the viral-loop orchestrator - and the research-finalised tier: Studio diagnosis, originality and AI-disclosure gate, Shorts-to-long-form bridge, thumbnail testing, community routine, and YPP runway planner, and the 2026 signals update (viewed-vs-swiped-away, hook patterns, AI auto-labelling), and the v3.3.0 audit fixes (daily planning, install, CI, voice paths), and the v3.3.1 algorithm update (retrieval vs ranking, audience cluster, freshness, signal strength), and the v3.3.2 production gates (suspense hook frame, text-end rule, audio loudness, parasocial cap, vote comment), and the v3.3.3 leotard colour rotation, and the v3.3.4 format clarification (1080p preferred, 720p minimum acceptable), and the v3.3.5 nose ring clarification (character's right, frontal view image left, never centre/septum/tip).",
-  "version": "3.3.5",
+  "description": "Thirty-four skills that run a YouTube channel: the original eleven plus Shorts-first, series and character bible, analytics, publish checklist, hub router, AI video prompt engineering, the algorithm-aware pro tier - algorithm model, trends, full packaging, sound, memes, and the viral-loop orchestrator - and the research-finalised tier: Studio diagnosis, originality and AI-disclosure gate, Shorts-to-long-form bridge, thumbnail testing, community routine, and YPP runway planner, and the 2026 signals update (viewed-vs-swiped-away, hook patterns, AI auto-labelling), and the v3.3.0 audit fixes (daily planning, install, CI, voice paths), and the v3.3.1 algorithm update (retrieval vs ranking, audience cluster, freshness, signal strength), and the v3.3.2 production gates (suspense hook frame, text-end rule, audio loudness, parasocial cap, vote comment), and the v3.3.3 leotard colour rotation, and the v3.3.4 format clarification (1080p preferred, 720p minimum acceptable), and the v3.3.5 nose ring clarification (character's right, frontal view image left, never centre/septum/tip)., and the v3.3.6 audit fixes (two-stage diagnostic split, hub-mirroring viral-loop chain, scorecard hard gates, publish checks, vote comment, outfit palette, realism core, loudness measurement, October 2026 landscape updates)., and the v3.3.7 rewatch engineering (seamless loop checks on the FINAL dual-mode bridge, one named rewatch trigger per Short, loop + rewatch QA gates)., and the v3.4.0 edit tier (hyperframe-edit: HyperFrames editing of supplied clips, merged FFmpeg pipeline — clean, check/snapshot/render, audio finish/mux, QC report).",
+  "version": "3.4.0",
   "author": {
     "name": "Jake Schincariol",
     "url": "https://opusjake.ai"
@@ -27,6 +27,7 @@
     "originality",
     "monetization",
     "community",
-    "testing"
+    "testing",
+    "editing"
   ]
 }

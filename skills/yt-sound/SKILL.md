@@ -134,6 +134,14 @@ Keep the proof in `templates/audio-licence-log.csv`: track,
 source, allowed surfaces, duration cap, and claim status. The
 log is what stops a Shorts-only track leaking into a long video
 months later, when nobody remembers where it came from.
+**AI-generated flag (v3.3.6):** also log whether the track
+is AI-generated. From 14 October 2026 YouTube Music labels
+tracks "created primarily using generative AI" on the player
+page, expanding to main YouTube later with no date given
+(see `/yt-originality` for sources and limits). The label is
+a transparency marker, not a royalty or recommendation
+effect — log the fact, do not change the track choice on
+its account.
 
 ## Auto-dubbing: review it, do not trust it
 
@@ -170,6 +178,12 @@ video, which measured about −29 LUFS with gym noise only.
   publishing target; it is not a claim about ranking.
   A measurement far below target (for example −29 LUFS)
   must be normalised before upload, not shipped quiet.
+  Measure with `loudness.py` (ffmpeg ebur128, true-peak
+  mode; v3.3.6): it reports LUFS and true peak and passes
+  or fails the gate, so the check is no longer a human
+  estimate. Feed its numbers into `scorecard.py --lufs
+  --peak`. It measures level only — whether a beat track
+  exists still needs a human ear.
 - **Licence still applies.** The track that passes this
   gate must still be logged in the licence log below.
   Loudness never excuses an unlicensed track.

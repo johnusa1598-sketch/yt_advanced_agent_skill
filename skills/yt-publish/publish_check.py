@@ -9,18 +9,39 @@ Input JSON example:
     {"title": "...", "thumb_text": "...", "description": "...",
      "type": "short", "ai_generated": true, "ai_disclosure": true,
      "playlist": "Skill Challenge", "chapters": false,
-     "end_screen": false, "community_poll": false}
+     "end_screen": false, "community_poll": false,
+     "format": "9:16", "clean": true,
+     "comparison_sides": ["beam", "floor"], "pinned_comment": "..."}
 
-Checks: title present and 100 characters or fewer, thumbnail text
-present and 3 words or fewer, description first line present, AI
-disclosure present when ai_generated is true, playlist named, and for
-long videos chapters and an end screen. A missing item is FAIL, not a
-guess. This tool does not publish anything and does not touch media.
+Checks (v3.3.6): title present and 100 characters or fewer,
+thumbnail text present and 3 words or fewer, thumbnail words do
+not repeat the title words, description first line present, AI
+disclosure present when ai_generated is true, playlist named,
+format is vertical 9:16 (1080x1920 preferred, 720x1280 at the same
+ratio acceptable, v3.3.4), output is generated clean with no
+watermark (clean = generated clean, never stripped), branded
+content disclosed by the creator (never rely on auto-detection,
+v3.3.6), the pinned comment is the vote on comparison Shorts
+(both sides, v3.3.2), and for long videos chapters and an end
+screen. A missing item is FAIL, not a guess. This tool does not
+publish anything and does not touch media. It is not a substitute
+for yt-qa: scorecard, face gate, audio gate, text-end rule,
+parasocial tail cap and leotard slot are checked there, not here.
 """
 import argparse
 import json
 import re
 import sys
+
+STOP = {"the", "a", "an", "of", "for", "to", "in", "on", "and", "or",
+        "is", "are", "with", "your", "you", "my", "i", "this", "that",
+        "it", "how", "what", "why"}
+FORMAT_OK = {"9:16", "vertical", "1080x1920", "720x1280", "1080 x 1920",
+             "720 x 1280"}
+
+
+def words(t):
+    return re.findall(r"[a-z0-9]+", (t or "").lower())
 
 
 def main():
@@ -46,6 +67,50 @@ def main():
     add("thumbnail_text", 1 <= len(thumb_words) <= 3,
         "Thumbnail text is 1 to 3 words."
         if 1 <= len(thumb_words) <= 3 else "Write 1 to 3 words of thumbnail text.")
+
+    shared = (set(words(title)) - STOP) & (set(words(data.get("thumb_text", ""))) - STOP)
+    add("thumbnail_repeat", not shared,
+        "Thumbnail words differ from the title words."
+        if not shared else
+        f"Thumbnail repeats the title on {', '.join(sorted(shared))} - "
+        "the pairing should carry twice the information (title.py).")
+
+    fmt = str(data.get("format", "")).strip().lower()
+    add("format", fmt in FORMAT_OK,
+        "Format is vertical 9:16."
+        if fmt in FORMAT_OK else
+        "Format must be vertical 9:16 (1080x1920 preferred, 720x1280 "
+        "acceptable); 16:9 or landscape fails the format gate.")
+
+    clean = data.get("clean")
+    watermark = data.get("watermark")
+    clean_ok = clean is True and watermark is not True
+    add("clean", clean_ok,
+        "Output is generated clean, no watermark."
+        if clean_ok else
+        "Confirm the render is generated clean (clean: true) with no "
+        "watermark; never strip another tool's watermark.")
+
+    if data.get("branded_content"):
+        add("branded_disclosure", bool(data.get("branded_disclosure")),
+            "Branded content is disclosed by the creator."
+            if data.get("branded_disclosure") else
+            "Disclose the branded content yourself; do not rely on "
+            "YouTube auto-detection.")
+    else:
+        add("branded_disclosure", True, "No branded content, no disclosure needed.")
+
+    sides = data.get("comparison_sides") or []
+    if len(sides) >= 2:
+        pinned = str(data.get("pinned_comment", "")).lower()
+        missing = [s for s in sides if str(s).lower() not in pinned]
+        add("pinned_vote", not missing,
+            "Pinned comment is the vote naming both sides."
+            if not missing else
+            f"Pinned comment must name both sides in video order; "
+            f"missing: {', '.join(missing)} (yt-post vote rule).")
+    else:
+        add("pinned_vote", True, "Not a comparison Short, no vote required.")
 
     description = str(data.get("description", "")).strip()
     first_line = description.splitlines()[0].strip() if description else ""

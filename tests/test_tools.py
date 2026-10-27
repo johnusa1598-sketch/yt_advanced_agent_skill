@@ -9,8 +9,12 @@ its sample is a broken tool, and this test is how you find out
 before a creator does.
 """
 import json
+import math
+import struct
 import subprocess
 import sys
+import tempfile
+import wave
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -33,6 +37,39 @@ def check(name, result, must_contain=""):
         return False
     print(f"PASS {name}")
     return True
+
+
+def check_exit(name, result, expected):
+    # For tools that must fail with a specific exit code (e.g. 2 for
+    # invalid input). check() above accepts 0/1 because several tools
+    # legitimately exit 1 on a FAIL verdict; that must not hide a
+    # tool that should have rejected its input.
+    if result.returncode != expected:
+        print(f"FAIL {name}: exit {result.returncode}, expected {expected}\n{result.stderr}")
+        return False
+    print(f"PASS {name}")
+    return True
+
+
+def make_tone():
+    # A 1-second 440 Hz sine at peak 0.28 measures about -14.8 LUFS
+    # (inside loudness.py's -16..-12 window), generated with the
+    # standard library only. The pack must stay snapshot-pushable,
+    # and snapshot pushes accept UTF-8 text only — so no binary
+    # .wav fixture lives in the repo; the test makes its own tone.
+    tmp = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
+    tmp.close()
+    with wave.open(tmp.name, "wb") as w:
+        w.setnchannels(1)
+        w.setsampwidth(2)
+        w.setframerate(44100)
+        frames = b"".join(
+            struct.pack("<h", int(0.28 * 32767
+                                   * math.sin(2 * math.pi * 440 * i / 44100)))
+            for i in range(44100)
+        )
+        w.writeframes(frames)
+    return tmp.name
 
 
 def main():
@@ -112,6 +149,81 @@ def main():
     ok &= check("scorecard_json", run(["skills/yt-qa/scorecard.py",
         "--identity", "3", "--movement", "3", "--phone", "2",
         "--beats", "2", "--json"]), '"verdict": "PASS"')
+    # v3.3.6 additions: every new gate/behaviour gets a check, and the
+    # four previously untested tools (chapters, deadair, retention,
+    # swipe) are exercised for the first time.
+    ok &= check("prompt_builder_variants", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json"]), "VARIANT C_slow_detail")
+    ok &= check("prompt_builder_realism", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json"]), "flyaway")
+    ok &= check("prompt_builder_nose_strong", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json"]), "RIGHT nostril wing only")
+    ok &= check_exit("prompt_builder_outfit_bad", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json", "--outfit", "neon pink leotard"]), 2)
+    ok &= check("scorecard_gate_fail", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "3", "--phone", "2",
+        "--beats", "2", "--width", "720", "--height", "1280",
+        "--nose", "centre"]), "nose gate")
+    ok &= check("scorecard_gates_pass", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--width", "720", "--height", "1280",
+        "--nose", "frontal-right", "--slot", "teal",
+        "--lufs", "-14.0", "--peak", "-10.3", "--beat", "yes"]),
+        "GATES NOT VERIFIED")
+    ok &= check("loudness", run(["skills/yt-sound/loudness.py",
+        make_tone()]), "LUFS")
+    ok &= check("diagnose_retrieval", run(["skills/yt-diagnose/diagnose.py",
+        "tests/fixtures/studio-export.csv", "--json"]), "RETRIEVAL")
+    ok &= check("diagnose_peer_basis", run(["skills/yt-diagnose/diagnose.py",
+        "tests/fixtures/studio-export.csv", "--json"]), "peer_basis")
+    ok &= check("publish_check_repeat", run(["skills/yt-publish/publish_check.py",
+        "tests/fixtures/publish-repeat.json"]), "NOT READY")
+    ok &= check("publish_check_format", run(["skills/yt-publish/publish_check.py",
+        "tests/fixtures/publish-format.json"]), "NOT READY")
+    ok &= check("publish_check_watermark", run(["skills/yt-publish/publish_check.py",
+        "tests/fixtures/publish-watermark.json"]), "NOT READY")
+    ok &= check("publish_check_vote", run(["skills/yt-publish/publish_check.py",
+        "tests/fixtures/publish-vote.json"]), "NOT READY")
+    ok &= check("package_builder_vote", run(["skills/yt-post/package_builder.py",
+        "tests/fixtures/package-vote-brief.json"]), "Team beam or Team floor")
+    ok &= check("package_builder_text_end", run(["skills/yt-post/package_builder.py",
+        "tests/fixtures/package-vote-brief.json"]), "ends past its beat")
+    ok &= check("retention_plan_tail", run(["skills/yt-viral-loop/retention_plan.py",
+        "tests/fixtures/retention-tail-brief.json"]), "long-tail")
+    ok &= check("retention_biggest", run(["skills/yt-retention/retention.py",
+        "tests/fixtures/retention-curve.csv"]), "BIGGEST LEAK")
+    ok &= check("trend_pack_date", run(["skills/yt-trends/trend_pack.py",
+        "beam backflip", "--evidence", "tests/fixtures/trend-evidence.json",
+        "--evidence-date", "2026-10-20"]), "evidence dated")
+    ok &= check("analytics_outliers", run(["skills/yt-analytics/analytics.py",
+        "examples/aria-fit/videos.json", "--json"]), "outliers_3x")
+    ok &= check("shorts_score_nohook", run(["skills/yt-shorts-first/shorts_score.py",
+        "--title", "I tested 3 viral hacks", "--thumb", "DID IT WORK",
+        "--hook", "", "--loop", "yes", "--cta", "follow for part 2"]),
+        "No hook supplied")
+    ok &= check("title_ceiling", run(["skills/yt-package/title.py",
+        "--title", "I tested 3 viral hacks", "--thumb", "ONE TWO THREE FOUR"]),
+        "three is the ceiling")
+    ok &= check("chapters", run(["skills/yt-chapters/chapters.py",
+        "tests/fixtures/transcript-8.srt"]), "3 chapters")
+    ok &= check("deadair", run(["skills/yt-edit/deadair.py",
+        "tests/fixtures/captions.srt"]), "cuts")
+    ok &= check("swipe", run(["skills/yt-viral/swipe.py",
+        "tests/fixtures/collected.json"]), "median")
+    ok &= check_exit("hookscore_missing", run(["skills/yt-script/hookscore.py",
+        "no-such-file.txt"]), 2)
+    # v3.3.7 additions: rewatch trigger plan + loop/rewatch scorecard gates.
+    ok &= check("retention_plan_rewatch", run(["skills/yt-viral-loop/retention_plan.py",
+        "tests/fixtures/retention-rewatch-brief.json"]), "Rewatch trigger (one per Short)")
+    ok &= check("retention_plan_no_rewatch", run(["skills/yt-viral-loop/retention_plan.py",
+        "tests/fixtures/package-brief.json"]), "no-rewatch-trigger")
+    ok &= check("scorecard_loop_fail", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "3", "--phone", "2",
+        "--beats", "2", "--loop-match", "mismatch"]), "loop gate")
+    ok &= check("scorecard_loop_rewatch_pass", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--loop-match", "matched", "--rewatch", "yes"]),
+        "Gates checked: loop, rewatch")
     ok &= check("skills_structure", check_skills(), "STRUCTURE OK")
     print("ALL PASS" if ok else "SOME TESTS FAILED")
     return 0 if ok else 1
@@ -125,7 +237,9 @@ class _FakeResult:
 
 
 def check_skills():
-    """Every skill ships a SKILL.md and a skill.yaml; every tool runs."""
+    """Every skill ships a SKILL.md and a skill.yaml. This checks
+    structure only; the checks above are what actually run the tools
+    (v3.3.6: all 18 tools are now exercised, not just counted)."""
     missing = []
     for skill_dir in sorted((ROOT / "skills").glob("yt-*")):
         if not (skill_dir / "SKILL.md").exists():

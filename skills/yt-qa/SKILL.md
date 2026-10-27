@@ -58,6 +58,9 @@ the character's RIGHT nostril wing only (frontal view:
 image LEFT). A centre, septum, or nose-tip ring FAILS,
 even if the other accessories pass, and a second centre
 ring alongside a correct wing ring also FAILS.
+**Which frame (v3.3.6):** use the frontal face-visible beat
+for the verdict — the parasocial lens grin, not a 30–45°
+diagonal action frame, which cannot settle side vs centre.
 
 ## Ten-point scorecard (the verdict)
 
@@ -83,6 +86,15 @@ python3 scorecard.py --identity 1 --movement 3 --phone 2 --beats 2 --json
 
 A total of 8 with identity 1 still FAILS — the sub-thresholds
 are gates, not suggestions.
+**Hard gates in the tool (v3.3.6):** pass the evidence to
+`scorecard.py` and a failed gate fails the video even at
+10/10 — `--width/--height` (9:16 ratio, 720x1280 minimum),
+`--nose` (frontal-right only), `--slot` (one of the five
+rotation colours), `--lufs/--peak/--beat` (audio gate). Every
+run prints the gates the tool cannot verify — face gate,
+text-end rule, parasocial tail cap, slot vs previous video —
+so a PASS is never mistaken for a full QA pass. Those stay
+human checks, in this skill.
 
 ## Face gate (hard gate — not a score)
 
@@ -95,12 +107,20 @@ If NO such frame exists:
   within the day's fix budget; if it still fails, the day's
   fallback applies (concept switch / emergency backup).
   Nobody has to "catch" it — the gate fails it by itself.
+  That regen counts toward the shared 2-fail glitch burst
+  (`/yt-anti-glitch`): it is not a third attempt on top of
+  the burst.
 - The same gate applies to the published video on review:
   face unverifiable = identity HARD FAIL.
 
 Every concept must therefore guarantee a face-visible beat —
 a concept that cannot show the character's face cannot be
 planned.
+For Aria Fit, the face-crop check runs line by line against
+the datasheet §8 block (`templates/aria-datasheet-lock.md`),
+not just the generic lock: freckle weight and placement,
+body proportions, and accessories all verify or the frame
+fails.
 
 ## Format gate (hard gate — not a score, v3.3.0; clarified v3.3.4)
 
@@ -129,9 +149,14 @@ with a passing scorecard total.
 - **Audio.** A beat/music track must be present (native
   room noise alone fails), and the finished audio must be
   normalised to a −14 LUFS target with true peak no higher
-  than −1 dBTP (`/yt-sound` loudness gate). Quiet or
-  music-less = FAIL-FIXABLE: normalise and add the track,
-  then re-check.
+  than −1 dBTP (`/yt-sound` loudness gate). Measure it with
+  `loudness.py` in `/yt-sound` (ffmpeg ebur128, true-peak
+  mode) and pass the numbers to `scorecard.py --lufs/--peak`
+  — the gate is no longer a human estimate (v3.3.6). Quiet
+  or music-less = FAIL-FIXABLE: normalise and add the track,
+  then re-check. Note the beat-track presence itself still
+  needs a human ear: loudness.py measures level, not whether
+  a beat track exists.
 - **Text timing.** Freeze the frame at each text change
   and at the skill exit. The text on screen must match the
   visual on screen at that second. A text layer that lingers
@@ -149,6 +174,44 @@ with a passing scorecard total.
   identity elements — hair, glasses, nose ring side,
   earrings, freckles — must still match exactly; a change
   there is identity drift, not rotation.
+
+## Loop + rewatch gates (v3.3.7 — checks, not scores)
+
+These sit beside the scorecard like the audio, text, and
+tail gates. A video that fails one is FAIL-FIXABLE, even
+with a passing scorecard total.
+
+- **Loop match.** Static holds: the final frame rebounds to
+  the exact opening position, framing, and tension. Dynamic
+  skills: the final frame cuts mid-takeoff matching the
+  opening airborne frame. Last 2 seconds match the first 2
+  in light, angle, and position; the beat continues across
+  the join with no silence gap or pop; no subscribe end-card,
+  black screen, or held goodbye frame after the ≤2 second
+  tail. Pass the verdict to `scorecard.py --loop-match
+  matched/mismatch` — a mismatch fails even at 10/10.
+- **Rewatch trigger, present not claimed.** One trigger per
+  Short (hidden detail, missed moment, count-the-detail,
+  satisfying payoff, fast payoff + slow information reveal,
+  or end reframe — see `/yt-shorts-first`). Verify it is
+  actually visible in the video; a trigger named in the
+  brief but absent from the render is a fail, not a pass.
+  The pinned comment must ask about it (or the vote must
+  carry the ask on a comparison Short). Pass the verdict to
+  `scorecard.py --rewatch yes/no`.
+- **Scope note.** The Monday 26-October handstand pack was
+  approved as-is before this rule and carries no rewatch
+  trigger; it is exempt from this gate until the user
+  decides otherwise (see the changelog question list). New
+  videos are not exempt.
+- **Reading the loop in Studio.** Average percentage viewed
+  above 100% means viewers looped — that is the loop
+  working, not a data error. Judge it beside engaged views:
+  since 31 March 2025 every replay counts as a public view,
+  but monetisation runs on engaged views, so raw views alone
+  overstate a rewatchable clip. A loop that only inflates
+  views without engaged views or return viewers has not
+  proved anything.
 
 ## What to hand back
 

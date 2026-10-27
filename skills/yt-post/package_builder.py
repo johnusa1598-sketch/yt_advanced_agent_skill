@@ -23,8 +23,19 @@ hashtag line and the tag list. Without it, hashtags come from the brief.
 The package is a draft to copy, check and change. Title variants are
 built from templates with the brief's own subject and numbers - no
 invented statistics, no copied lines from other creators. The title
-and thumbnail must carry different words (see title.py), so every
-variant is checked against the thumbnail text.
+and thumbnail must carry different words (see title.py), so the
+thumbnail text is derived from the brief's hook minus the words of
+title variant 1, never hardcoded (v3.3.6). Re-check the pairing
+against the title you actually publish.
+
+Brief fields added in v3.3.6:
+    comparison_sides - ["side A", "side B"] in video order, for a
+        challenge/comparison Short. The pinned comment becomes the
+        vote naming both sides (yt-post vote rule). A comparison
+        brief without sides produces a warning, not a vote.
+    beats entries may carry "end" (seconds or "8s"): the text
+        layer's end. A layer ending past its beat's end is flagged
+        (text-end rule, yt-post / yt-qa).
 """
 import json, os, re, sys
 
@@ -70,6 +81,45 @@ def title_variants(brief):
                     "issues": issues})
     return out
 
+THUMB_STOP = {"the", "a", "an", "how", "to", "my", "i", "it", "is",
+              "was", "this", "that", "can", "you", "do", "we", "they",
+              "he", "her", "his", "its", "in", "on", "of", "for",
+              "with", "and", "or", "but", "so", "if", "then", "than",
+              "from", "one"}
+
+
+def thumbnail_text(brief, titles):
+    """Derive thumbnail text from the hook, minus title variant 1's
+    words, so the pairing carries twice the information. Falls back
+    to the subject, then to the hook's first words. Never hardcoded."""
+    title_words = set(words(titles[0]["title"]))
+    hook_words = [w for w in words(brief.get("hook", ""))
+                  if w not in THUMB_STOP and w not in title_words]
+    if hook_words:
+        return " ".join(hook_words[:3]).upper()
+    subject_words = [w for w in words(brief.get("title_idea", ""))
+                     if w not in THUMB_STOP and w not in title_words]
+    if subject_words:
+        return " ".join(subject_words[:3]).upper()
+    return " ".join(words(brief.get("hook", ""))[:3]).upper()
+
+
+def _secs(value):
+    """Parse '8s', '8', or 8 into seconds; None when unparseable."""
+    if value is None:
+        return None
+    if isinstance(value, (int, float)):
+        return float(value)
+    m = re.match(r"^\s*(\d+(?:\.\d+)?)\s*s?\s*$", str(value))
+    return float(m.group(1)) if m else None
+
+
+def _range_end(time_range):
+    m = re.match(r"^\s*(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*s?\s*$",
+                 str(time_range or ""))
+    return float(m.group(2)) if m else None
+
+
 def text_layers(brief):
     layers = []
     for b in brief.get("beats", []) or []:
@@ -80,31 +130,64 @@ def text_layers(brief):
         w = onscreen.split()
         if len(w) > 5:
             onscreen = " ".join(w[:5])
+        beat_end = _range_end(b.get("time", ""))
+        end = _secs(b.get("end")) if b.get("end") is not None else beat_end
         layers.append({
             "time": b.get("time", ""),
             "on_screen": onscreen,
             "full_beat": txt,
+            "end_s": end,
+            "beat_end_s": beat_end,
+            "ends_past_beat": bool(end is not None and beat_end is not None
+                                   and end > beat_end),
             "style": "bold sans, high contrast, centre or lower third, "
                      "max 5 words on screen at once",
         })
     if not layers and brief.get("hook"):
         layers.append({"time": "0-3s", "on_screen": brief["hook"][:40],
                        "full_beat": brief["hook"],
+                       "end_s": 3.0, "beat_end_s": 3.0,
+                       "ends_past_beat": False,
                        "style": "bold sans, high contrast, centre"})
     return layers
+
+
+def pinned_comment(brief):
+    """Vote rule (v3.3.2, yt-post): on a comparison/challenge Short
+    the pinned comment names both sides in video order. Returns
+    (comment, warning); warning is set when the brief claims a
+    comparison but supplies no sides."""
+    sides = brief.get("comparison_sides") or brief.get("sides") or []
+    if len(sides) >= 2:
+        return (f"Team {sides[0]} or Team {sides[1]} - which wins? "
+                f"Vote in the comments.", None)
+    if brief.get("comparison"):
+        return (f"Which part was hardest - the flip or the landing? "
+                f"Tell me and I will film {brief.get('series', 'part 2')} "
+                f"around your answer.",
+                "comparison Short without sides: the pinned comment must "
+                "be the vote naming both sides in video order (yt-post). "
+                "Add comparison_sides to the brief.")
+    return (f"Which part was hardest - the flip or the landing? "
+            f"Tell me and I will film {brief.get('series', 'part 2')} "
+            f"around your answer.", None)
 
 def build(brief, trends=None):
     fmt = (brief.get("format") or "short").lower()
     dur = int(brief.get("duration_s") or (30 if fmt == "short" else 600))
     titles = title_variants(brief)
     thumb = {
-        "text": "LAND IT?" if fmt == "short" else titles[0]["title"][:24],
+        "text": thumbnail_text(brief, titles),
         "elements": ["the hardest moment, frozen mid-action",
                      "one face, one reaction, no clutter",
                      "high contrast; text is 3 words at most"],
         "rule": "thumbnail words must differ from the title words - "
                 "the pairing carries twice the information",
+        "check": "derived from the hook minus title variant 1's words; "
+                 "re-check against the title you actually publish "
+                 "(title.py)",
     }
+    pin, pin_warning = pinned_comment(brief)
     hashtags = []
     if trends:
         h = trends.get("hashtags", {})
@@ -130,8 +213,13 @@ def build(brief, trends=None):
                     "check Studio -> Analytics -> Audience -> 'when your "
                     "viewers are on YouTube' and pick the first evening "
                     "peak of your own week.",
-        "default_if_no_data": "late afternoon to early evening in the "
-                              "audience's timezone, on the series' usual day",
+        # v3.3.6: no generic default. FINAL §20.6 trusts only the
+        # channel's own heatmap; without one, keep the series day
+        # and record the heatmap as the first post-publish task.
+        "default_if_no_data": "No generic best-time default. Publish on "
+                              "the series' usual day and record the "
+                              "Audience heatmap as the first post-publish "
+                              "task; the heatmap becomes the timing source.",
         "cadence_note": "A series compounds only on a rhythm. Same day, "
                         "same slot, every week beats random uploads.",
     }
@@ -156,9 +244,8 @@ def build(brief, trends=None):
         "hashtags": hashtags,
         "text_layers": text_layers(brief),
         "end_screen_cta": brief.get("cta", "follow for part 2"),
-        "pinned_comment": f"Which part was hardest - the flip or the landing? "
-                          f"Tell me and I will film {brief.get('series', 'part 2')} "
-                          f"around your answer.",
+        "pinned_comment": pin,
+        "pinned_comment_warning": pin_warning,
         "upload_timing": timing,
         "ab_test": ab,
         "checklist": ["AI disclosure added if any visual or sound is AI generated",
@@ -186,9 +273,12 @@ def show(pkg):
     print("  HASHTAGS: " + " ".join(pkg["hashtags"]))
     print("\n  TEXT LAYERS / CAPTIONS")
     for l in pkg["text_layers"]:
-        print(f"    [{l['time']}] {l['on_screen']}")
+        flag = " x ends past its beat" if l.get("ends_past_beat") else ""
+        print(f"    [{l['time']}] {l['on_screen']}{flag}")
     print(f"\n  END SCREEN CTA: {pkg['end_screen_cta']}")
     print(f"  PINNED COMMENT: {pkg['pinned_comment']}")
+    if pkg.get("pinned_comment_warning"):
+        print(f"  PINNED COMMENT WARNING: {pkg['pinned_comment_warning']}")
     print("\n  UPLOAD TIMING")
     print(f"    {pkg['upload_timing']['guidance']}")
     print(f"    default: {pkg['upload_timing']['default_if_no_data']}")

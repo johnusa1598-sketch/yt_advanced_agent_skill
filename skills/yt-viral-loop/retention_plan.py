@@ -11,6 +11,14 @@ Brief JSON fields:
     loop        - the loop idea for a Short ("last line sets up first line")
     beats       - [{"time": "0-3s", "text": "what happens"}]
     cta         - the one call to action
+    parasocial_s / cta_s - seconds of the parasocial beat and the CTA
+        (v3.3.6): on a Short their sum must be 2 seconds or less
+        (v3.3.2 tail cap); over that is flagged as a long-tail.
+    rewatch_trigger - the one detail a second watch catches
+        (v3.3.7): a hidden detail, a missed moment, a count, or a
+        satisfying payoff. A Short without one is flagged: FINAL
+        requires one Easter egg per video, and the rewatch
+        trigger is that rule, named before the shoot.
 
 The plan is a checklist, not a prediction. It marks the three jobs every
 video has: hold the first 3 seconds, re-earn attention before every
@@ -70,10 +78,37 @@ def build(brief):
                                  "a question, or a visual change in it"})
         prev_end = max(prev_end, end)
 
+    # Parasocial tail cap (v3.3.2): after the skill, beat + CTA is
+    # at most 2 seconds, then cut or loop. Flagged only when the
+    # brief states both durations; otherwise the cap is a manual
+    # check in yt-qa.
+    tail = None
+    if brief.get("parasocial_s") is not None and brief.get("cta_s") is not None:
+        tail = float(brief["parasocial_s"]) + float(brief["cta_s"])
+        if tail > 2:
+            flags.append({"at": "end", "kind": "long-tail",
+                          "fix": f"parasocial + CTA is {tail}s, over the 2s "
+                                 "cap - cut the beat or the CTA, then loop"})
+
     guards = []
     if fmt == "short":
         guards.append("Mid-turn: one complication or proof before the halfway mark, "
                       "or the swipe comes there.")
+        # Rewatch trigger (v3.3.7): one per Short, named in the brief.
+        # The loop alone replays the video; the trigger gives the
+        # second watch a job (spot it, count it, catch the payoff
+        # technique). The pinned comment then asks about it.
+        trigger = (brief.get("rewatch_trigger") or "").strip()
+        if trigger:
+            guards.append(f"Rewatch trigger (one per Short): {trigger} - "
+                          "the pinned comment asks about it, so the "
+                          "second watch has a job, not just a replay.")
+        else:
+            flags.append({"at": "end", "kind": "no-rewatch-trigger",
+                          "fix": "no rewatch trigger named - FINAL requires "
+                                 "one Easter egg per video; name the hidden "
+                                 "detail, missed moment, count, or satisfying "
+                                 "payoff the second watch catches"})
         if loop:
             guards.append(f"Loop point (last 2s): {loop} - the last line must "
                           "set up the first line so a rewatch feels continuous.")

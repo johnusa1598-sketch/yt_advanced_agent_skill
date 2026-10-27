@@ -46,9 +46,13 @@ def main():
     if "--duration" in a: dur = float(a[a.index("--duration") + 1])
     def at(x): return (x / 100.0 * dur) if (pct_axis and dur) else x
     start = ys[0] or 100.0
-    # HOOK: the first 30 seconds, or the first 10% when the axis is a percentage and we have no duration
+    # HOOK: the first 30 seconds, or the first 10% when the axis is a percentage and we have no duration.
+    # v3.3.6: hook leak is the value AT the cutoff (the last point at or
+    # before it), not the minimum up to it - a mid-hook dip that
+    # recovers is not the same as ending the hook down.
     cutoff = 30.0 if not pct_axis else (30.0 / dur * 100 if dur else 10.0)
-    hook_end = min((y for x, y in rows if x <= cutoff), default=start)
+    at_cutoff = [(x, y) for x, y in rows if x <= cutoff]
+    hook_end = at_cutoff[-1][1] if at_cutoff else ys[0]
     hook_leak = start - hook_end
     drops = []
     for i in range(1, len(rows)):
@@ -71,8 +75,22 @@ def main():
             t = c["at_seconds"]
             near = [q[2] for q in cues if q[0] <= t + 4 and q[1] >= t - 4]
             said[str(c["from"])] = " ".join(near)[:140]
+    # BIGGEST LEAK (v3.3.6): one verdict, not three numbers to weigh.
+    # A cliff beats the slide when one exists; otherwise the slide is
+    # the leak, and the fix is pacing, not a moment.
+    if cliffs:
+        biggest = max(cliffs, key=lambda c: c["lost"])
+        where = (f"{biggest['at_seconds']:.0f}s" if biggest["at_seconds"] is not None
+                 else f"{biggest['from']}")
+        biggest_leak = {"kind": "cliff", "lost": biggest["lost"], "at": where,
+                        "fix": "rewrite the moment at " + where +
+                               ", not the whole video"}
+    else:
+        biggest_leak = {"kind": "slide", "lost": round(slide, 3),
+                        "fix": "cut the middle, do not rewrite it"}
     out = {"points": len(rows), "start": start, "hook_leak": round(hook_leak, 2),
-           "end": ys[-1], "cliffs": cliffs, "slide_per_unit": round(slide, 3), "said": said}
+           "end": ys[-1], "cliffs": cliffs, "slide_per_unit": round(slide, 3), "said": said,
+           "biggest_leak": biggest_leak}
     if as_json: print(json.dumps(out, indent=1)); return
     print(f"\n  {files[0]}   {len(rows)} points   {ys[0]:.1f}% -> {ys[-1]:.1f}%\n")
     verdict = "healthy" if hook_leak < 25 else "leaking" if hook_leak < 40 else "severe"
@@ -85,6 +103,11 @@ def main():
     if not cliffs: print("    none steeper than 0.8% - the loss is all slide, not moments")
     print(f"\n  SLIDE       {slide:.3f}% per unit across the middle")
     print( "              a flat slide is pacing, not content. Cut the middle, do not rewrite it.\n")
+    if biggest_leak["kind"] == "cliff":
+        print(f"  BIGGEST LEAK  cliff of -{biggest_leak['lost']}% at {biggest_leak['at']}")
+    else:
+        print(f"  BIGGEST LEAK  steady slide ({biggest_leak['lost']}% per unit)")
+    print(f"                {biggest_leak['fix']}\n")
 
 if __name__ == "__main__":
     main()

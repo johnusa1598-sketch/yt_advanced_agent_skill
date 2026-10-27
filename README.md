@@ -1,6 +1,6 @@
 # The YouTube agent skill, next level
 
-Thirty-three skills that run a YouTube channel, up from eleven.
+Thirty-four skills that run a YouTube channel, up from eleven.
 Free, MIT, no signup, no API key, nothing to connect.
 
 **Original pack, by Jake Schincariol, MIT licence:**
@@ -39,16 +39,35 @@ v3.3.5 (26 October 2026): nose ring clarification — character's
 RIGHT nostril wing only, frontal view me image ke LEFT side
 par, kabhi septum, centre, nose tip ya do rings nahi, aur
 QA me side sirf frontal frame par check hogi.
+v3.3.6 (27 October 2026): audit fixes — two-stage diagnostic
+split spelled out, viral-loop chain mirrors the hub gates,
+tools kept to their skills' promises (scorecard hard gates,
+publish checks, vote comment, outfit palette, realism core,
+loudness measurement), October 2026 landscape updates
+(AI music labels, likeness correction, originality nuances,
+branded content, GIF comments, Studio columns).
+v3.3.7 (27 October 2026): rewatch engineering — seamless
+loop checks on top of the FINAL dual-mode bridge, one named
+rewatch trigger per Short (hidden detail, missed moment,
+count-the-detail, satisfying payoff, fast payoff + slow
+reveal, end reframe), loop + rewatch QA gates, honest Studio
+read (APV >100% = loop, engaged views = money).
+v3.4.0 (27 October 2026): edit tier — hyperframe-edit skill
+(supplied clips into a polished 9:16 HyperFrames edit) plus
+the merged FFmpeg + HyperFrames pipeline script (clean →
+check/snapshot/render → audio finish/mux → QC report);
+v3.3.6 + v3.3.7, previously local only, go live in this push.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.
 You upload.
 
-## The thirty-three
+## The thirty-four
 
 | command | what it does |
 | --- | --- |
 | `/yt-hub` | Routes any YouTube request to the right skill. |
+| `/hyperframe-edit` | NEW in v3.4 (edit tier). Supplied clips into a polished 9:16 short: HyperFrames kinetic edit, live grades, merged FFmpeg pipeline, QC report. Editing only, never generates clips. |
 | `/yt-production` | NEW in v3.1 (production tier). Two-step AI video: hook-frame image first, then video from that frame, with reference discipline. |
 | `/yt-story` | NEW in v3.1 (production tier). Story DNA: eight elements in a fixed arc, parasocial beat, eye-contact rule, dual-mode loop bridge, comment trigger. |
 | `/yt-anti-glitch` | NEW in v3.1 (production tier). Skill-safety ladder, banned combos only, face-visibility lock, duo separation, glitch burst rule. |
@@ -82,7 +101,7 @@ You upload.
 | `/yt-chapters` | Chapters from a transcript, validated against YouTube's own rules so they render. |
 | `/yt-audit` | The whole channel, ending in ONE fix rather than twenty. |
 
-## The seventeen tools
+## The eighteen tools
 
 Every one runs on a clean Python 3 with no dependencies.
 
@@ -104,6 +123,7 @@ python3 skills/yt-diagnose/diagnose.py studio-export.csv
 python3 skills/yt-sound/srt_qa.py captions.srt --safety-words safety.txt
 python3 skills/yt-originality/originality_scan.py uploads.json
 python3 skills/yt-qa/scorecard.py --identity 3 --movement 2 --phone 2 --beats 2
+python3 skills/yt-sound/loudness.py <audio-file>
 ```
 
 ## Install

@@ -42,7 +42,10 @@ against it:
 - Outfit and colours, and what never changes about them.
   For a leotard rotation (`/yt-ai-prompt` v3.3.3), the log
   also records the colour slot per episode, in cycle order,
-  so no colour repeats twice in a row.
+  so no colour repeats twice in a row. A non-leotard outfit
+  from the channel matrix is logged in the same log, so the
+  next video still never repeats all four matrix picks from
+  the previous video (v3.3.6).
 - Setting, camera framing, and tone.
 - What the character never does and never claims.
 

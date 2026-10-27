@@ -110,8 +110,11 @@ def main():
         lines = [a[a.index("--hook") + 1]]
     elif a and os.path.exists(a[0]):
         lines = [l for l in open(a[0]).read().splitlines() if l.strip()]
+    elif a:
+        print(f"hookscore.py: no such file: {a[0]}", file=sys.stderr)
+        sys.exit(2)
     else:
-        print(__doc__); sys.exit(1 if not a else 0)
+        print(__doc__); sys.exit(1)
     out = []
     for t in lines:
         parts, verdict, name, hits = score(t)

@@ -25,15 +25,26 @@ an earlier one is broken:
    barely any shown-in-feed was never tested. That is not a hook
    failure, and no hook rewrite will fix it. Wait, or check
    whether the video was ever eligible for the feed at all.
+   **Two-stage split (v3.3.6):** shown well below the peer
+   median is also a retrieval / candidate-stage failure —
+   wrong audience cluster, niche mismatch. The tool carries
+   this as a RETRIEVAL note on the NOT TESTED verdict: wait
+   for the test audience first, then re-target the cluster
+   or topic if reach stays low. Rewriting the hook is the
+   wrong fix for a retrieval failure.
 2. **Hook - did it win the click or the stay?** For Shorts,
    "chose to view" against "shown in feed", and viewed vs
    swiped away in the first seconds. For long-form, impressions
    CTR. Below the peer median here is a first-frame, title, or
    thumbnail problem.
 3. **Retention - did it deliver?** Average percentage viewed,
-   and the curve, not the average. A cliff in the first 30
-   seconds is a promise problem; a slow slide is a pacing
-   problem (`/yt-retention`).
+   and the curve, not the average. Good impressions + fast
+   drop-off is a ranking / retention failure, placed by the
+   curve: a cliff in the first 3 seconds is a hook failure,
+   a later slide is a pacing / beat failure (`/yt-retention`
+   names the biggest leak). This tool only sees the average,
+   so it cannot place the cliff itself — read the curve
+   before choosing the fix.
 4. **Return - did it bring people back?** Returning-viewer
    share against your peer median. A video can perform and
    still fail here, and that is a series and routing problem
@@ -59,7 +70,10 @@ an earlier one is broken:
    CTR, and returning-viewer share where Studio offers them.
 2. Run `skills/yt-diagnose/diagnose.py` on the export. It
    judges every video against the median of its peers in the
-   same file, same format when the export says so.
+   same file, same format when the export says so. When fewer
+   than two same-format peers exist for a gate, it falls back
+   to all formats and says so in `peer_basis` — a mixed-format
+   median is never silent (v3.3.6).
 3. Take the verdict's **one fix** and apply it to the next
    video only. One fix per video, or you will never know what
    worked.

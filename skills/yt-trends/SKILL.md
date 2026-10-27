@@ -51,7 +51,11 @@ python3 trend_pack.py "beam backflip" --niche "AI gymnastics" \
 ```
 
 The evidence file is three lists you paste in: `trending_titles`,
-`tags_seen`, and `searches`. The tool returns four tiers:
+`tags_seen`, and `searches`. Date the evidence (v3.3.6): pass
+`--evidence-date YYYY-MM-DD`, or put a `date` field in the
+evidence file. Evidence older than 30 days is flagged stale in
+the output — a pack built on it is a guess about last month,
+not this one. The tool returns four tiers:
 
 - **Broad** - the big words of the niche, for reach.
 - **Niche** - the seed topic and its long-tail combinations, for

@@ -35,6 +35,14 @@ promise the video makes.
   `templates/community-routine.md`.
 - **Ask "A or B?", not "comment below".** A specific prompt
   with two answers gets answers; an open prompt gets silence.
+- **Vote rule (v3.3.2, from `/yt-post`).** On a challenge or
+  comparison Short, the pinned comment is the vote naming
+  both sides as they appear in the video, in the order the
+  viewer saw them — not a generic question, and not a second
+  pinned comment competing with the vote. The comment-trigger
+  detail from `/yt-story` is asked inside that vote or in a
+  reply. `publish_check.py` enforces this when the package
+  carries `comparison_sides`.
 - **Route:** where the video belongs to a series, the pinned
   comment points at the next episode or the long video, the
   same way Related Video does (`/yt-bridge`).
@@ -48,6 +56,16 @@ on plain text posts. That is partner data, not a YouTube
 figure, and the gap is the point, not the numbers: a poll that
 decides something real (which skill next, which attempt counts)
 gives viewers a reason to return for the answer.
+
+## GIF comments (mobile, late 2026)
+
+GIF replies rolled out on mobile in October 2026, with
+all-user availability planned for November 2026 (developer
+documentation, not a verified live date). Desktop shows GIF
+comments but has no posting button. No workaround is
+recommended: answer GIF comments from mobile, and never
+install a desktop extension to post them — that is not a
+publishing route this pack supports.
 
 Poll rules:
 

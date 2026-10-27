@@ -21,6 +21,11 @@ Fixed beats:
 What varies (in substance): the stretch, the difficulty, and
 the correction each day - not just the intro and outro.
 
+Casting: Mia is the default co-star. Duo is the default;
+solo episodes are the exception, capped at 2–3 per week,
+and on a solo slot CHEERS must still be witnessed somehow
+(see `/yt-story`).
+
 ## Routing
 
 | Episode | Related Video target | Last-3-seconds pointer |

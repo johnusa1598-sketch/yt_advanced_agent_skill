@@ -1,0 +1,5 @@
+name: "hyperframe-edit"
+title: "hyperframe-edit"
+description: "Edit supplied video clips into a polished 9:16 vertical short with HyperFrames (HTML + GSAP timeline rendered to MP4): kinetic typography, live colour-grade transformations, magazine-cover graphics, chat-prompt cards, word-synced captions, sound design and mastering. Use for \"edit this video like the reference\", \"hyperframes edit\", \"kinetic captions edit\", or any 9:16 short whose spectacle is the editing itself. Input is supplied clips — this skill does not generate video clips."
+category: "Work and knowledge"
+include_in_prompt: false

@@ -4,10 +4,16 @@
     python3 deadair.py transcript.srt            # or .vtt, or whisper .json
     python3 deadair.py transcript.srt --floor 0.35 --json
 
-Finds three things and prints the cuts as a list you can act on, newest problem first:
+Finds three things and prints the cuts as a list you can act on, in
+time order (earliest cut first):
   DEAD    gaps between spoken cues longer than the floor
   FILLER  cues that are only filler ("um", "so yeah", "basically")
   REPEAT  a sentence restarted - the second take of the same opening
+
+The default dead-air floor is 0.45s; pass --floor to change it
+(examples use 0.35s). Flags are parsed by hand: an unknown flag is
+silently ignored and a bare number is taken as the --floor value,
+so check the printed floor line before trusting a run.
 
 WHAT IT DOES NOT DO. It does not cut the file. It prints an EDL, the total it would remove, and the
 runtime you would land on, and you apply it in whatever editor you use. Nothing here touches media.

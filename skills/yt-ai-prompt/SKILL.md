@@ -49,7 +49,10 @@ continuity check.
    so the Short loops and the title promise is confirmed.
 7. **NEGATIVE AND GUARDRAILS.** Extra limbs, distorted hands,
    morphing face, changing glasses or jewellery side, changing
-   outfit, sexualized framing, text errors, and watermarks.
+   outfit mid-shot, sexualized framing, text errors, and
+   watermarks. The ban is on changing mid-shot — rotation
+   across videos is the planned exception (see Leotard colour
+   rotation below), not a violation of this layer.
 
 ## Clean output
 
@@ -67,16 +70,13 @@ applies to every Shorts prompt this skill writes, on top of the
 7 layers, and `prompt_builder.py` writes it into every full
 prompt, short prompt, and negative prompt automatically:
 
-- **Vertical 9:16 portrait, 1080x1920, full frame.** No
-  horizontal 16:9, no letterbox bars, no pillarbox bars, no
-  footage cropped from a horizontal shoot. A Shorts feed is
-  vertical; cropped horizontal footage reads as lazy and
-  wastes the frame.
-  **Resolution clarification (v3.3.4):** 1080x1920 is the
-  preferred target. 720x1280 at the same 9:16 ratio is the
-  minimum acceptable and passes the format gate in
-  `/yt-qa` — do not fail a video only for being 720p, and
-  do not upscale 720p to fake 1080p.
+- **Vertical 9:16 portrait, full frame — 1080x1920
+  preferred, 720x1280 at the same ratio passes (v3.3.4).**
+  No horizontal 16:9, no letterbox bars, no pillarbox bars,
+  no footage cropped from a horizontal shoot. A Shorts feed
+  is vertical; cropped horizontal footage reads as lazy and
+  wastes the frame. Do not fail a video only for being 720p,
+  and do not upscale 720p to fake 1080p.
 - **Shot on iPhone.** Handheld smartphone look, natural
   phone-camera optics, slight handheld movement. Not a
   cinematic DSLR or anamorphic look, not a studio-camera
@@ -132,6 +132,15 @@ background, and optics:
 The tool's negative prompt already blocks the opposites
 (plastic skin, frozen hair, watermark, logo). The realism core
 is what the positive prompt must actively ask for.
+`prompt_builder.py` writes a [REALISM] paragraph into every
+full prompt (v3.3.6) — pores, flyaway hairs, chalk dust,
+natural blink, micro-tremor on holds, sweat progression —
+so the core is no longer only documentation.
+**Audio (v3.3.6):** the prompt's hand-back must also carry
+the audio gate — a licence-safe beat track from the first 2
+seconds, finished audio −14 LUFS target, true peak at most
+−1 dBTP (v3.3.2 supersedes FINAL on music: native audio
+alone fails; see `/yt-sound` + `/yt-qa`).
 
 ## Build it with the tool
 
@@ -192,6 +201,19 @@ stays locked.
 - **Log the slot.** The series log records the slot per
   episode (`/yt-series`), so the next video never repeats
   the last colour by accident and the cycle stays in order.
+- **Tool enforcement (v3.3.6).** `prompt_builder.py` rejects
+  a leotard outfit outside the five colours (exit 2, palette
+  named) and warns when no `--outfit` is given and the brief
+  falls back to the default purple — the default is how
+  "every video purple" recurs. The tool cannot see the
+  series log, so the never-twice-in-a-row check stays the
+  planner's job, not the tool's.
+- **Scope (v3.3.6).** This cycle governs leotard slots. When
+  a non-leotard outfit from the channel matrix is chosen
+  (for example a top-and-leggings set), record that choice
+  in the same series log, so the next video still never
+  repeats all four matrix picks from the previous video
+  (`/yt-anti-glitch` variety matrix).
 
 ## Nose ring side, stated without ambiguity (v3.3.5)
 
@@ -215,6 +237,19 @@ and the negative prompt:
 - The negative prompt now bans centre nose ring, nose
   ring on nose tip, and two nose rings, as well as septum
   ring and changing side.
+- **Stale briefs cannot weaken the lock (v3.3.6).**
+  `prompt_builder.py` canonicalises the nose_ring field: any
+  brief that mentions a nose ring gets the full sentence
+  above in the character lock, whatever shorter wording the
+  brief itself used. A character with no nose_ring field is
+  left alone — no ring is invented for them.
+- **Aria datasheet lock (v3.3.6).** For Aria Fit, the
+  character lock IS the datasheet §8 block verbatim from
+  the FINAL template (see `templates/aria-datasheet-lock.md`
+  in this pack): freckles LIGHT, fine, scattered on the nose
+  bridge and upper cheeks only; body proportions constant,
+  never reduced or flattened. The generic lock fields in a
+  brief do not replace that block — paste it verbatim.
 
 ## Check it before you ship it
 
@@ -224,6 +259,13 @@ and the negative prompt:
 - Run the Short through `/yt-shorts-first` for hook, loop,
   and call to action, and through `/yt-publish` for AI
   disclosure and playlist.
+- In text mode the tool now prints all three variants in full
+  (v3.3.6), not just their names — read them before picking
+  one. The "slow detail" variant is slow, controlled movement
+  at normal speed, not a slow-motion effect: the FINAL
+  template bans slow motion, so do not use that variant
+  for Aria Fit unless the brief explicitly re-approves
+  controlled movement.
 - If a draft breaks the lock, fix the prompt, not the lock.
   Change the lock only in a dated revision, and say what
   changed.

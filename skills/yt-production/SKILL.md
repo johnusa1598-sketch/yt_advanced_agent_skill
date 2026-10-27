@@ -56,6 +56,20 @@ job: lock one perfect frame first, then animate only that frame.
    physics — do NOT proceed. Simplify one rung down the
    skill-safety ladder (see `/yt-anti-glitch`) and re-lock the
    frame first.
+   **Nose gate, full rule (v3.3.6):** the ring must be on the
+   character's RIGHT nostril wing only (frontal view: image
+   LEFT), and the side is checked on a FRONTAL frame only —
+   a 30–45° diagonal action frame cannot settle side vs
+   centre. A centre, septum, or nose-tip ring FAILS, and a
+   second centre ring alongside a correct wing ring also
+   FAILS — that second ring was the exact arabesque defect
+   (v3.3.5), and this gate exists to catch it before the
+   video is generated, not after.
+   **Burst counting (v3.3.6):** every failed generation or
+   segment regen for this concept counts toward the 2-fail
+   glitch burst in `/yt-anti-glitch`. On the second
+   consecutive fail, stop and switch — the "regenerate once"
+   allowance in `/yt-qa` is not a third attempt.
 
 ## Separated copy-paste blocks
 
@@ -64,10 +78,30 @@ Never paste one big prompt into both tools. Keep two blocks:
 - **Block A — image generator only.** Identity, peak action,
   face and eye rule, body tension, co-star placement, scene
   realism, optics, and the format lock: vertical 9:16 portrait,
-  shot on iPhone. Ends with: no watermark, no text.
+  shot on iPhone. Ends with: no watermark, no text. For Aria
+  Fit, the identity in Block A IS the datasheet §8 block
+  verbatim (`templates/aria-datasheet-lock.md`), not a
+  summary of it.
 - **Block B — video generator only, Step 1 image attached.**
   Story beats, camera and physics, mandatory native audio,
   loop bridge, comment detail, negative prompt.
+  **Audio (v3.3.2 supersedes FINAL on music):** native gym
+  audio is mandatory, but native audio alone is not enough —
+  a licence-safe beat track starting in the first 2 seconds
+  is required, finished audio −14 LUFS target, true peak at
+  most −1 dBTP (measure with `loudness.py` in `/yt-sound`).
+  FINAL's "music optional" no longer holds; FINAL's "music
+  low, never louder than movement sounds" still does.
+- **Single-skill vs multi-skill (v3.3.6).** Block B as written
+  is the single-skill Short: one generation, one skill, all
+  Story beats in one 8–12 second video. A multi-skill concept
+  is not a longer Block B — it is a segment list per `/yt-qa`
+  (one generation per skill, best 2–4 seconds each, in beat
+  order), assembled in editing to the same 8–12 second budget,
+  with the parasocial beat and the loop bridge preserved in
+  the final segment (which returns to the opening pose).
+  Verify beats per segment per `/yt-qa`, not per assembled
+  video only.
 
 A prompt pasted into the wrong tool is a wasted generation and
 a glitch risk. If a block names the wrong tool, stop and split
@@ -125,7 +159,9 @@ plan to drop beats.
 ## Worked example
 
 Aria Fit (the pack's example channel) runs this pipeline for
-every Short: a 0.0s peak-action hook frame in the gym, then the
+every Short: a 0.0s hook frame in the gym — peak-action, except
+on suspense-question titles, where it is the struggle or
+starting position (see the exception above) — then the
 video animated from that frame with the Story DNA beats from
 `/yt-story` and the QA gates from `/yt-qa`. Aria is the example,
 never the only character this skill works for.

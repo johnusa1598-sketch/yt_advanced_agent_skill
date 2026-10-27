@@ -97,10 +97,19 @@ and dynamic thumbnails (best of three by audience segment);
 coming video A/B testing of up to three cuts, starting with the
 hook; an Ask Studio background thumbnail refresh for older
 videos; conversational Gemini editing in Shorts and Create;
-opt-in AI comment moderation; and voice and face likeness
-detection. A file-based pack teaches you how to use and verify
-these Studio outputs - keep the human packaging decision, log
-the test result (`/yt-test`) - rather than duplicating them.
+opt-in AI comment moderation; and face likeness detection.
+Speaking-voice likeness detection was announced on 23 September
+2026 for later in 2026, not yet live at the time of writing —
+earlier pack wording that listed "voice and face" detection as
+current was wrong (v3.3.6 correction). Enrolment in likeness
+detection opened to all creators aged 18 and over in May 2026
+and is not retroactive; since August 2026 disputes run in four
+categories with no revenue-sharing option. Those last two
+details are trade-press reporting, not verified Help text —
+check Studio before acting on them. A file-based pack teaches
+you how to use and verify these Studio outputs - keep the
+human packaging decision, log the test result (`/yt-test`) -
+rather than duplicating them.
 
 **Auto-dubbing, February 2026.** Available to all creators,
 27 languages, Expressive Speech in 8 (see `/yt-sound` for the
@@ -142,7 +151,11 @@ overrides it.
   payoff, not a long end-card.
 - **Length orientation:** 20–35 seconds most-cited for 2026;
   under 15 gives the system little signal, over 45 makes the
-  retention maths much harder.
+  retention maths much harder — for recorded and edited
+  Shorts. For AI-generated Shorts the hard budget is 8–12
+  seconds (about 9 target) per `/yt-production`; a longer
+  concept is decomposed into segments, never stretched into
+  one beat map.
 - **Frequency:** Metricool's 2026 study finds per-post views
   highest at 2–4 Shorts per week, but monthly totals climbing
   with volume. Rule unchanged: post as often as quality
@@ -171,6 +184,21 @@ Shorts-specific code. Nothing below is an official threshold.
   and fixing the topic does not fix a weak hook. Diagnose
   them in that order (`/yt-diagnose` already names
   "barely shown = not tested" — this is why).
+
+- **Two-stage diagnostic, stated as a mapping (v3.3.6).**
+  (i) Low shown-in-feed / impressions vs peers = retrieval /
+  candidate-stage failure: wrong audience cluster, niche
+  mismatch. The fix is re-targeting the cluster or topic, not
+  rewriting the hook. `/yt-diagnose` now carries this as a
+  RETRIEVAL note on every NOT TESTED verdict, alongside "wait
+  for the test audience" — wait first, re-target if reach
+  stays low after testing. (ii) Good impressions + fast
+  drop-off = ranking / retention failure, and the retention
+  curve places it: a cliff in the first 3 seconds is a hook
+  failure, a later slide is a pacing / beat failure.
+  `/yt-diagnose` cannot place the cliff itself (it only sees
+  average % viewed); `/yt-retention` reads the curve, and its
+  BIGGEST LEAK verdict names the one fix.
 - **Audience cluster, not just keywords.** Ranking in the
   DNN is similarity between a user vector and a video
   vector, learned from viewing behaviour, not from matching
@@ -219,6 +247,25 @@ disclosure, or originality penalties. Those Shorts parts
 already live in `/yt-shorts-first`, `/yt-originality`,
 and the 2026 signals above — this section does not
 replace them.
+
+## Loops and rewatch — what is verifiable (v3.3.7)
+
+Shorts loop automatically, and since 31 March 2025 every
+replay counts as a public view with no minimum watch time,
+while monetisation and YPP eligibility run on engaged
+views. Average percentage viewed above 100% in Studio is
+therefore a real, readable sign that viewers looped — but
+it is a metric reading, not a ranking rule. This pack
+deliberately claims no ranking weight for loops: many
+third-party guides call loops "one of the strongest
+signals", but no official YouTube statement with a weight
+was found, so that claim is not repeated here as fact.
+What the pack does encode, in `/yt-shorts-first`,
+`/yt-story`, and `/yt-qa`, is the craft that earns a
+genuine second watch (seamless end-to-start match, clean
+audio join, one real rewatch trigger) and the honest Studio
+read beside it (percentage viewed plus engaged views, never
+raw views alone).
 
 ## What this model does not claim
 

@@ -39,7 +39,13 @@ every number with your own channel's numbers before using it.
 - Face: thin GOLD wire-frame glasses, SMALL gold nose ring in
   the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings, SMALL silver
   hoop earrings, light thin freckles.
-- Outfit: purple leotard.
+- Outfit: leotard rotation, in fixed cycle order — purple
+  (anchor, Slot 1), teal, black, royal blue, burgundy, then
+  back to purple. One planned slot per video; the hook frame
+  and the video share the slot; never the same colour twice
+  in a row; never a colour change mid-shot. Example log:
+  last slot teal (arabesque, Part 5). See `/yt-ai-prompt`
+  rotation and `/yt-series` for the log.
 - What this character never does: claims a real performance that
   did not happen, or hides the AI disclosure.
 

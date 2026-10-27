@@ -63,12 +63,20 @@ says so.
    — re-time it, do not leave it. Check it by freezing the
    frame at each text change and at the skill exit: the text
    on screen must match the visual on screen at that second.
+   `package_builder.py` enforces the mechanical half
+   (v3.3.6): a beat may carry an `end`, and any layer ending
+   past its beat's end is flagged `ends_past_beat` — a flagged
+   layer FAILS the package until re-timed.
 6. **End screen and CTA.** One line, named before the goodbye,
    pointing at the next video in the series.
 7. **Upload timing.** Your own Studio audience data first - the
-   tool tells you where to look and gives a default (late
-   afternoon to early evening, series day) only if you have no
-   data. A blog's "best time to post" is not your audience.
+   tool tells you where to look. There is no generic default:
+   FINAL §20.6 trusts only the channel's own Audience heatmap,
+   and this skill follows it. If you have no heatmap yet,
+   publish on the series' usual day and record the heatmap as
+   the first post-publish task — do not adopt a generic
+   best-time table as the plan. A blog's "best time to post"
+   is not your audience.
 8. **Pinned comment.** One question that invites the answer the
    next video will be built around. Comments are content strategy,
    not decoration.

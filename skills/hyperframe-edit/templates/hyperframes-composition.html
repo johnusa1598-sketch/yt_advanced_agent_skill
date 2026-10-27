@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>hyperframe-edit — starter composition</title>
+<!--
+  STARTER TEMPLATE — follows every composition rule in the
+  hyperframe-edit skill. Copy this file into a project folder
+  as index.html, put fonts in assets/fonts/, media in assets/,
+  then replace the example clips with real ones.
+
+  Rules baked into this file (do not break them):
+  - Root #stage carries the TOTAL data-duration.
+  - Every timed element has class="clip" + data-start +
+    data-duration.
+  - Exactly ONE paused GSAP timeline, registered as
+    window.timelines["main"]. All animation lives in it.
+  - NEVER tween display/visibility on a .clip element —
+    animate its CHILDREN instead.
+  - No CSS transforms on elements GSAP also transforms.
+    (.clip elements below have no CSS transform; only
+    their inner .inner elements are transformed by GSAP.)
+  - Every <video> clip MUST have an id, or the renderer
+    silently freezes it (media_missing_id).
+  - If the base video is muted here, the render is
+    VIDEO-ONLY — mux the real audio afterwards with FFmpeg.
+-->
+<style>
+  @font-face {
+    font-family: "Anton";
+    src: url("assets/fonts/Anton-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Playfair";
+    src: url("assets/fonts/PlayfairDisplay-Bold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Mono";
+    src: url("assets/fonts/DejaVuSansMono.ttf") format("truetype");
+  }
+  html, body { margin: 0; padding: 0; background: #000; }
+  /* 9:16 stage, 1080x1920. .clip elements: positioned, no CSS transform. */
+  #stage {
+    position: relative;
+    width: 1080px;
+    height: 1920px;
+    overflow: hidden;
+    background: #000;
+  }
+  .clip { position: absolute; inset: 0; }
+  .clip video { width: 100%; height: 100%; object-fit: cover; }
+  /* Kinetic word: GSAP animates .inner (scale + opacity), never .clip. */
+  .kinetic { display: flex; align-items: center; justify-content: center; }
+  .kinetic .inner {
+    font-family: "Anton", sans-serif;
+    font-size: 160px;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 0.95;
+  }
+  /* Serif caption plate: GSAP animates .inner (opacity), never .clip. */
+  .caption { display: flex; align-items: flex-end; justify-content: center; }
+  .caption .inner {
+    font-family: "Playfair", Georgia, serif;
+    font-size: 64px;
+    color: #fff;
+    background: rgba(0, 0, 0, 0.55);
+    padding: 24px 40px;
+    margin-bottom: 140px;
+    text-align: center;
+  }
+  /* Monospace timecode, bottom corner, subtle. */
+  .timecode { display: flex; align-items: flex-start; justify-content: flex-end; }
+  .timecode .inner {
+    font-family: "Mono", monospace;
+    font-size: 36px;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 32px;
+  }
+</style>
+<!-- GSAP from CDN. If the render network cannot reach the CDN,
+     vendor gsap.min.js into assets/ and point this tag at it. -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+</head>
+<body>
+<div id="stage" data-duration="10">
+  <!-- Beat 1: base talking-head clip. MUST have an id. -->
+  <div class="clip" data-start="0" data-duration="10">
+    <video id="clip-main" src="assets/clip1.mp4" muted></video>
+  </div>
+
+  <!-- Beat 1: kinetic word, timed to its spoken word (example: 1.0s–2.5s).
+       GSAP tweens .inner only — never display/visibility on .clip. -->
+  <div class="clip kinetic" data-start="1" data-duration="1.5">
+    <div class="inner">WATCH</div>
+  </div>
+
+  <!-- Beat 1: serif caption plate (example: 2.5s–5.0s). -->
+  <div class="clip caption" data-start="2.5" data-duration="2.5">
+    <div class="inner">The edit does itself.</div>
+  </div>
+
+  <!-- Timecode, whole duration, subtle. -->
+  <div class="clip timecode" data-start="0" data-duration="10">
+    <div class="inner">00:00:00:00</div>
+  </div>
+</div>
+
+<script>
+  // Exactly ONE paused GSAP timeline, registered as
+  // window.timelines["main"]. All animation lives in it.
+  // NOTE: this template animates .inner children only.
+  // Never gsap.to() a .clip's display/visibility, and never
+  // put a CSS transform on an element GSAP also transforms.
+  window.timelines = window.timelines || {};
+  var tl = gsap.timeline({ paused: true });
+
+  // Kinetic word pop: scale 0.8 -> 1, opacity 0 -> 1, 0.15s ease-out.
+  // Timings below are EXAMPLES — replace them with real word
+  // timestamps from the transcription JSON before rendering.
+  tl.fromTo(
+    ".kinetic .inner",
+    { scale: 0.8, opacity: 0 },
+    { scale: 1, opacity: 1, duration: 0.15, ease: "power2.out" },
+    1.0
+  );
+  tl.to(".kinetic .inner", { opacity: 0, duration: 0.15 }, 2.35);
+
+  // Caption plate fade in/out on its spoken clause.
+  tl.fromTo(
+    ".caption .inner",
+    { opacity: 0 },
+    { opacity: 1, duration: 0.2 },
+    2.5
+  );
+  tl.to(".caption .inner", { opacity: 0, duration: 0.2 }, 4.8);
+
+  window.timelines["main"] = tl;
+</script>
+</body>
+</html>

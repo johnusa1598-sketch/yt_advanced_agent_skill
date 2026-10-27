@@ -26,6 +26,16 @@ aggregating or re-uploading without significant changes will
 likely see less distribution. There is no Studio screen that tells
 you your reach was cut; diagnosis is via Shorts-feed traffic
 before and after 1 October.
+**Three nuances (v3.3.6):** (a) this was a recommendation
+change, not a new Community Guideline, YPP rule, or
+monetisation rule — do not quote it as one; (b) the
+judgement is channel-level ("primarily aggregating") and
+reversible: a channel that starts adding its own substance
+can recover distribution, it is not permanently flagged;
+(c) Creator Insider's suggested alternative, second-hand:
+share someone else's video via the Posts tab instead of
+re-uploading it. That last point is reported, not verified
+in Studio — flag it as such when you use it.
 
 What does **not** count as original, per YouTube's own framing:
 
@@ -105,6 +115,42 @@ not as text verified against YouTube Help in this pack:
 - Practical rule, unchanged: disclose photorealistic AI
   yourself at upload, every time. Disclosure is free;
   non-disclosure is the risk.
+
+## October 2026 additions (v3.3.6)
+
+### AI-generated music labels
+
+From 14 October 2026, YouTube Music rolls out player-page
+labels for tracks "created primarily using generative AI",
+identified through YouTube's own detection and music-partner
+information; expansion to the main YouTube app is planned
+with no date given. Sources: YouTube's announcement as
+reported by Variety and ANI, 14–16 October 2026 — the
+official blog URL was not verifiable at the time of writing,
+so no blog link is cited here. Practical consequences for
+this pack: (a) log whether a track is AI-generated in the
+licence log (`/yt-sound`); (b) treat the label as a
+transparency marker only — the announcement, as reported,
+says nothing about recommendation or royalty effects, so do
+not read the label as either; (c) partner declarations use
+three categories — fully, partly, and no generative AI —
+per trade coverage of YouTube's disclosure guidance, not
+verified against the guidance itself, so check Studio before
+relying on a category.
+
+### Likeness detection: face live, voice announced
+
+Correction to earlier pack wording: likeness detection is
+face-only at the time of writing. Speaking-voice detection
+was announced on 23 September 2026 for later in 2026, not
+yet live. Enrolment opened to all creators aged 18 and over
+in May 2026 and is not retroactive; since August 2026
+disputes run in four categories with no revenue-sharing
+option. The enrolment and dispute details are trade-press
+reporting (see `/yt-algorithm`), not verified Help text.
+For a channel built on a synthetic performer, the practical
+rule is the same either way: the performer is disclosed,
+and no real person's likeness is used without consent.
 
 ## Safety review, every video
 

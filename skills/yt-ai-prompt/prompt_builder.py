@@ -9,6 +9,15 @@ Usage:
 The --outfit flag overrides the brief's outfit for one planned
 rotation slot (v3.3.3). Outfit colour rotates across videos
 per the plan in SKILL.md; it never changes mid-shot.
+A leotard outfit must use one of the five rotation colours
+(purple, teal, black, royal blue, burgundy); any other leotard
+colour is rejected with exit 2 (v3.3.6). Non-leotard outfits
+from the channel matrix are accepted as-is and must be logged
+in the series log like a rotation slot.
+When a brief carries a nose_ring field, the character lock
+always uses the full v3.3.5 canonical wording for that field,
+whatever the brief said, so a stale brief cannot weaken the
+most-weighted layer (v3.3.6).
 
 Input JSON example:
     {"character": {"name": "Aria", "hair": "curly dark hair in a big messy bun",
@@ -53,13 +62,50 @@ NEGATIVE = [
 ]
 
 
+ROTATION_COLOURS = ("purple", "teal", "black", "royal blue", "burgundy")
+
+# v3.3.5 canonical wording. A brief that mentions a nose ring gets
+# this sentence in the character lock, verbatim, even if the brief
+# itself used shorter or older wording (e.g. "RIGHT nostril only"
+# without the wing/centre/tip/two-rings language). A character with
+# no nose_ring field is left alone: no ring is invented for them.
+NOSE_CANONICAL = (
+    "SMALL gold nose ring on the character's RIGHT nostril wing only "
+    "(in a frontal view, on the image's LEFT side), never septum, "
+    "never centre, never nose tip, never two rings"
+)
+
+# Realism core (v3.3.6): the SKILL requires every prompt to carry
+# these physical details, not just the brief's style string.
+REALISM_CORE = (
+    "Realism: visible skin pores and fine flyaway hairs, chalk dust "
+    "on hands and mat, a natural blink between beats, micro-tremor "
+    "on held balances, sweat building across the video, no plastic "
+    "skin, no frozen hair, no floaty weightless motion."
+)
+
+
 def character_block(character):
     parts = []
     for key in ("name", "hair", "glasses", "nose_ring", "earrings", "freckles", "outfit"):
         value = character.get(key)
         if value:
+            if key == "nose_ring" and "nose ring" in str(value).lower():
+                value = NOSE_CANONICAL
             parts.append(str(value))
     return "; ".join(parts)
+
+
+def check_leotard_colour(outfit):
+    """Return an error string unless a leotard outfit uses a rotation colour."""
+    text = str(outfit).lower()
+    if "leotard" not in text:
+        return None
+    if any(colour in text for colour in ROTATION_COLOURS):
+        return None
+    return (f"outfit {outfit!r} is not a rotation colour. "
+            f"Leotard slots use only: {', '.join(ROTATION_COLOURS)}. "
+            "Pick a planned slot or use a non-leotard matrix outfit.")
 
 
 def build(data):
@@ -96,6 +142,7 @@ def build(data):
         f"[CAMERA] {camera}. Athletic framing only, full body for skills, "
         "face only for a reaction, no sexualized angle.\n"
         f"[STYLE AND LIGHT] {style}\n"
+        f"[REALISM] {REALISM_CORE}\n"
         f"[LOOP] {loop}\n"
         "[CONTINUITY] Same hair, glasses, nose ring on the character's "
         "RIGHT nostril wing only, earrings, "
@@ -110,8 +157,13 @@ def build(data):
         "A_safe": full + "\n[VARIANT] Safe version: one continuous take, no slow motion.",
         "B_bold_camera": full + "\n[VARIANT] Bold version: low tracking shot on the "
         "run-up, then eye-level full body for the flip and landing.",
-        "C_slow_detail": full + "\n[VARIANT] Detail version: slow motion on the "
-        "flip apex and the landing absorption only, normal speed elsewhere.",
+        # v3.3.6: NOT a slow-motion effect. The FINAL template bans slow
+        # motion; this variant is slow, controlled movement at normal
+        # speed. Do not use it where the template bans slow motion
+        # unless the brief explicitly re-approves controlled movement.
+        "C_slow_detail": full + "\n[VARIANT] Detail version: slow, controlled "
+        "movement at the flip apex and the landing absorption, normal "
+        "speed throughout, no slow-motion effect.",
     }
     checklist = [
         "Hair, bun, glasses, nose ring on character's RIGHT nostril wing only (frontal view: image LEFT), never centre/septum/tip, earrings, freckles unchanged",
@@ -148,7 +200,20 @@ def main():
         print("prompt_builder.py: brief needs a character object", file=sys.stderr)
         return 2
     if args.outfit:
+        error = check_leotard_colour(args.outfit)
+        if error:
+            print(f"prompt_builder.py: {error}", file=sys.stderr)
+            return 2
         data["character"]["outfit"] = args.outfit
+    outfit = data["character"].get("outfit", "")
+    error = check_leotard_colour(outfit)
+    if error:
+        print(f"prompt_builder.py: {error}", file=sys.stderr)
+        return 2
+    if not args.outfit and str(outfit).lower() == "purple leotard":
+        print("prompt_builder.py: warning: no --outfit given, using the "
+              "default purple leotard. Check the series log so this "
+              "video never repeats the previous slot.", file=sys.stderr)
     result = build(data)
     if args.json:
         print(json.dumps(result, indent=2, ensure_ascii=False))
@@ -163,6 +228,9 @@ def main():
         for item in result["continuity_checklist"]:
             print(f"- {item}")
         print("\nVARIANTS: A_safe, B_bold_camera, C_slow_detail")
+        for name, text in result["variants"].items():
+            print(f"\nVARIANT {name}")
+            print(text)
     return 0
 
 

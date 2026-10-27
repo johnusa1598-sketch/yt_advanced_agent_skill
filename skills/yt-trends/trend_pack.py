@@ -6,7 +6,12 @@
 
 Evidence file (JSON, all optional):
     {"trending_titles": ["..."], "tags_seen": ["#gymnastics", ...],
-     "searches": ["beam backflip tutorial", ...]}
+     "searches": ["beam backflip tutorial", ...],
+     "date": "2026-10-20"}
+
+Evidence is dated (v3.3.6): pass --evidence-date, or put "date" in
+the evidence file. Evidence older than 30 days is flagged stale -
+a tag pack built on it is a guess about last month, not this one.
 
 Honest by design: this tool fetches nothing live. Tags marked "evidence"
 come from words and hashtags the user pasted in; tags marked "heuristic"
@@ -22,6 +27,7 @@ title written for the wrong intent loses even when it ranks.
 """
 import json, os, re, sys
 from collections import Counter
+from datetime import date
 
 STOP = {"the", "a", "an", "and", "or", "of", "to", "in", "on", "for", "with",
         "is", "are", "it", "this", "that", "you", "your", "how", "what",
@@ -41,7 +47,15 @@ def clean_tag(tok):
 def title_case(words_):
     return " ".join(words_)
 
-def build(seed, niche="", brand="", evidence=None):
+def _parse_date(raw):
+    try:
+        parts = [int(p) for p in str(raw).strip().split("-")]
+        return date(*parts)
+    except (ValueError, TypeError):
+        return None
+
+
+def build(seed, niche="", brand="", evidence=None, evidence_date=None):
     seed_w = words(seed)
     if not seed_w:
         return None
@@ -99,10 +113,14 @@ def build(seed, niche="", brand="", evidence=None):
     title_keywords = list(dict.fromkeys(
         seed_w + ev_keywords[:6] + ["challenge", "fail", "tutorial"]))
 
+    ev_date = _parse_date(evidence_date or ev.get("date"))
+    stale = bool(ev_date and (date.today() - ev_date).days > 30)
     return {
         "seed": seed,
         "niche": niche,
         "brand": brand,
+        "evidence_date": ev_date.isoformat() if ev_date else None,
+        "evidence_stale": stale,
         "evidence_used": bool(ev_titles or ev_tags or ev_searches),
         "hashtags": {
             "broad": broad,
@@ -125,6 +143,10 @@ def build(seed, niche="", brand="", evidence=None):
 
 def show(pack):
     print(f"\n  Hashtag pack: {pack['seed']}")
+    if pack.get("evidence_date"):
+        stale = " - STALE (over 30 days old), re-check before trusting it" \
+            if pack.get("evidence_stale") else ""
+        print(f"  evidence dated: {pack['evidence_date']}{stale}")
     if pack["evidence_used"]:
         print("  (built from your evidence + heuristics; nothing fetched live)")
     else:
@@ -147,7 +169,7 @@ def show(pack):
 def main():
     a = sys.argv[1:]
     as_json = "--json" in a
-    niche, brand, ev_path, seed_parts = "", "", None, []
+    niche, brand, ev_path, ev_date, seed_parts = "", "", None, None, []
     i = 0
     while i < len(a):
         arg = a[i]
@@ -159,6 +181,8 @@ def main():
             brand = a[i + 1]; i += 1
         elif arg == "--evidence" and i + 1 < len(a):
             ev_path = a[i + 1]; i += 1
+        elif arg == "--evidence-date" and i + 1 < len(a):
+            ev_date = a[i + 1]; i += 1
         elif not arg.startswith("--"):
             seed_parts.append(arg)
         i += 1
@@ -168,7 +192,7 @@ def main():
     seed = " ".join(seed_parts)
     if not seed:
         print(__doc__); sys.exit(1)
-    pack = build(seed, niche, brand, ev)
+    pack = build(seed, niche, brand, ev, ev_date)
     if pack is None:
         print(__doc__); sys.exit(1)
     if as_json:

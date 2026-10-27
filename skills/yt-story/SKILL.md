@@ -35,7 +35,12 @@ if one is missing, the video feels flat or fake, and it fails QC.
   language.
 - **CHEERS:** Someone celebrates — a co-star gasps, claps,
   cheers, fist-bumps; background energy lifts. The win is
-  witnessed, not performed alone in silence.
+  witnessed, not performed alone in silence. Duo is the
+  default; solo is the exception, capped at the channel's
+  stated weekly number (Aria Fit: 2–3/week). On a designated
+  solo slot, CHEERS must still be witnessed — state how
+  (a spotter's reaction, a crowd beat, a comment call) — or
+  the beat is missing, not waived.
 - **DEDICATION:** The grind texture — chalk dust, worn grips,
   repetition energy, the "one more try" feel. Years of practice
   implied behind one clean moment.
@@ -100,6 +105,36 @@ Audio cuts cleanly on the final rebound/takeoff breath so the
 loop restarts without a gap or pop. No visible loop reset, no
 drift off the skill at any point.
 
+## Rewatch engineering (v3.3.7)
+
+The loop bridge above is the mechanism; this is what makes
+a viewer use it a second time. Shorts loop automatically,
+and since 31 March 2025 every replay counts as a public
+view — but monetisation runs on engaged views, and YouTube
+publishes no ranking weight for loops, so this pack claims
+none (see `/yt-shorts-first` for the honest statement).
+
+**Loop-match check.** The last 2 seconds must match the
+first 2 in light, angle, and body position, and the beat
+must continue across the join — no hard cut to silence, no
+subscribe end-card, no black screen, no held goodbye frame
+after the ≤2 second parasocial tail. The CTA sits inside
+the tail, then the video loops. Motion hides the join only
+at the join itself (the dynamic mid-takeoff cut); the video
+itself stays one continuous shot, no cuts.
+
+**One rewatch trigger per Short.** The Easter egg rule,
+named before the shoot (`rewatch_trigger` in the brief):
+one hidden detail, missed moment, count-the-detail,
+satisfying payoff, fast payoff + slow information reveal,
+or end reframe — pick one from the menu in
+`/yt-shorts-first`. The trigger must actually be present in
+the video; a trigger claimed in the brief but absent fails
+the rewatch gate in `/yt-qa`. The pinned comment asks about
+it; on a comparison Short the vote carries the ask (see
+`/yt-community` priority). Speed ramps are excluded: their
+slow portion is slow-motion footage, which FINAL bans.
+
 ## Comment trigger (one per video)
 
 Include ONE small comment-worthy detail: a tiny Easter egg, a
@@ -107,7 +142,12 @@ relatable detail, or a small debatable moment — a chalk
 handprint left on the surface, a wobble that looks like a
 near-fail. Never forced, never distracting from the skill.
 The pinned comment (see `/yt-community`) then asks about it,
-so the detail and the comment work as a pair.
+so the detail and the comment work as a pair. Priority
+(v3.3.6): on a comparison or challenge Short, the pinned
+comment is the vote naming both sides in video order
+(`/yt-post` vote rule) — the trigger detail is then asked
+inside that vote or in a reply, not as a competing pinned
+comment. One pinned comment, one job.
 
 ## What to hand back
 

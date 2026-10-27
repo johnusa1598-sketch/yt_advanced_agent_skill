@@ -1,5 +1,315 @@
 # Changelog
 
+## v3.4.0, edit tier, 27 October 2026
+
+This push brings the local-only v3.3.6 and v3.3.7 to GitHub
+and adds the edit tier. Skill count 33 to 34, tool count
+unchanged at 18, file count 138 to 141 (four new files:
+hyperframe-edit SKILL.md, starter composition template,
+merged-pipeline script, skill.yaml; one binary test fixture
+removed, see below). Original author credit
+and MIT licence unchanged. Only work-relevant content is
+included: the v3.3.8 needle lessons were NOT approved and
+are not in this push, and no undecided item was bundled.
+
+- **v3.3.6 + v3.3.7 now live** (previously local only):
+  audit fixes including the two-stage diagnostic split,
+  and rewatch engineering including loop + rewatch QA
+  gates. See their entries below.
+- **hyperframe-edit (NEW)**: edit supplied clips into a
+  polished 9:16 short with HyperFrames (HTML + GSAP):
+  kinetic typography, live grade transformations,
+  magazine-cover graphics, chat-prompt cards, word-synced
+  captions, sound design and mastering. Editing only —
+  it never generates clips. Sample-first rule; the run
+  ends with the ship-or-change verdict on the sample.
+- **Merged FFmpeg + HyperFrames pipeline**
+  (`tools/merged-pipeline.sh`): one command — FFmpeg
+  pre-clean (fps/scale normalise, opt-in denoise/grade)
+  → HyperFrames check (0 errors) → snapshot → render →
+  FFmpeg audio finish (-14 LUFS / ≤ -1 dBTP, limit
+  first) + mux → QC report (duration, resolution,
+  loudness, loop-match diff). Proven end to end on the
+  needle-hold edit (10.0s, 720x1280, -14.19 LUFS /
+  -1.92 dBTP, loop diff 5.3).
+- **Routing**: `/yt-hub` now routes supplied-clip editing
+  to `/hyperframe-edit`.
+- **Pushability fix**: snapshot pushes accept UTF-8 text
+  only, so the binary loudness-test fixture
+  (`tests/fixtures/tone-14lufs.wav`) cannot be pushed —
+  and GitHub CI needs it to pass. The test now generates
+  its own -14 LUFS tone with the Python standard library
+  instead, so the pack stays self-contained and CI-green
+  with no binary fixture in the repo.
+
+## v3.3.7, rewatch engineering, 27 October 2026
+
+Extra web research on what makes a Short earn a second watch,
+encoded where it is checkable. Skill count unchanged at 33,
+tool count unchanged at 18, file count 137 to 138 (one new
+test fixture). Original author credit and MIT licence
+unchanged. Local only; GitHub push is a separate decision,
+not taken here.
+
+Research, with source honesty: Shorts loop automatically;
+since 31 March 2025 every replay counts as a public view
+with no minimum watch time, while monetisation and YPP
+eligibility run on engaged views; average percentage viewed
+above 100% in Studio means viewers looped. What was NOT
+found, and is therefore NOT claimed anywhere in this
+version: any official YouTube ranking weight for loops.
+Third-party guides widely call loops "one of the strongest
+signals" — that is their claim, not a YouTube statement,
+and the pack says so wherever loops are discussed. No
+benchmark percentages from blogs (replay shares, retention
+lifts, APV thresholds) were imported: every number in this
+version is either a YouTube rule (31 March 2025 view
+definition) or a pack rule (2-second tail cap, one trigger
+per video).
+
+- **Seamless loop engineering** (`yt-shorts-first`,
+  `yt-story`): strengthens, never replaces, the FINAL loop
+  bridge dual-mode (static rebound / dynamic mid-takeoff
+  cut). Added checks: last 2 seconds match the first 2 in
+  light, angle, and position; the beat continues across the
+  join with no silence gap or pop; no subscribe end-card,
+  black screen, or held goodbye frame after the ≤2 second
+  tail (the CTA sits inside the tail, then the video loops).
+  Motion hides the join only at the join itself — the video
+  itself stays one continuous shot, no cuts, per FINAL.
+- **One rewatch trigger per Short** (`yt-shorts-first`,
+  `yt-story`, `yt-viral-loop`, `yt-qa`): the FINAL Easter
+  egg rule, named in the brief (`rewatch_trigger`) before
+  the shoot, from a fixed menu — hidden detail, missed
+  moment, count-the-detail ("dobara dekho aur batao"),
+  satisfying payoff, fast payoff + slow information reveal,
+  end reframe. One only, so the second watch has exactly
+  one job. The pinned comment asks about it; on a
+  comparison Short the vote carries the ask (v3.3.6
+  priority unchanged).
+- **Checkable gates** (`yt-qa`, `scorecard.py`,
+  `retention_plan.py`): loop match and rewatch presence are
+  new QA gates (FAIL-FIXABLE even at 10/10) with
+  `scorecard.py --loop-match matched/mismatch` and
+  `--rewatch yes/no`; a trigger claimed in the brief but
+  absent from the video is a fail, not a pass. The
+  retention plan flags a Short with no trigger
+  (`no-rewatch-trigger`) and carries a named trigger as a
+  guard. Loop match and rewatch join the scorecard's
+  not-verified banner when their flags are not supplied.
+- **Honest Studio read** (`yt-algorithm`, `yt-analytics`):
+  APV above 100% = loop working, read beside engaged views;
+  raw views alone overstate a rewatchable clip; a loop that
+  inflates views without engaged views or return viewers
+  has proved nothing.
+- **Retention design** (`yt-shorts-first`): pattern
+  interrupts vary in type (angle, caption animation, sound
+  cue, brief silence) so they do not habituate; the rewatch
+  trigger IS the Short's open loop — no stacking several
+  unanswered questions into 8–12 seconds.
+- **Tests:** 58 to 62 checks, ALL PASS. New: retention plan
+  with/without trigger, scorecard loop fail, scorecard
+  loop + rewatch pass. New fixture
+  `tests/fixtures/retention-rewatch-brief.json`.
+- **Not encoded, and why — questions for the user:**
+  (1) **Speed ramps** are excluded from the rewatch menu:
+  their slow portion is slow-motion footage, which the FINAL
+  template bans ("no slow-motion floatiness"). Question:
+  keep the ban (no speed ramps at all), or allow a
+  speed-ramp exception, and if so, speed-up portions only
+  or slow portions too? (2) **Monday 26-October handstand
+  pack** was approved as-is before the rewatch-trigger rule
+  and carries no trigger; `yt-qa` exempts it until decided.
+  Question: add a trigger to it (for example, "dobara dekho
+  — hold me kitne micro-wobble the?"), or leave the
+  approved pack untouched? (3) No conflict was found with
+  the locked character spec: every trigger is about detail,
+  pacing, or the comment, never about hair, glasses, nose
+  ring, earrings, freckles, or outfit — so nothing in this
+  version touches the character lock.
+
+## v3.3.6, audit fixes (internal consistency + tools + landscape), 27 October 2026
+
+Three read-only audits (internal consistency vs the FINAL
+template and the recent review lessons; October 2026 landscape
+research; all 17 tools vs their skills' promises) found 14
+internal gaps, 8 landscape gaps, and 19 tool gaps. This version
+fixes them locally. Skill count unchanged at 33, tool count 17
+to 18 (new `loudness.py`), file count 124 to 137. Original
+author credit and MIT licence unchanged. Local only; GitHub
+push is a separate decision, not taken here.
+
+- **Two-stage diagnostic, spelled out** (`yt-algorithm`,
+  `yt-diagnose`, `diagnose.py`): low shown-in-feed vs peers =
+  retrieval / candidate-stage failure (wrong audience cluster,
+  niche mismatch) — fix by re-targeting the cluster or topic,
+  not by rewriting the hook; good impressions + fast drop-off
+  = ranking / retention failure, placed by the retention curve
+  (first-3s cliff = hook, later slide = pacing). `diagnose.py`
+  carries the mapping as a RETRIEVAL note on every NOT TESTED
+  verdict, reports `peer_basis` per gate (same-format, or
+  all-formats fallback when fewer than two same-format peers
+  exist, never silent), and the retention finding now names
+  the cliff-vs-slide read.
+- **Viral-loop chain mirrors the hub** (`yt-viral-loop`):
+  title-first + anti-glitch, production 2-step, Story DNA,
+  then script; QA gate and originality + disclosure between
+  the retention plan and the publish check. The old chain let
+  a video ship without title-first, Story DNA, segment QA,
+  the scorecard threshold, or the face gate.
+- **Duration contradiction resolved** (`yt-shorts-first`,
+  `yt-algorithm`): the 20–35s orientation is scoped to
+  recorded/edited Shorts; AI-generated Shorts keep the hard
+  8–12s (~9s) budget per `yt-production`, longer concepts
+  decomposed into segments.
+- **Mia duo-default + solo cap restored** (`yt-anti-glitch`,
+  `yt-story`, `examples/aria-fit/series-bible.md`): duo is the
+  default, solo the exception capped at the channel's stated
+  weekly number (Aria Fit: 2–3/week, Mia the default
+  co-star); on a solo slot CHEERS must still be witnessed.
+- **Datasheet §8 appendix** (`templates/aria-datasheet-lock.md`,
+  `yt-production`, `yt-ai-prompt`, `yt-qa`,
+  `examples/aria-fit/ai-brief.json`): the FINAL template §15
+  §8 block verbatim, with freckle/body/accessory locks and
+  the Drift Check; the generic lock fields no longer silently
+  replace it. A teal-slot example brief
+  (`ai-brief-teal.json`) joins the purple Slot 1 brief.
+- **Beat-track gate propagated** (`yt-production`,
+  `yt-ai-prompt`): v3.3.2 supersedes FINAL on music — native
+  audio alone fails; a licence-safe beat track from the first
+  2s is required, −14 LUFS / ≤ −1 dBTP, music low, never
+  louder than movement sounds.
+- **Suspense rule, qualified everywhere** (`yt-production`
+  worked example, `yt-shorts-first` shape rule): peak-action
+  frame except on suspense-question titles, where frame one
+  shows the struggle, not the payoff.
+- **Vote pinned comment, propagated** (`yt-community`,
+  `yt-story`, `yt-publish`, `package_builder.py`,
+  `publish_check.py`): the vote rule now lives where pinned
+  comments are drafted, with priority over the comment-trigger
+  ask; `package_builder.py` emits the vote from
+  `comparison_sides` (warns when a comparison brief has no
+  sides) and `publish_check.py` fails a vote that misses a
+  side.
+- **Production nose gate completed** (`yt-production`): full
+  `yt-qa` wording, including the second-centre-ring FAIL and
+  the frontal-frame-only rule; `yt-qa` names the frontal
+  face-visible beat (parasocial lens grin) as the verdict
+  frame.
+- **Leotard rotation, default holes closed**
+  (`yt-ai-prompt`, `prompt_builder.py`,
+  `examples/aria-fit/channel.md`): layer 7 bans changing
+  outfit mid-shot (rotation across videos is the planned
+  exception); the tool rejects leotard colours outside the
+  five-colour palette (exit 2) and warns on the default
+  purple with no `--outfit`; the channel example records
+  the rotation and the last slot (teal); the cycle governs
+  leotard slots, non-leotard matrix outfits are logged in
+  the same series log.
+- **Format headline fixed** (`yt-ai-prompt`): "1080x1920
+  preferred, 720x1280 at the same ratio passes" is now the
+  headline, not a clarification below it.
+- **Segment assembly bridged** (`yt-production`): single-skill
+  = Block B as written; multi-skill = segment list per
+  `yt-qa`, assembled to the same 8–12s budget with parasocial
+  + loop preserved in the final segment. The `C_slow_detail`
+  variant is slow, controlled movement at normal speed, not
+  a slow-motion effect (FINAL bans slow motion).
+- **Publish gate + burst accounting shared** (`yt-publish`,
+  `yt-production`, `yt-qa`): the publish checklist requires
+  naming the QA report and states it is not a substitute for
+  `yt-qa`; hook-frame fails, segment regens, and face-gate
+  regens all count toward the same 2-fail glitch burst.
+- **Generic timing default removed** (`yt-post`,
+  `package_builder.py`): no generic best-time default; without
+  an Audience heatmap, publish on the series' usual day and
+  record the heatmap as the first post-publish task.
+- **Scorecard hard gates** (`scorecard.py`, `yt-qa`):
+  `--width/--height` (9:16 ratio, 720x1280 minimum),
+  `--nose` (frontal-right only), `--slot` (rotation
+  palette), `--lufs/--peak/--beat` (audio gate, −16 to −12
+  LUFS tool tolerance, peak ≤ −1). Every run prints the
+  gates the tool cannot verify (face gate, text-end rule,
+  parasocial tail cap, slot vs previous video), so a PASS is
+  never mistaken for a full QA pass.
+- **Publish checks completed** (`publish_check.py`,
+  `yt-publish`): thumbnail-vs-title repeat, format, and
+  clean/watermark checks added (missing format or clean is
+  FAIL, not a guess); branded-content disclosure check
+  (disclose yourself, never rely on auto-detection).
+- **Package builder kept to its promises**
+  (`package_builder.py`): thumbnail text derived from the
+  hook minus title variant 1's words, never hardcoded
+  "LAND IT?"; text layers carry `end_s`/`beat_end_s` and
+  flag `ends_past_beat`.
+- **Prompt builder kept to its promises**
+  (`prompt_builder.py`, `yt-ai-prompt`): text mode prints
+  all three variants in full; the [REALISM] paragraph
+  (pores, flyaway hairs, chalk dust, blink, micro-tremor,
+  sweat progression) is injected into every full prompt;
+  the nose_ring field is canonicalised to the full v3.3.5
+  sentence whatever a stale brief said.
+- **Honest scoring** (`shorts_score.py`, `title.py`):
+  HOOK no longer falls back to the title (empty hook = 0);
+  LOOP scores full marks only when `--loop-text` shares a
+  word with the hook/title (bare `--loop yes` = half marks,
+  claimed not verified); CLOSE counts imperative verbs
+  (exactly one scores); `title.py` thumbnail ceiling fixed
+  to 3 words (was `> 4` against its own message).
+- **New loudness tool** (`loudness.py`, `yt-sound`, `yt-qa`):
+  ffmpeg ebur128 true-peak measurement against the audio
+  gate; fixture `tests/fixtures/tone-14lufs.wav` measures
+  −14.0 LUFS / −10.3 dBFS. Beat-track presence still needs
+  a human ear.
+- **Smaller tool fixes** (`analytics.py`: outliers at 3x the
+  median + upload gaps over 7 days; `trend_pack.py`:
+  `--evidence-date` + 30-day stale flag; `retention_plan.py`:
+  parasocial + CTA over 2s flagged as long-tail;
+  `retention.py`: hook leak is the value AT the 30s mark,
+  not the minimum before it, plus a BIGGEST LEAK verdict;
+  `deadair.py`: docstring corrected to time order + 0.45s
+  default documented; `hookscore.py`: exit 2 on a missing
+  file instead of 0; `chapters.py`: sibling-import
+  requirement documented).
+- **Landscape updates** (`yt-originality`, `yt-sound`,
+  `yt-algorithm`, `yt-bridge`, `yt-publish`, `yt-community`,
+  `yt-analytics`): AI-generated music labels (YouTube Music
+  rollout from 14 October 2026, main YouTube later, no date;
+  label = transparency marker, no claimed recommendation or
+  royalty effect; partner-declaration tiers flagged as trade
+  coverage); likeness detection corrected to face-only with
+  voice announced 23 September 2026 for later in 2026;
+  1 October originality nuances (recommendation change, not
+  a Guideline/YPP rule; channel-level and reversible;
+  Posts-tab alternative flagged second-hand); Shorts Series
+  members-only mobile update and unconfirmed discovery
+  surfaces (check Studio first); branded-content
+  auto-labelling (policy rewritten 3 September 2026);
+  GIF comments (mobile October 2026, all-user November
+  2026 planned, no desktop workaround); Studio Content tab
+  redesign (Notices column, Estimated revenue ~2-day lag);
+  Views (Co-Viewed) metric (modelled TV estimate, up to 48h
+  delay, never compared to public views or earnings).
+- **Tests:** 33 to 58 checks, ALL PASS. The four previously
+  untested tools (chapters, deadair, retention, swipe) are
+  now exercised; new fixtures cover the new gates; the
+  structure check no longer claims "every tool runs" — the
+  checks above are what run them. `check()` still accepts
+  exit 0/1 because several tools legitimately exit 1 on a
+  FAIL verdict; a new `check_exit()` covers tools that must
+  reject input with exit 2.
+- **Not fixed, and why:** manual-argv parsing in 11 tools
+  (unknown flags silently ignored, numeric-looking tokens
+  stripped) was left as a documented limitation — migrating
+  all 11 to argparse in one version risks breaking the
+  tools' tested behaviour for little user gain; the one
+  user-facing case (hookscore exit 0 on a missing file) is
+  fixed. Consecutive-colour and slot-logging checks stay the
+  planner's job: one tool run cannot see the previous video.
+  The YouTube Music blog URL could not be verified in full
+  and is not cited; the announcement is cited via Variety /
+  ANI reporting instead.
+
 ## v3.3.5, nose ring clarification, 26 October 2026
 
 Fixes the nose ring drift found in the October 2026

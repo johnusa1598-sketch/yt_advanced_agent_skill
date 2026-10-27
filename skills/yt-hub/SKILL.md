@@ -27,6 +27,9 @@ does, and it keeps the workflow in order.
 - Scoring a finished video before it ships — segment method,
   beat verification, face-crop QC, ten-point scorecard, face
   gate: `/yt-qa`.
+- Editing supplied clips into a polished 9:16 short —
+  HyperFrames kinetic edit, live grade transformations,
+  merged FFmpeg pipeline, QC report: `/hyperframe-edit`.
 - A script, a hook, or an opening line: `/yt-script`.
 - A title, a thumbnail, or a CTR problem: `/yt-package`.
 - How the algorithm ranks a video, or why one flopped:

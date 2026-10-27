@@ -21,7 +21,10 @@ the download icon -> "Audience retention".
 
 ## Three different problems
 
-- **HOOK LEAK** - what is lost in the first 30 seconds. Under 25% is healthy. This is always the
+- **HOOK LEAK** - what is lost in the first 30 seconds, measured
+  as the retention value AT the 30-second mark (v3.3.6), not the
+  lowest point before it: a mid-hook dip that recovers is not
+  the same as ending the hook down. Under 25% is healthy. This is always the
   first thing to fix and it is always the first fifteen seconds of script, never the edit.
 - **CLIFFS** - single steep drops. A cliff is a moment: a topic change with no signposting, a
   sponsor read, a long setup. With `--transcript` the tool prints what was being said there, which
@@ -32,7 +35,9 @@ the download icon -> "Audience retention".
 ## What to hand back
 
 Name the single biggest leak and one change for it. Not a list of five. Then, only if asked, the
-rest. And if the hook leak is healthy and the slide is flat, say the video is fine and the problem
+rest. The tool prints BIGGEST LEAK itself (v3.3.6): a cliff beats
+the slide when one exists, otherwise the slide is the leak.
+And if the hook leak is healthy and the slide is flat, say the video is fine and the problem
 is packaging - send them to `/yt-package`.
 
 ## The gate

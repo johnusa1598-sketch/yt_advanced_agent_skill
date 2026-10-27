@@ -13,16 +13,18 @@ title prefixes such as Skill Challenge, Flexibility Test, Slow-Mo, and Fail.
 
 Output: total and average views, median views, like rate, the top 5 and
 bottom 3 videos by views, each video's multiple over the channel median,
-the best and worst format by average views, subs per 1000 views when
---subs is given, and one recommended fix. This is descriptive arithmetic
-on numbers you supply. It does not fetch YouTube data and it does not
-predict future views.
+videos at 3x the median or more (outliers, v3.3.6), gaps between upload
+dates longer than 7 days (v3.3.6), the best and worst format by average
+views, subs per 1000 views when --subs is given, and one recommended
+fix. This is descriptive arithmetic on numbers you supply. It does not
+fetch YouTube data and it does not predict future views.
 """
 import argparse
 import json
 import statistics
 import sys
 from collections import defaultdict
+from datetime import date
 
 
 def infer_format(title):
@@ -81,6 +83,26 @@ def main():
     worst_format = min(format_avg, key=format_avg.get)
 
     ranked = sorted(videos, key=lambda v: int(v.get("views", 0)), reverse=True)
+    outliers = [
+        {"title": v.get("title", ""), "views": int(v.get("views", 0)),
+         "multiple": v["multiple"], "format": v["format"]}
+        for v in ranked if v["multiple"] >= 3
+    ]
+    dated = []
+    for v in videos:
+        raw = str(v.get("date", "")).strip()
+        try:
+            parts = [int(p) for p in raw.split("-")]
+            dated.append((date(*parts), v.get("title", "")))
+        except (ValueError, TypeError):
+            continue
+    dated.sort()
+    gaps = []
+    for (d0, t0), (d1, t1) in zip(dated, dated[1:]):
+        if (d1 - d0).days > 7:
+            gaps.append({"from": d0.isoformat(), "to": d1.isoformat(),
+                         "days": (d1 - d0).days,
+                         "after": t0, "before": t1})
     result = {
         "videos": len(videos),
         "total_views": total,
@@ -102,6 +124,8 @@ def main():
              "multiple": v["multiple"], "format": v["format"]}
             for v in ranked[-3:]
         ],
+        "outliers_3x": outliers,
+        "date_gaps_over_7d": gaps,
     }
     if args.subs is not None:
         result["subs_per_1000_views"] = round(1000.0 * args.subs / total, 2) if total else 0.0
@@ -133,6 +157,14 @@ def main():
         print("Top 5:")
         for item in result["top_5"]:
             print(f"  {item['views']} views ({item['multiple']}x median) - {item['title']}")
+        if result["outliers_3x"]:
+            print("Outliers (3x median or more):")
+            for item in result["outliers_3x"]:
+                print(f"  {item['views']} views ({item['multiple']}x) - {item['title']}")
+        if result["date_gaps_over_7d"]:
+            print("Upload gaps over 7 days:")
+            for g in result["date_gaps_over_7d"]:
+                print(f"  {g['days']} days: {g['from']} -> {g['to']}")
         print("One fix:")
         print(f"  {result['one_fix']}")
     return 0

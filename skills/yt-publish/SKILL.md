@@ -40,6 +40,23 @@ python3 publish_check.py publish.json
   the clean-output rule in `/yt-ai-prompt`).
 - The video is assigned to a playlist, so a new viewer has a
   next video.
+- **QA gates already passed (v3.3.6).** Name the QA report:
+  scorecard threshold, face gate, format gate, audio gate,
+  text-end rule, parasocial tail cap, leotard slot. This
+  checklist is not a substitute for `/yt-qa` — a READY here
+  with no QA report is a READY built on nothing.
+- **Branded content disclosed by the creator (v3.3.6).**
+  YouTube's branded-content policy was rewritten on 3
+  September 2026 ("paid product placement" became "branded
+  content"), and YouTube may auto-apply a disclosure label
+  if it detects undisclosed branded content — auto-detection
+  was described as "coming months", undated. Disclose it
+  yourself; never rely on auto-detection to catch it.
+- **Pinned comment is the vote on comparison Shorts
+  (v3.3.2).** When the package carries comparison sides,
+  the pinned comment must name both sides in video order.
+  `publish_check.py` enforces this from `comparison_sides`
+  + `pinned_comment`.
 - For a long video only: chapters are included and an end
   screen is set. Shorts do not need either.
 
