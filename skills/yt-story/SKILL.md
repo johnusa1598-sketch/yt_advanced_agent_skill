@@ -95,6 +95,30 @@ Write the peak as SUSTAINED effort, not a state:
   the face during the peak beat. Text and grades frame
   the peak; they never hide it.
 
+## After the peak, a beat — never a gap (v3.4.3)
+
+The peak is not the end of the video. The seconds
+between the peak beat and the parasocial tail must
+carry a beat: a CHEERS reaction, a second-angle
+payoff, the rewatch detail reveal, or the payoff beat
+itself. The skill's ending — a leg lowering, a
+landing, a release — is NOT a beat; it is the skill
+finishing. Part 10 died here: peak at ~5s, then 6–8s
+of nothing but the leg lowering under junk texts,
+and the payoff only at 9–10s. The viewer decides the
+video is over the moment the skill finishes and
+leaves before the CTA. Cap: no more than 2 seconds
+between the peak beat's end and the next beat
+without one. If the raw render leaves a gap, the
+edit fills it: cut the dead lower, or move the
+payoff earlier — never let the video sit on a
+finished skill.
+
+A completion word (CLEAN!, DONE, NAILED IT) appears
+only when the visual completes — never mid-lowering,
+mid-landing, or mid-release. Part 10 showed "LEG
+RAISE, CLEAN!" while the leg was still lowering.
+
 ## The parasocial beat (mandatory, never skipped)
 
 Near the end, the character looks directly into the lens with

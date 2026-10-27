@@ -43,8 +43,9 @@ fails the whole scorecard, even at 10/10):
 Gates this tool CANNOT verify are printed on every run, so a
 PASS is never mistaken for a full QA pass: face gate (200-300%
 face crop), text-end rule, parasocial tail cap, and the slot
-vs previous video, plus loop match, rewatch trigger, and peak
-tension when their flags are not supplied. Those stay human checks in yt-qa.
+vs previous video, plus loop match, rewatch trigger, peak
+tension, text inventory, and post-peak gap when their flags
+are not supplied. Those stay human checks in yt-qa.
 """
 import argparse
 import json
@@ -57,7 +58,9 @@ NOT_VERIFIED = ("face gate (200-300% face crop)", "text-end rule",
                 "leotard slot vs previous video",
                 "loop match (end frame = opening frame)",
                 "rewatch trigger (one per video)",
-                "peak tension (sustained through the hold)")
+                "peak tension (sustained through the hold)",
+                "text inventory (no metadata labels)",
+                "post-peak gap (beat between peak and tail)")
 
 
 def main():

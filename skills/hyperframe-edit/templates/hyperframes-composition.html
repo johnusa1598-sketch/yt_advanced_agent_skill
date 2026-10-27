@@ -127,7 +127,9 @@
     <div class="inner">The edit does itself.</div>
   </div>
 
-  <!-- Timecode, whole duration, subtle. -->
+  <!-- Timecode, whole duration, subtle — DRIVEN by the
+       timeline (see script); a static string is a
+       delivery defect. -->
   <div id="timecode" class="clip timecode" data-start="0" data-duration="10">
     <div class="inner">00:00:00:00</div>
   </div>
@@ -159,6 +161,24 @@
     2.5
   );
   tl.to(".caption .inner", { opacity: 0, duration: 0.2 }, 4.8);
+
+  // Timecode MUST tick: driven by the timeline's own time,
+  // never a static string. A frozen 00:00:00:00 is a
+  // delivery defect (Part 10 shipped one for all 10s
+  // because no tween ever updated this element).
+  var tcEl = document.querySelector("#timecode .inner");
+  function fmtTC(t) {
+    var f = Math.floor(t * 24);
+    var ff = f % 24;
+    var s = Math.floor(f / 24) % 60;
+    var m = Math.floor(f / (24 * 60)) % 60;
+    var h = Math.floor(f / (24 * 3600));
+    function p(n) { return (n < 10 ? "0" : "") + n; }
+    return p(h) + ":" + p(m) + ":" + p(s) + ":" + p(ff);
+  }
+  tl.eventCallback("onUpdate", function () {
+    if (tcEl) tcEl.textContent = fmtTC(tl.time());
+  });
 
   window.__timelines = window.__timelines || {};
   window.timelines = window.timelines || {};

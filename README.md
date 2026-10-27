@@ -67,6 +67,10 @@ go weak at the peak beat, so the peak is now written as
 sustained effort (never a state), split into its own
 segment when it sits 5+ seconds from the anchor, and
 gated in QA (scorecard --peak-tension sustained/released).
+v3.4.3 (27 October 2026): Part 10 edit defects — frozen
+timecode now ticks from the timeline, text inventory gate
+(no metadata labels render), post-peak gap cap (a beat,
+never a gap, between peak and tail).
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

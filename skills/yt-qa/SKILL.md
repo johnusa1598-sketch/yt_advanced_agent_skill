@@ -40,6 +40,13 @@ or substituted beat (for example a front split instead of
 middle splits) = FAIL-FIXABLE with the segment fix above.
 A beat that was never in the plan does not count as a
 replacement for one that was.
+- **Post-peak gap.** List beats with timestamps. Any gap
+  over 2 seconds between the peak beat's end and the
+  tail's start with no beat = FAIL-FIXABLE (edit fix:
+  trim the dead lower or move the payoff earlier).
+  The skill's ending (a leg lowering, a landing, a
+  release) is not a beat — Part 10 died in 6–8s of
+  lowering with no beat before the 9–10s payoff.
 
 ## Face-crop QC
 
@@ -163,6 +170,20 @@ with a passing scorecard total.
   into the next beat, the exit, or a standing pose =
   FAIL-FIXABLE: re-time the layer, no full re-render needed
   if the edit allows it.
+- **Text inventory.** Freeze frames across the video and
+  list EVERY visible text. Each must be in the brief's
+  approved text list (kinetic words, caption lines,
+  rewatch pill line, CTA). Production metadata
+  (rotation slot, beat/skill names, channel bugs,
+  component labels such as the word "prompt" on a pill)
+  = FAIL-FIXABLE: remove the layer in the edit. A
+  kinetic word clipped at the frame edge (Part 10:
+  "UP, SLOWLY" cut at the left edge) = FAIL-FIXABLE:
+  resize/reposition inside the safe band. A completion
+  word (CLEAN!, DONE) must appear only when the visual
+  completes — Part 10 showed "LEG RAISE, CLEAN!"
+  while the leg was still lowering = FAIL-FIXABLE:
+  re-time the layer.
 - **Tail.** After the skill ends, the parasocial beat plus
   the CTA together must fit in 2 seconds, then cut or loop
   back to frame 1 (`/yt-story` cap). A longer tail =

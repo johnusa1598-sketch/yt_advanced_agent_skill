@@ -278,8 +278,14 @@ is timed from the transcription JSON, not guessed.
 ### 3.3 Chat-prompt card
 
 - A card styled like a chat message (rounded, mono or
-  clean sans, subtle border, small "prompt" label) showing
-  the EXACT instruction text the script mentions.
+  clean sans, subtle border) showing the EXACT
+  instruction text the script mentions — and NOTHING
+  else. The word "prompt" (or any component/builder
+  label) must NEVER appear in the delivered video:
+  Part 10 shipped a visible "prompt" label above the
+  rewatch pill line, and it reads as a stray text,
+  not a design element. A label in the finished video
+  is a defect: remove it before render.
 - The card appears on the line that mentions it, and the
   picture visibly obeys it in the same beat (e.g. a grade
   change right after the card). A card with no visible
@@ -342,6 +348,17 @@ is timed from the transcription JSON, not guessed.
 - A small monospace timecode, ticking in real time, in a
   corner that never collides with captions. It sells the
   "edit" feeling and gives the viewer a sense of craft.
+- TICKING IS MANDATORY, not decorative: the timecode
+  text MUST be driven by the timeline's own time
+  (onUpdate / ticker), so it advances every frame. A
+  static "00:00:00:00" for the whole render is a
+  delivery defect — Part 10 shipped a frozen timecode
+  for all 10 seconds because the starter template
+  printed a static string and no tween ever updated
+  it. The template now drives it from `tl.time()`.
+- Pre-render check: sample two frames (e.g. 1s and 5s)
+  and confirm the timecode value differs. Same value
+  = FAIL, do not render.
 - Keep it subtle (small, low opacity). If it distracts
   from a caption, move it — captions always win.
 
@@ -387,6 +404,11 @@ Upstream's vertical rules, for 1080x1920 (scale for
 - Titles ×1.35 vs landscape; nothing meant to be read
   under 28 px; ~5 English words per line max (cut
   words, never shrink).
+- Every text element sits FULLY inside the band at
+  every visible moment: a kinetic word clipped at the
+  frame edge (Part 10: "UP, SLOWLY" cut at the left
+  edge) is a defect — resize or reposition, never
+  ship a half-word.
 - Frame 0 is the thumbnail/hook — face, result, or one
   bold line, never black, never a logo.
 - The video must work muted.
@@ -560,6 +582,18 @@ face. Note it in the QC report even if the clip ships.
       speech; voice never buried.
 - [ ] Grades change on their spoken words, ~0.3-0.5s.
 - [ ] No watermark, logo, stray text, or font fallback.
+- [ ] Text inventory: every visible text listed before
+      render; only approved texts ship (kinetic words,
+      caption lines, rewatch pill line, CTA).
+      Production metadata NEVER renders — rotation
+      slot, beat/skill names, channel bugs, component
+      labels (Part 10 shipped "TEAL SLOT 2",
+      "STRONG HOLD", "ARIA FIT" and a "prompt" label
+      as visible texts). A layer with metadata text
+      is removed before render, not after.
+- [ ] Timecode ticks: two sampled frames (e.g. 1s and
+      5s) show different timecode values. A frozen
+      timecode is a FAIL.
 - [ ] Audio: -14 LUFS target, true peak ≤ -1 dBTP,
       measured on the finished file.
 - [ ] Sample verdict obtained on new work before the

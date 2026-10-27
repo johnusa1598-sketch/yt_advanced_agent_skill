@@ -1,5 +1,52 @@
 # Changelog
 
+## v3.4.3, Part 10 edit defects, 27 October 2026
+
+Part 10 (standing leg raise, teal Slot 2, rendered with
+v3.4.2) carries three edit defects, all checked frame by
+frame (1s, 5s, 6s, 8s, 9s, 10s). Skill count unchanged at
+34, tool count unchanged at 18, file count unchanged
+at 141.
+
+- **Frozen timecode (hyperframe-edit):** the timecode
+  read 00:00:00:00 in every sampled frame for all 10
+  seconds. Cause in the repo: the starter template
+  printed a static string and no tween ever updated
+  it, while SKILL.md §3.6 promised "ticking in real
+  time". Fix: the template now drives the timecode
+  from the timeline's own time (onUpdate, 24fps
+  HH:MM:SS:FF), and the skill requires a two-frame
+  tick check before render. Same value at 1s and 5s
+  = FAIL.
+- **Metadata texts on screen (hyperframe-edit, yt-qa):**
+  6–8s showed "TEAL SLOT 2" (rotation metadata),
+  "STRONG HOLD" (beat label), "ARIA FIT" (channel
+  bug) and a "prompt" label above the rewatch pill —
+  the last one traced to the skill itself, whose
+  chat-prompt card section specified a "prompt"
+  label as part of the design. Fix: a text-inventory
+  gate — every visible text listed before render,
+  only approved texts ship (kinetic words, caption
+  lines, rewatch pill line, CTA); metadata and
+  component labels never render. The pill card now
+  shows ONLY the instruction text. A kinetic word
+  clipped at the frame edge (Part 10: "UP, SLOWLY"
+  cut at the left edge) is also a FAIL: resize or
+  reposition inside the safe band.
+- **Post-peak gap (yt-story, yt-qa):** peak at ~5s,
+  then 6–8s of nothing but the leg lowering, payoff
+  only at 9–10s — the viewer decides the video is
+  over when the skill finishes and leaves before the
+  CTA. Fix: a post-peak rule — at most 2 seconds
+  between the peak beat's end and the next beat
+  without one; the skill's ending is not a beat; the
+  edit cuts the dead lower or moves the payoff
+  earlier. A completion word (CLEAN!, DONE) must
+  appear only when the visual completes — Part 10
+  showed "LEG RAISE, CLEAN!" while the leg was
+  still lowering. Both checks join scorecard.py's
+  printed human-check list.
+
 ## v3.4.2, peak-tension fix, 27 October 2026
 
 The Part 8 pistol squat and Part 9 L-sit renders go weak
