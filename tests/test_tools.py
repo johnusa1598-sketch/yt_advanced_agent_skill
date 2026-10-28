@@ -244,6 +244,30 @@ def main():
     ok &= check("scorecard_oneway_listed", run(["skills/yt-qa/scorecard.py",
         "--identity", "3", "--movement", "2", "--phone", "2",
         "--beats", "2"]), "one-way consistency")
+    # v3.4.5 additions: hook-drop gates (end frame, segment cuts,
+    # post-peak beat, re-hook, end card, result-before-peak).
+    ok &= check("scorecard_hookdrop_fail", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--end-frame", "absent", "--segment-cuts",
+        "static", "--post-peak", "absent", "--rehook", "absent",
+        "--end-card", "trailing", "--result-early", "yes"]),
+        "end-frame gate")
+    ok &= check("scorecard_hookdrop_pass", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--end-frame", "present", "--segment-cuts",
+        "motion", "--post-peak", "present", "--rehook", "present",
+        "--end-card", "none", "--result-early", "no"]),
+        "Gates checked: end-frame, segment-cuts, post-peak, rehook, end-card, result")
+    ok &= check("scorecard_hookdrop_fallback", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2", "--end-frame", "fallback"]),
+        "-> PASS")
+    ok &= check("scorecard_hookdrop_listed", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2"]), "end frame")
+    ok &= check("scorecard_hookdrop_endcard_listed", run(["skills/yt-qa/scorecard.py",
+        "--identity", "3", "--movement", "2", "--phone", "2",
+        "--beats", "2"]), "no trailing end card")
     ok &= check("skills_structure", check_skills(), "STRUCTURE OK")
     print("ALL PASS" if ok else "SOME TESTS FAILED")
     return 0 if ok else 1

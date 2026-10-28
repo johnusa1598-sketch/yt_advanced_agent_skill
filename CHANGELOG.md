@@ -1,5 +1,78 @@
 # Changelog
 
+## v3.4.5, hook-drop research upgrade, 28 October 2026
+
+Deep research (27 October 2026) into why AI Shorts
+look great at the hook and die in the middle found
+two decays compounding: model decay (a single start
+frame anchors the first seconds but is not a
+persistent 3-D / physics memory, so conditioning
+weakens with distance, chained steps accumulate
+error, and 8–12s sits at or past single-shot
+limits) and narrative decay (no beat after the
+peak, so the hook's open loop closes and viewers
+leave before the end card). The fix is not a
+better prompt alone: a destination, short
+segments, and a post-peak beat. Skill count
+unchanged at 34, tool count unchanged at 18, file
+count unchanged at 141.
+
+- **End-frame conditioning, segment assembly,
+  static-hold rescue (yt-production):** peak-as-
+  end-frame where the tool supports first+last
+  frames (Veo 2/3.1 [DOC], Kling, Hailuo,
+  Firefly, Luma — verify in UI on generation
+  day), peak-as-segment as fallback; 2–3 short
+  anchored segments for 8–12s, cut on motion,
+  trim heads/tails (about 3.5 usable seconds per
+  5s clip, 8–12 frames off each start), one
+  style line verbatim, same references,
+  colour-match, one continuous audio track;
+  extension/chaining is not the default (it
+  compounds drift). Static holds get camera-only
+  motion, a timer/progress overlay, or an
+  editor-held peak frame — or a cut to 6–7s.
+- **Post-peak beat, re-hooks, comment placement
+  (yt-story):** payoff 3–5s before the end, CTA
+  inside the payoff, never a trailing end card
+  or logo; a cut, text twist, or sound accent at
+  about 3.5s and about 7s [LORE cadence]; the
+  comment prompt sits after the payoff only, one
+  prompt of at most 6 words, rating-only, and
+  is never claimed to hold viewers mid-video
+  (no measured retention effect found).
+- **Hook-drop gates (yt-qa, scorecard.py):** new
+  beat-verification checks — end frame (or
+  peak-as-segment fallback), segment cuts on
+  motion, post-peak beat present, re-hook
+  present, no trailing end card, no result
+  revealed before the peak — each FAIL-FIXABLE
+  even at 10/10, with matching NOT_VERIFIED
+  entries and five new tests in
+  tests/test_tools.py.
+- **Prompt rules (yt-ai-prompt):** one subject
+  action plus one camera move per segment,
+  time-coded beats, and the honest limit on
+  negatives: they are biases, not guarantees,
+  and cannot override missing visual
+  information or an overly complex shot.
+- **Retention honesty (yt-algorithm):** YouTube
+  publishes no 70%/85%/100% retention thresholds
+  and no 8-second checkpoint. The VVSA 70–90% /
+  60% figures and the 85% completion association
+  already in this pack are relabelled as
+  third-party lore, never YouTube rules; the
+  documented mechanism stands (views count on
+  start/replay since 31 March 2025, engaged
+  views separate, rewatched segments can exceed
+  total views).
+- **Edit layer (hyperframe-edit):** re-hook
+  overlays at about 3.5s and about 7s (§3.10),
+  and editor-held peak plus progress overlay
+  for holds, both inside the safe band and in
+  the text inventory, with a matching Part 6
+  gate line.
+
 ## v3.4.4, question–skill match and one way, 27 October 2026
 
 Part 11 (deep squat hold, black Slot 3) repeats the

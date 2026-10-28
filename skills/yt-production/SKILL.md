@@ -147,6 +147,77 @@ Never paste one big prompt into both tools. Keep two blocks:
   second budget. The peak segment's start frame is
   what anchors the peak — without it, the peak is
   always the weakest beat in the video.
+- **End-frame conditioning (v3.4.5).** A single start
+  frame is an anchor for the first seconds, not a
+  persistent 3-D / physics memory: as a clip runs,
+  conditioning on it weakens, attention to older
+  frames decays, and the model regresses toward
+  average motion — tense faces soften, strain turns
+  eyes-shut, fine detail melts. That is model decay
+  [DOC — papers and vendor docs, see the v3.4.5
+  research report], and no prompt wording alone
+  fixes it. Where the tool supports first+last
+  frames, give the generation a DESTINATION as well
+  as a start: a peak-as-end-frame still (same
+  subject, lighting, framing, peak pose and
+  expression), so the peak is GIVEN, not hallucinated
+  mid-video. Tool support [DOC for Veo 2/3.1:
+  optional ending frame, 9:16, 4/6/8s per the
+  Google Cloud doc; secondary for the rest, verify
+  in the tool's UI on generation day]: Veo 2/3.1,
+  Kling (first+last), Hailuo H3, Adobe Firefly,
+  Luma keyframes. Limits, stated honestly: the
+  middle can still mush on a large pose change
+  (endpoints are fixed, the interpolation is not);
+  some tools disable other controls when keyframes
+  are set (Firefly) or forbid combining keyframes
+  with references (Hailuo H3) — check before
+  committing. Where first+last is unavailable, the
+  fallback is the peak-as-its-own-segment rule
+  above: a peak segment generated fresh from its
+  own peak-pose start frame. "One open-ended pass
+  and hope the middle holds" is not a fallback.
+- **Segment assembly (v3.4.5).** An 8–12 second Short
+  is at or past the single-shot sweet spot of most
+  tools, so a long single generation is the regime
+  where anchor decay and chained-error accumulation
+  bite hardest. Default for 8–12s: 2–3 short
+  anchored segments, assembled in editing to the
+  same budget. Rules: each segment starts from its
+  own keyframe (hook, peak, or reset); cut ON
+  MOTION so the eye follows movement across the
+  seam; trim heads and tails — plan on about 3.5
+  usable seconds per 5-second clip, trimming 8–12
+  frames off each clip start (opening freeze) and
+  the drift tail [LORE — stitching guides]; one
+  style line verbatim across every segment prompt;
+  the same reference image(s) fed to every segment;
+  colour-match segments to the best one; one
+  continuous audio track underneath so cuts read as
+  one video, never per-clip ambience that changes
+  at each seam. Extension / last-frame chaining is
+  NOT the default: each extension inherits the last
+  frame's drift and adds its own [DOC — chained
+  conditioning accumulates error], and guides warn
+  consistency degrades the longer you extend.
+- **Static-hold rescue (v3.4.5).** A static hold is
+  the worst case on both decays: no progression for
+  the viewer, nothing for the model to track except
+  a face it must keep re-drawing. Do not ask the
+  model to sustain a tense expression for 10
+  seconds. Rescue, in order of preference: (1)
+  camera-only motion — locked body, slow push-in
+  or orbit, so progression comes from the camera;
+  (2) a timer / progress overlay in the edit, so
+  progression comes from the count, not the body;
+  (3) an editor-held peak frame — generate
+  approach → peak, then hold the BEST peak frame
+  as a still in the edit with a timer/bar/zoom
+  overlay, so the peak expression stays
+  pixel-perfect. If the hold cannot support 10
+  seconds even with this scaffolding, cut the Short
+  to 6–7 seconds: a short Short that loops twice
+  beats a 12-second Short that bleeds at second 7.
 
 A prompt pasted into the wrong tool is a wasted generation and
 a glitch risk. If a block names the wrong tool, stop and split

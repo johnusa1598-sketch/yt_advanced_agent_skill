@@ -39,6 +39,28 @@ fails the whole scorecard, even at 10/10):
         (limbs locked with no sag, tremor, set jaw, eyes per
         the eye rule); "released" FAILS — neutral face, sagging
         limbs, eyes shut, or peak form covered at the peak.
+    --end-frame: hook-drop gate (v3.4.5). "present" means an
+        end-frame still (peak pose and expression) was supplied
+        where the tool supports first+last frames; "fallback"
+        means the peak-as-its-own-segment fallback is
+        documented; "absent" FAILS — neither was done.
+    --segment-cuts: hook-drop gate (v3.4.5). "motion" means
+        multi-segment cuts land mid-movement with heads/tails
+        trimmed; "static" FAILS — cuts on still frames or
+        untrimmed drift tails.
+    --post-peak: hook-drop gate (v3.4.5). "present" means a
+        beat after the peak, payoff 3-5s before the end, CTA
+        inside the payoff; "absent" FAILS.
+    --rehook: hook-drop gate (v3.4.5). "present" means a cut,
+        text twist, or sound accent at about 3.5s and about 7s;
+        "absent" FAILS. The cadence is a rule of thumb (LORE),
+        not a measured threshold.
+    --end-card: hook-drop gate (v3.4.5). "none" means no
+        trailing end card or logo after the skill; "trailing"
+        FAILS — dead time after the peak.
+    --result-early: hook-drop gate (v3.4.5). "no" means the
+        result, score, or verdict does not appear before the
+        peak; "yes" FAILS — the loop is closed early.
 
 Gates this tool CANNOT verify are printed on every run, so a
 PASS is never mistaken for a full QA pass: face gate (200-300%
@@ -63,7 +85,13 @@ NOT_VERIFIED = ("face gate (200-300% face crop)", "text-end rule",
                 "text inventory (no metadata labels)",
                 "post-peak gap (beat between peak and tail)",
                 "question-skill match (range question needs a progressive skill)",
-                "one-way consistency (text and body tell one story)")
+                "one-way consistency (text and body tell one story)",
+                "end frame (or peak-as-segment fallback)",
+                "segment cuts on motion",
+                "post-peak beat (payoff 3-5s before end)",
+                "re-hook (~3.5s and ~7s)",
+                "no trailing end card",
+                "no result before the peak")
 
 
 def main():
@@ -95,6 +123,24 @@ def main():
     parser.add_argument("--peak-tension", default=None,
                         choices=("sustained", "released"),
                         help="peak beat shows sustained tension, not release")
+    parser.add_argument("--end-frame", default=None,
+                        choices=("present", "fallback", "absent"),
+                        help="end-frame still supplied, or peak-segment fallback")
+    parser.add_argument("--segment-cuts", default=None,
+                        choices=("motion", "static"),
+                        help="multi-segment cuts land mid-movement")
+    parser.add_argument("--post-peak", default=None,
+                        choices=("present", "absent"),
+                        help="beat after the peak, payoff 3-5s before end")
+    parser.add_argument("--rehook", default=None,
+                        choices=("present", "absent"),
+                        help="cut/text/sound beat at ~3.5s and ~7s")
+    parser.add_argument("--end-card", default=None,
+                        choices=("none", "trailing"),
+                        help="trailing end card or logo after the skill")
+    parser.add_argument("--result-early", default=None,
+                        choices=("no", "yes"),
+                        help="result revealed before the peak")
     args = parser.parse_args()
     scores = {name: getattr(args, name) for name in LIMITS}
     errors = [f"{n} must be 0-{LIMITS[n]}" for n, v in scores.items()
@@ -158,10 +204,52 @@ def main():
             reasons.append("peak gate: tension released at the peak beat "
                            "(neutral face, sagging limbs, eyes shut, or "
                            "peak form covered — see yt-story peak rule)")
+    if args.end_frame is not None:
+        gates_checked.append("end-frame")
+        if args.end_frame == "absent":
+            reasons.append("end-frame gate: no end-frame still supplied "
+                           "and no peak-as-segment fallback documented "
+                           "(see yt-production end-frame conditioning)")
+    if args.segment_cuts is not None:
+        gates_checked.append("segment-cuts")
+        if args.segment_cuts == "static":
+            reasons.append("segment-cut gate: cuts are not on motion "
+                           "(cut mid-movement and trim heads/tails — "
+                           "see yt-production segment assembly)")
+    if args.post_peak is not None:
+        gates_checked.append("post-peak")
+        if args.post_peak == "absent":
+            reasons.append("post-peak gate: no beat after the peak "
+                           "(payoff 3-5s before the end, CTA inside "
+                           "the payoff — see yt-story post-peak beat)")
+    if args.rehook is not None:
+        gates_checked.append("rehook")
+        if args.rehook == "absent":
+            reasons.append("re-hook gate: no cut, text twist, or sound "
+                           "accent at about 3.5s and about 7s "
+                           "(see yt-story re-hooks)")
+    if args.end_card is not None:
+        gates_checked.append("end-card")
+        if args.end_card == "trailing":
+            reasons.append("end-card gate: trailing end card or logo "
+                           "after the skill (dead time — move the CTA "
+                           "into the payoff, see yt-story post-peak beat)")
+    if args.result_early is not None:
+        gates_checked.append("result")
+        if args.result_early == "yes":
+            reasons.append("result gate: result revealed before the peak "
+                           "(the loop is closed early — see yt-story "
+                           "post-peak beat)")
     not_verified = [g for g in NOT_VERIFIED
                     if not (g.startswith("loop match") and args.loop_match is not None)
                     and not (g.startswith("rewatch trigger") and args.rewatch is not None)
-                    and not (g.startswith("peak tension") and args.peak_tension is not None)]
+                    and not (g.startswith("peak tension") and args.peak_tension is not None)
+                    and not (g.startswith("end frame") and args.end_frame is not None)
+                    and not (g.startswith("segment cuts") and args.segment_cuts is not None)
+                    and not (g.startswith("post-peak beat") and args.post_peak is not None)
+                    and not (g.startswith("re-hook") and args.rehook is not None)
+                    and not (g.startswith("no trailing end card") and args.end_card is not None)
+                    and not (g.startswith("no result before the peak") and args.result_early is not None)]
     verdict = "FAIL" if reasons else "PASS"
     if args.json:
         print(json.dumps({"scores": scores, "total": total,

@@ -61,6 +61,39 @@ replacement for one that was.
   perform (Part 11: "DOWN, SLOWLY" over a body that
   barely descends) = FAIL-FIXABLE: re-time or
   re-word the text, or re-cut the beat.
+- **Hook-drop gates (v3.4.5).** The hook-drop is two
+  decays compounding (model decay + narrative decay,
+  see `/yt-production` end-frame and segment rules),
+  so these are checked beat by beat, not by feel.
+  Each failure is FAIL-FIXABLE, even with a passing
+  scorecard total; pass the verdicts to
+  `scorecard.py` (flags below):
+  - **End frame.** An end-frame still (peak pose and
+    expression) was supplied where the tool supports
+    first+last frames, OR a peak-as-its-own-segment
+    fallback is documented. Neither = FAIL-FIXABLE
+    (`--end-frame absent`).
+  - **Segment cuts on motion.** Multi-segment videos
+    cut mid-movement, so the eye follows motion
+    across the seam; heads trimmed (opening freeze)
+    and drift tails trimmed. Cuts on still frames
+    or untrimmed drift tails = FAIL-FIXABLE
+    (`--segment-cuts static`).
+  - **Post-peak beat.** A beat after the peak, with
+    the payoff landing 3–5 seconds before the end
+    and the CTA inside the payoff — never a trailing
+    end card or logo (`--post-peak absent`,
+    `--end-card trailing`).
+  - **Re-hook.** A cut, text twist, or sound accent
+    at about 3.5 seconds and about 7 seconds
+    (`--rehook absent`). The cadence is a rule of
+    thumb [LORE], not a measured threshold — the
+    gate is "a new visual fact before the bleed",
+    not the exact second.
+  - **No result before the peak.** The result, score,
+    or verdict must not appear (text or visual)
+    before the peak beat closes the loop early
+    (`--result-early yes`).
 
 ## Face-crop QC
 

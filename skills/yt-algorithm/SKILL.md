@@ -137,7 +137,9 @@ overrides it.
 
 - **Shorts first gate is viewed vs swiped away.** Reported
   healthy range roughly 70–90%, below about 60% distribution
-  reportedly collapses. Diagnose in order: big first-3-second
+  reportedly collapses (v3.4.5: both figures are
+  third-party lore, not YouTube rules — no VVSA threshold
+  is published). Diagnose in order: big first-3-second
   leak = hook problem; healthy VVSA but low completion =
   promise or body problem.
 - **Hook formula:** statement in the first 3 seconds, then a
@@ -266,6 +268,46 @@ genuine second watch (seamless end-to-start match, clean
 audio join, one real rewatch trigger) and the honest Studio
 read beside it (percentage viewed plus engaged views, never
 raw views alone).
+
+## Retention honesty (v3.4.5)
+
+YouTube publishes NO 70%, 85%, or 100% retention
+thresholds, and NO 8-second checkpoint. Any blog,
+guide, or pack note that quotes one as a rule the
+algorithm enforces is inventing it — including
+numbers that already appear in this pack, which
+are relabelled here as what they are:
+
+- The "healthy VVSA roughly 70–90%, below about
+  60% distribution reportedly collapses" range in
+  the v3.2.0 section above, and the "completion
+  above about 85% associated with breakout Shorts"
+  line in `references/2026-signals.md`, are
+  third-party guide figures and creator-observed
+  lore [LORE], not YouTube rules. The same holds
+  for the length-tier retention ranges in that
+  reference file, and for the creator-observed
+  "losses cluster at 1–2 seconds and again around
+  7–8 seconds" curve shape: useful diagnostics
+  against your own channel's curve, never targets
+  to chase as thresholds.
+- What IS documented, and what this pack keeps:
+  since 31 March 2025 a Shorts view counts on play
+  or replay start with no minimum watch time, and
+  engaged views are the stricter, revenue-relevant
+  count; rewatched segments can exceed total views,
+  so average percentage viewed above 100% in Studio
+  is a real, readable sign that viewers looped —
+  but it is a metric reading, not a ranking rule,
+  and this pack claims no ranking weight for loops
+  (see the v3.3.7 section above).
+- The rule that replaces every threshold above:
+  judge a video against your own channel's median
+  over the last ten videos in the same format, and
+  read the retention CURVE (where the drops are),
+  not a single percentage. A "bad" number against
+  a blog's threshold is not a verdict; a cliff at
+  the same second across three videos is.
 
 ## What this model does not claim
 

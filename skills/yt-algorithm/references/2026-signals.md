@@ -71,7 +71,9 @@ no setup before the statement.
   ending re-asks. In Studio a working loop shows as a
   retention spike above 100% at second 1. Completion above
   about 85% is associated, in third-party guides, with
-  breakout Shorts.
+  breakout Shorts. (v3.4.5: LORE, not a YouTube rule —
+  no completion threshold is published; judge against
+  your own channel median.)
 - Call to action: place the single CTA in the payoff or
   immediately after it, never as a long end-card. Multiple
   CTAs ("like, comment, subscribe, follow") are reported

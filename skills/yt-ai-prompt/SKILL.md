@@ -151,6 +151,36 @@ seconds, finished audio −14 LUFS target, true peak at most
 −1 dBTP (v3.3.2 supersedes FINAL on music: native audio
 alone fails; see `/yt-sound` + `/yt-qa`).
 
+## One action per segment, time-coded beats, negative limits (v3.4.5)
+
+A segment prompt carries ONE subject action plus ONE camera
+move — never a multi-beat routine in one generation, or the
+generator drops planned beats (see `/yt-qa` segment method).
+Write beats time-coded, in order, for example: "0–2s:
+descend slowly, camera pushes in; 2–5s: hold at depth,
+face tense, eyes open". Slow, controlled motion and
+simple framing distort less than fast, complex motion
+[LORE — creator guides]. The same rule covers the
+peak: a hold is written as sustained effort, never as a
+state (see the peak hold wording above and `/yt-story`
+peak rule) — and where the tool supports first+last
+frames, the peak is also supplied as an end-frame still
+(see `/yt-production` end-frame conditioning), not left
+to be invented mid-video.
+
+Negative prompts are biases, not guarantees. A negative
+line ("no morphing, no flicker, no extra limbs, stable
+face, eyes open") can bias the output toward stability,
+but it cannot override missing visual information or an
+overly complex shot [LORE — stated explicitly in creator
+guides]: it cannot invent the far side of a face, hold
+an expression the model was never shown, or rescue a
+pose change the geometry does not support. Keep the
+negative list short, so it does not compete with the
+positive prompt — and when a negative keeps failing to
+hold a beat, fix the production (end frame, segment,
+or edit), not the wording.
+
 ## Build it with the tool
 
 ```bash

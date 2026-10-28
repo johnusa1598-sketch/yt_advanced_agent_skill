@@ -132,6 +132,59 @@ only when the visual completes — never mid-lowering,
 mid-landing, or mid-release. Part 10 showed "LEG
 RAISE, CLEAN!" while the leg was still lowering.
 
+## Post-peak beat (v3.4.5)
+
+The gap cap above is the floor; this is the shape.
+The payoff — the result, the score, the verdict —
+lands 3–5 seconds before the end, and the CTA sits
+INSIDE the payoff beat, overlaid on motion (the
+reaction, the second-angle replay, the reset toward
+the hook pose). Never a trailing end card or logo
+held after the skill: once the viewer can predict
+"nothing else is coming", they leave, whether the
+signal is a spoken outro or a visibly completed
+skill [LORE — telegraphed-outro collapse]. The
+parasocial tail cap still holds (beat + CTA fit in
+2 seconds, then cut or loop) — the payoff beat and
+the tail together are the final seconds, and the
+loop frame closes them. A video whose peak is its
+last fact has no post-peak beat, whatever its
+scorecard total says; `/yt-qa` gates it.
+
+## Re-hooks (v3.4.5)
+
+No more than ~2.5 seconds without a new visual
+fact. In practice that means a re-hook beat — a
+cut, a text twist, or a sound accent — at about
+3.5 seconds and again at about 7 seconds, placed
+BEFORE the bleed, not after it. The 3–8 second
+bleed zone in retention curves is where a video
+with a good hook but no middle beat dies [LORE —
+creator-observed curve shapes, not a YouTube
+rule]; the cadence numbers here are rules of
+thumb, not measured thresholds, and the direction
+(change something) is the rule, not the exact
+second. A re-hook must add information (a new
+angle, a stakes line, a progress marker) — a
+re-hook that repeats the hook is a repeat, not
+a beat.
+
+## Comment prompt placement (v3.4.5)
+
+The comment trigger in the section below is placed
+AFTER the payoff only, never as a substitute for a
+middle beat: one prompt, at most 6 words, rating-
+only, overlaid during the payoff/reset motion (see
+`/yt-community` priority for the vote form on
+comparison Shorts). NEVER claim a comment prompt
+holds viewers mid-video: no source found measures
+a retention effect for comment prompts [research
+report §3.4]. It converts viewers who already
+stayed into commenters, and gives a reason to
+rewatch to check a detail — it is not a beat, and
+a video that leans on it instead of a re-hook or
+a post-peak beat will still bleed.
+
 ## The parasocial beat (mandatory, never skipped)
 
 Near the end, the character looks directly into the lens with

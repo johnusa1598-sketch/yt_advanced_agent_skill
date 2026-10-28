@@ -77,6 +77,18 @@ needs a progressive skill, duration question takes a
 static hold), and a video is made one way (one question,
 one skill, one arc; text never promises what the body
 does not show).
+v3.4.5 (28 October 2026): hook-drop research upgrade —
+end-frame conditioning (peak as end frame, peak-as-
+segment fallback), segment assembly (2–3 short anchored
+segments, cut on motion, trimmed heads/tails), static-
+hold rescue (camera motion, timer/progress overlay,
+editor-held peak, or cut to 6–7s), post-peak beat
+(payoff 3–5s before the end, CTA inside it, no trailing
+end card), re-hooks (~3.5s and ~7s), comment prompt
+after the payoff only (≤6 words, never claimed to hold
+viewers mid-video), retention honesty (no published
+70%/85%/100% thresholds, no 8s checkpoint), and
+hook-drop QA gates in scorecard.py.
 See `CHANGELOG.md` for exactly what changed.
 
 **Nothing gets published until you do it.** These skills write.

@@ -478,6 +478,40 @@ the band.
   delivery knobs, default off: `--keyframe-interval 2
   --max-bitrate 8M` (YouTube re-encodes anyway).
 
+### 3.10 Re-hook overlays and held-peak overlays (v3.4.5)
+
+The edit layer is where the hook-drop is rescued
+when the supplied clips go weak mid-video or after
+the peak (see `/yt-production` end-frame and
+segment rules, `/yt-story` post-peak beat and
+re-hooks). Two treatments, both inside the safe
+band (§3.8) and both in the text inventory (Part 6)
+before render:
+
+- **Re-hook overlays at about 3.5s and about 7s.**
+  A new text fact, stakes line, or angle-cut accent
+  at each point — placed BEFORE the retention
+  bleed, not after it. The overlay must add
+  information (a progress marker, the difficulty,
+  the "but…"), never repeat the hook text. The
+  cadence is a rule of thumb [LORE], not a
+  measured threshold: the gate is "a new visual
+  fact before the bleed", not the exact second.
+  Sound accent on each re-hook (§3.7: every
+  graphic gets sound).
+- **Editor-held peak + progress overlay for
+  holds.** Do not stretch a weak hold: hold the
+  BEST peak frame as a still in the edit, with a
+  timer, progress bar, or slow zoom over it, so
+  progression comes from the overlay, not from
+  hallucinated motion — and the peak expression
+  stays pixel-perfect. The overlay must never
+  cover the working limbs or the face during the
+  peak beat (see `/yt-story` peak rule). If the
+  hold cannot support the full duration even
+  held, cut the Short to 6–7 seconds rather than
+  padding it with a frozen frame.
+
 ## Part 4 — Transcription QC (mandatory, before editing)
 
 Transcribe every clip with word timestamps and compare
@@ -594,6 +628,11 @@ face. Note it in the QC report even if the clip ships.
 - [ ] Timecode ticks: two sampled frames (e.g. 1s and
       5s) show different timecode values. A frozen
       timecode is a FAIL.
+- [ ] Re-hook overlays at about 3.5s and about 7s
+      (§3.10), each adding a new visual fact inside
+      the safe band; held-peak overlays (timer/bar/
+      zoom) on static holds instead of a stretched
+      weak hold, never covering peak limbs or face.
 - [ ] Audio: -14 LUFS target, true peak ≤ -1 dBTP,
       measured on the finished file.
 - [ ] Sample verdict obtained on new work before the
