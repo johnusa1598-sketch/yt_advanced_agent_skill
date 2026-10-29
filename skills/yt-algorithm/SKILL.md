@@ -155,6 +155,16 @@ overrides it.
   under 60% as a hook failure first, whatever its
   topic; a Short at 68%+ with low completion is a
   body/promise problem, not a hook problem.
+- **Diagnostic stayed bands (v3.5.2, user-supplied Studio
+  data, October 2026 — channel data, not a YouTube rule).**
+  Under 50% stayed = plateau zone: reach caps around
+  1,000–2,000 views, whatever the topic. 65%+ stayed =
+  breakout zone: the Short has cleared the first gate and
+  can reach 6,000–16,000+. Between 50% and 65% is the
+  contestable middle — fix the first 0.5 seconds first
+  (see /yt-shorts-first), then the middle beats. A Short
+  under 50% is never a packaging problem first; it is a
+  hook problem first.
 - **Hook formula:** statement in the first 3 seconds, then a
   proof point, then a promise, all in 8–12 seconds. Five
   patterns: visual disruption, face and voice, unexpected

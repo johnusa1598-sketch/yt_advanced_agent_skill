@@ -58,6 +58,13 @@ These are third-party reported patterns, not YouTube rules.
   per Short, and test two distinct hooks per concept
   (visual vs verbal) in staggered uploads before declaring
   a winner.
+- **First 0.5 seconds (v3.5.2):** zero empty frames, zero
+  setup movement — the first half-second IS the
+  highest-tension frame (mid-extension, peak grip, the
+  wobble itself). The 1–2s hook window above is the
+  ceiling; the 0.5s rule is the floor. A Short that opens
+  on chalking, walking in, or a static pose has already
+  lost the plateau band before any hook pattern starts.
 - **Hook formula:** statement in the first 3 seconds, proof
   point, promise — all in 8–12 seconds. If the first-3-second
   leak is the biggest drop, rewrite the hook, not the body.

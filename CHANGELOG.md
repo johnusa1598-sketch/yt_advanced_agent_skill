@@ -1,5 +1,45 @@
 # Changelog
 
+## v3.5.2, plateau-breakout upgrade, 29 October 2026
+
+User-approved (widget tap) addition of the 5 items from the
+user's second performance analysis (plateau 1,000–2,000 views
+at 35–50% stayed vs breakout 6,000–16,000+ at 63–73.5%).
+Channel data is user-supplied Studio data, October 2026 —
+not independently verified here — and every new rule labels
+it as such. Skill count unchanged at 34, tool count
+unchanged at 18, file count unchanged at 141.
+
+- **Diagnostic stayed bands (yt-algorithm):** under 50%
+  stayed = plateau zone (reach caps at 1–2k whatever the
+  topic); 65%+ stayed = breakout zone (6–16k+); 50–65% is
+  the contestable middle — fix the first 0.5 seconds first,
+  then the middle beats. Under 50% is a hook problem first,
+  never a packaging problem first.
+- **Vote-stakes rule (yt-story):** a Duel is not
+  automatically a breakout — "Poll Duel: Who Won? Aria vs
+  Her Rival" plateaued because its vote looked backward and
+  decided nothing. A vote works only as a forward decision
+  (picks the next video, honoured on time) or a judgment
+  that forces rewatch ("clean or wobble?", "Attempt 1 vs
+  Attempt 2 — which stuck the landing?").
+- **Judgment framing (yt-story):** the "Gymnasts HATE This"
+  pattern is debate, not rating — a debatable claim makes
+  the viewer an evaluator who replays to check the form and
+  comments to defend the verdict. Neutral display titles
+  give nothing to argue about. Never fake a controversy the
+  video cannot support.
+- **First 0.5 seconds (yt-shorts-first):** zero empty
+  frames, zero setup movement — the first half-second IS
+  the highest-tension frame. The 1–2s hook window is the
+  ceiling; the 0.5s rule is the floor.
+- **Typing-while-looping (yt-story):** the final 2–3 seconds
+  carry the open question so the viewer is still typing
+  when the Short loops — typing time IS loop time, which is
+  how breakout Shorts reach 120–140% average view
+  percentage. A question asked mid-video gets answered
+  mid-video, and the viewer leaves before the loop.
+
 ## v3.5.1, Studio-blueprint adaptation + no-nose-ring character, 29 October 2026
 
 Two changes on the user's order of 29 October 2026. Skill count

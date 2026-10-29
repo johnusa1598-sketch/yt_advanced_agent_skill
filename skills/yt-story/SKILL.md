@@ -256,8 +256,18 @@ or end reframe — pick one from the menu in
 the video; a trigger claimed in the brief but absent fails
 the rewatch gate in `/yt-qa`. The pinned comment asks about
 it; on a comparison Short the vote carries the ask (see
-`/yt-community` priority). Speed ramps are excluded: their
-slow portion is slow-motion footage, which FINAL bans.
+`/yt-community` priority). Speed ramps are excluded: their slow portion is slow-motion footage, which FINAL bans.
+
+**Typing-while-looping (v3.5.2).** The final 2–3 seconds
+carry the open question (the vote, the rating, the
+judgment) precisely so the viewer is still typing their
+answer when the Short loops — typing time IS loop time,
+and that is how breakout Shorts reach 120–140% average
+view percentage. The question must therefore sit in the
+payoff/tail, not earlier: a question asked mid-video gets
+answered mid-video, and the viewer leaves before the loop.
+The loop bridge above is what makes the second viewing
+seamless; this is what gives the viewer a reason to take it.
 
 ## Duel format — two skills, one question (v3.5.0)
 
@@ -348,6 +358,40 @@ The blueprint's 12–18s shape does not fit the AI budget
   licence-safe first; never invent licensed audio.
 - Title formula: "[Skill A] vs [Skill B] — YOU Decide!
   🤸 #shorts".
+
+### Vote stakes — a vote must decide something (v3.5.2)
+
+A Duel is not automatically a breakout: "Poll Duel: Who
+Won? Aria vs Her Rival" plateaued at 35–50% stayed
+because its vote looked BACKWARD (who won?) and decided
+nothing. A vote works only in two forms:
+- **Forward decision:** the vote picks the NEXT video
+  ("YOU pick Aria's next skill"). The winner must become
+  the next video, on time, or the next vote dies.
+- **Judgment that forces rewatch:** the vote asks the
+  viewer to JUDGE something they can only settle by
+  watching again ("clean or wobble?", "Attempt 1 vs
+  Attempt 2 — which stuck the landing?").
+A backward-only verdict with no forward stake and nothing
+to re-examine is a passive display with a vote pasted on
+it — it plateaus like one.
+
+## Judgment framing — make the viewer judge, not just watch (v3.5.2)
+
+The breakout pattern behind "Gymnasts HATE This… Rate It
+1–10" (8.7K, user-supplied Studio data October 2026) is
+not the rating — it is the DEBATE. A title that states a
+debatable claim ("HATE this", "clean or wobble?", "did she
+stick it?") makes the viewer an evaluator: they replay to
+check the form, then comment to defend their verdict. A
+neutral display title ("Skill Challenge: Handstand") gives
+them nothing to argue about, so they watch once and leave.
+Rule: whenever the skill allows an honest judgment call,
+frame the title and the pinned comment around it — clean
+vs wobble, stuck vs step, attempt 1 vs attempt 2 — and let
+the video contain the evidence, not the verdict. Never fake
+a controversy the video cannot support: a rigged debate
+reads as fake and costs the next video's vote.
 
 ## Comment trigger (one per video)
 

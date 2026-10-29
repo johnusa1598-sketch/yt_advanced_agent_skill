@@ -77,6 +77,17 @@ needs a progressive skill, duration question takes a
 static hold), and a video is made one way (one question,
 one skill, one arc; text never promises what the body
 does not show).
+v3.5.2 (29 October 2026): plateau-breakout upgrade from the
+user's second performance analysis — diagnostic stayed bands
+(under 50% = plateau zone at 1–2k views, 65%+ = breakout zone
+at 6–16k+), vote-stakes rule (a vote must be a forward
+decision or a rewatch-forcing judgment; backward-only "Who
+Won?" verdicts plateau), judgment framing (debate, not
+display: "clean or wobble?"), first-0.5s rule (zero empty
+frames, highest-tension frame), and typing-while-looping
+(final 2–3s open question + loop = 120–140% average view
+percentage). Channel data is user-supplied Studio data,
+not independently verified here.
 v3.5.1 (29 October 2026): Studio-blueprint adaptation (useful parts
 only) — Duel beat map compressed to the AI budget (~10s: hook 2s,
 Skill A ~3s, Skill B ~3s, payoff + vote 2s, one cut on motion, no
