@@ -105,16 +105,14 @@ earring size correct. Every concept must include at least ONE
 face-visible beat (lens grin, close-up, upright pose) so
 verification is possible. A video with no verifiable face
 frame scores 0 on identity (see the scorecard).
-**Nose ring check (v3.3.5):** verify the nose ring side
-on a FRONTAL frame, not on a side-profile frame, where
-side and centre cannot be told apart. The ring must be on
-the character's RIGHT nostril wing only (frontal view:
-image LEFT). A centre, septum, or nose-tip ring FAILS,
-even if the other accessories pass, and a second centre
-ring alongside a correct wing ring also FAILS.
-**Which frame (v3.3.6):** use the frontal face-visible beat
-for the verdict — the parasocial lens grin, not a 30–45°
-diagonal action frame, which cannot settle side vs centre.
+**No nose ring (v3.5.1):** the character wears no nose ring,
+so there is no ring side to verify — the v3.3.5 side check
+and the v3.3.6 frontal-frame verdict rule are both retired.
+Verify glasses, earrings, and freckle weight on the face
+crop. If a render shows a nose ring, log it as an
+observation, not a failure: the failure mode this removal
+ends was the demanded ring rendering wrong (centre,
+septum, duplicated) in video after video.
 
 ## Ten-point scorecard (the verdict)
 
@@ -239,7 +237,7 @@ with a passing scorecard total.
   the package's planned rotation slot, not always purple.
   A video in the wrong slot colour = FAIL-FIXABLE
   (re-generate the segment in the planned slot). All other
-  identity elements — hair, glasses, nose ring side,
+  identity elements — hair, glasses,
   earrings, freckles — must still match exactly; a change
   there is identity drift, not rotation.
 

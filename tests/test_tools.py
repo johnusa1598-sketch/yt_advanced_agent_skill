@@ -97,8 +97,8 @@ def main():
     ok &= check("prompt_builder_outfit", run(["skills/yt-ai-prompt/prompt_builder.py",
         "examples/aria-fit/ai-brief.json", "--outfit", "teal leotard"]),
         "teal leotard")
-    ok &= check("prompt_builder_nose", run(["skills/yt-ai-prompt/prompt_builder.py",
-        "examples/aria-fit/ai-brief.json"]), "centre nose ring")
+    ok &= check("prompt_builder_no_nose", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json"]), "nostril jewellery")
     ok &= check("publish_check_fail", run(["skills/yt-publish/publish_check.py",
         "tests/fixtures/publish-bad.json"]), "NOT READY")
     ok &= check("publish_check_pass", run(["skills/yt-publish/publish_check.py",
@@ -156,18 +156,18 @@ def main():
         "examples/aria-fit/ai-brief.json"]), "VARIANT C_slow_detail")
     ok &= check("prompt_builder_realism", run(["skills/yt-ai-prompt/prompt_builder.py",
         "examples/aria-fit/ai-brief.json"]), "flyaway")
-    ok &= check("prompt_builder_nose_strong", run(["skills/yt-ai-prompt/prompt_builder.py",
-        "examples/aria-fit/ai-brief.json"]), "RIGHT nostril wing only")
+    ok &= check("prompt_builder_no_nose_lock", run(["skills/yt-ai-prompt/prompt_builder.py",
+        "examples/aria-fit/ai-brief.json"]), "No nose ring")
     ok &= check_exit("prompt_builder_outfit_bad", run(["skills/yt-ai-prompt/prompt_builder.py",
         "examples/aria-fit/ai-brief.json", "--outfit", "neon pink leotard"]), 2)
     ok &= check("scorecard_gate_fail", run(["skills/yt-qa/scorecard.py",
         "--identity", "3", "--movement", "3", "--phone", "2",
         "--beats", "2", "--width", "720", "--height", "1280",
-        "--nose", "centre"]), "nose gate")
+        "--slot", "orange"]), "slot gate")
     ok &= check("scorecard_gates_pass", run(["skills/yt-qa/scorecard.py",
         "--identity", "3", "--movement", "2", "--phone", "2",
         "--beats", "2", "--width", "720", "--height", "1280",
-        "--nose", "frontal-right", "--slot", "teal",
+        "--slot", "teal",
         "--lufs", "-14.0", "--peak", "-10.3", "--beat", "yes"]),
         "GATES NOT VERIFIED")
     ok &= check("loudness", run(["skills/yt-sound/loudness.py",

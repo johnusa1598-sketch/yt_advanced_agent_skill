@@ -8,7 +8,6 @@ the negative prompt, and the three variants from it.
 - Character name:
 - Hair:
 - Glasses:
-- Nose ring, with side:
 - Earrings:
 - Freckles:
 - Outfit:

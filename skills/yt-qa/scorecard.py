@@ -14,9 +14,8 @@ fails the whole scorecard, even at 10/10):
     --width/--height: format gate. 9:16 ratio required; 1080x1920
         preferred, 720x1280 at the same ratio is the minimum
         acceptable (v3.3.4). Never upscale to fake 1080p.
-    --nose: frontal-frame nose-ring verdict: frontal-right passes;
-        centre, septum, tip, or two rings FAIL (v3.3.5). The verdict
-        must come from a FRONTAL frame, not a diagonal action frame.
+    v3.5.1 retired the --nose gate: the character wears no nose
+    ring, so there is no ring side to judge.
     --slot: leotard colour; must be one of the five rotation
         colours (v3.3.3). This checks the palette only; whether the
         slot repeats the previous video is the series log's job.
@@ -104,9 +103,6 @@ def main():
                         help="rendered video width in pixels")
     parser.add_argument("--height", type=int, default=None,
                         help="rendered video height in pixels")
-    parser.add_argument("--nose", default=None,
-                        choices=("frontal-right", "centre", "septum", "tip", "two"),
-                        help="frontal-frame nose-ring verdict")
     parser.add_argument("--slot", default=None,
                         help="leotard colour for this video")
     parser.add_argument("--lufs", type=float, default=None,
@@ -167,11 +163,6 @@ def main():
         elif args.height < 1280:
             reasons.append(f"format gate: {args.width}x{args.height} below "
                            "720x1280 minimum acceptable")
-    if args.nose is not None:
-        gates_checked.append("nose")
-        if args.nose != "frontal-right":
-            reasons.append(f"nose gate: frontal verdict is {args.nose}, "
-                           "not character's RIGHT nostril wing only")
     if args.slot is not None:
         gates_checked.append("slot")
         if args.slot.lower() not in ROTATION_COLOURS:

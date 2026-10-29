@@ -77,6 +77,17 @@ needs a progressive skill, duration question takes a
 static hold), and a video is made one way (one question,
 one skill, one arc; text never promises what the body
 does not show).
+v3.5.1 (29 October 2026): Studio-blueprint adaptation (useful parts
+only) — Duel beat map compressed to the AI budget (~10s: hook 2s,
+Skill A ~3s, Skill B ~3s, payoff + vote 2s, one cut on motion, no
+split screen, no slow-motion, no 4s CTA), 24-hour vote window with
+winner-next-video follow-through, duel title formula — plus the
+no-nose-ring character: the v3.3.5 nose-ring rule is retired on
+the user's decision (the demanded ring rendered wrong in video
+after video and weakened every video), so prompts carry "No nose
+ring, no septum ring, no nostril jewellery", QA no longer gates
+ring side, the scorecard --nose gate is removed, and examples
+and tests carry the new spec.
 v3.4.5 (28 October 2026): hook-drop research upgrade —
 end-frame conditioning (peak as end frame, peak-as-
 segment fallback), segment assembly (2–3 short anchored

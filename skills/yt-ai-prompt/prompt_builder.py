@@ -14,15 +14,15 @@ A leotard outfit must use one of the five rotation colours
 colour is rejected with exit 2 (v3.3.6). Non-leotard outfits
 from the channel matrix are accepted as-is and must be logged
 in the series log like a rotation slot.
-When a brief carries a nose_ring field, the character lock
-always uses the full v3.3.5 canonical wording for that field,
-whatever the brief said, so a stale brief cannot weaken the
-most-weighted layer (v3.3.6).
+v3.5.1: the character wears NO nose ring. A brief that still
+carries a nose_ring field has it dropped, and the lock
+carries the explicit negative instead, so a stale brief
+cannot reintroduce the ring that weakened every video it
+was demanded in.
 
 Input JSON example:
     {"character": {"name": "Aria", "hair": "curly dark hair in a big messy bun",
                    "glasses": "thin GOLD wire-frame glasses",
-                   "nose_ring": "SMALL gold nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings",
                    "earrings": "SMALL silver hoop earrings",
                    "freckles": "light thin freckles",
                    "outfit": "purple leotard"},
@@ -52,7 +52,7 @@ import sys
 
 NEGATIVE = [
     "extra limbs, extra fingers, distorted hands, morphing face",
-    "glasses changing shape, nose ring changing side, septum ring, centre nose ring, nose ring on nose tip, two nose rings",
+    "glasses changing shape, nose ring, septum ring, nostril jewellery",
     "outfit changing colour or style mid-shot, jewellery disappearing",
     "sexualized framing, sexualized poses, close-ups on body parts",
     "warped beam, floating props, no watermark, no logo",
@@ -64,16 +64,12 @@ NEGATIVE = [
 
 ROTATION_COLOURS = ("purple", "teal", "black", "royal blue", "burgundy")
 
-# v3.3.5 canonical wording. A brief that mentions a nose ring gets
-# this sentence in the character lock, verbatim, even if the brief
-# itself used shorter or older wording (e.g. "RIGHT nostril only"
-# without the wing/centre/tip/two-rings language). A character with
-# no nose_ring field is left alone: no ring is invented for them.
-NOSE_CANONICAL = (
-    "SMALL gold nose ring on the character's RIGHT nostril wing only "
-    "(in a frontal view, on the image's LEFT side), never septum, "
-    "never centre, never nose tip, never two rings"
-)
+# v3.5.1: the character wears NO nose ring. The lock always
+# carries this sentence, and a nose_ring field in a stale brief
+# is dropped, not canonicalised: the v3.3.5 side rule is retired
+# because the demanded ring rendered wrong (centre, septum,
+# duplicated) in video after video and weakened every one.
+NO_RING = "No nose ring, no septum ring, no nostril jewellery"
 
 # Realism core (v3.3.6): the SKILL requires every prompt to carry
 # these physical details, not just the brief's style string.
@@ -91,12 +87,11 @@ REALISM_CORE = (
 
 def character_block(character):
     parts = []
-    for key in ("name", "hair", "glasses", "nose_ring", "earrings", "freckles", "outfit"):
+    for key in ("name", "hair", "glasses", "earrings", "freckles", "outfit"):
         value = character.get(key)
         if value:
-            if key == "nose_ring" and "nose ring" in str(value).lower():
-                value = NOSE_CANONICAL
             parts.append(str(value))
+    parts.append(NO_RING)
     return "; ".join(parts)
 
 
@@ -148,9 +143,9 @@ def build(data):
         f"[STYLE AND LIGHT] {style}\n"
         f"[REALISM] {REALISM_CORE}\n"
         f"[LOOP] {loop}\n"
-        "[CONTINUITY] Same hair, glasses, nose ring on the character's "
-        "RIGHT nostril wing only, earrings, "
-        "freckles, and outfit in every frame. No morphing between beats."
+        "[CONTINUITY] Same hair, glasses, earrings, "
+        "freckles, and outfit in every frame. No nose ring in any "
+        "frame. No morphing between beats."
     )
     short = (
         f"{lock}. Vertical 9:16 portrait, shot on iPhone. {scene}. "
@@ -170,7 +165,7 @@ def build(data):
         "speed throughout, no slow-motion effect.",
     }
     checklist = [
-        "Hair, bun, glasses, nose ring on character's RIGHT nostril wing only (frontal view: image LEFT), never centre/septum/tip, earrings, freckles unchanged",
+        "Hair, bun, glasses, earrings, freckles unchanged; no nose ring in any frame",
         "Outfit colour and style unchanged",
         "Hands and feet anatomically correct in every beat",
         "Landing absorbs with bent knees, no floating or snapping",

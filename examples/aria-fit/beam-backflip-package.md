@@ -1,9 +1,8 @@
 # Worked example: one AI Short, raw idea to algorithm-tuned package
 
 Channel: Aria Fit (AI gymnastics Shorts). Character lock: curly dark
-hair in a big messy bun, thin GOLD wire-frame glasses, SMALL gold
-nose ring on the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings, SMALL silver hoop earrings,
-light thin freckles, purple leotard. The full AI prompt for this
+hair in a big messy bun, thin GOLD wire-frame glasses, SMALL silver hoop earrings,
+light thin freckles, purple leotard. No nose ring, no septum ring, no nostril jewellery. The full AI prompt for this
 video is built from `ai-brief.json` by `prompt_builder.py`; what
 follows is everything that happens after the prompt.
 

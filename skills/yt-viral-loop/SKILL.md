@@ -34,7 +34,7 @@ face gate. The publish check at step 13 is not a QA substitute.
    never-retry-denied rule.
 3. **Production, two steps.** `/yt-production` with
    `/yt-ai-prompt`: the hook-frame image first, gated (format,
-   character lock, suspense rule, nose ring), then the video
+   character lock, suspense rule), then the video
    animated from that frame. A single-skill Short is one Block B
    video; a multi-skill concept is a segment list, assembled
    to the same 8–12 second budget.

@@ -233,7 +233,7 @@ stays locked.
   outfit changing colour mid-shot still stands — rotation
   happens across videos, never within one.
 - **Everything else is locked.** Hair, messy bun, gold
-  wire-frame glasses, nose ring side, silver hoop earrings,
+  wire-frame glasses, silver hoop earrings,
   freckles, face, and body proportions do not rotate with
   the colour. If any of those change, that is identity
   drift, not rotation, and QA fails it.
@@ -254,46 +254,37 @@ stays locked.
   repeats all four matrix picks from the previous video
   (`/yt-anti-glitch` variety matrix).
 
-## Nose ring side, stated without ambiguity (v3.3.5)
+## No nose ring (v3.5.1, supersedes v3.3.5)
 
-"RIGHT nostril only" on its own is ambiguous to a video
-model: it does not say whether RIGHT means the character's
-right or the image's right, and when the character turns
-her head, a small side ring drifts to the centre or
-duplicates (one on the wing, one at the nose tip), as
-happened in the October 2026 arabesque video. From now on,
-every prompt states it in full, and `prompt_builder.py`
-writes it into the character lock, the continuity line,
-and the negative prompt:
+The v3.3.5 side rule is retired, on the user's decision of
+29 October 2026: the demanded ring rendered wrong in video
+after video — centre, septum, duplicated alongside a correct
+wing ring — and weakened every video it was demanded in.
+The character wears NO nose ring now, and the system no
+longer asks for one:
 
-- **Character's RIGHT nostril wing only** — not the
-  character's left, not the image's right.
-- **In a frontal view, it appears on the image's LEFT
-  side.** That sentence is part of the lock, not a note.
-- **Never septum, never centre, never nose tip, never
-  two rings.** A centre ring alongside a correct wing
-  ring is still a fail, not a pass.
-- The negative prompt now bans centre nose ring, nose
-  ring on nose tip, and two nose rings, as well as septum
-  ring and changing side.
-- **Stale briefs cannot weaken the lock (v3.3.6).**
-  `prompt_builder.py` canonicalises the nose_ring field: any
-  brief that mentions a nose ring gets the full sentence
-  above in the character lock, whatever shorter wording the
-  brief itself used. A character with no nose_ring field is
-  left alone — no ring is invented for them.
-- **Aria datasheet lock (v3.3.6).** For Aria Fit, the
-  character lock IS the datasheet §8 block verbatim from
-  the FINAL template (see `templates/aria-datasheet-lock.md`
-  in this pack): freckles LIGHT, fine, scattered on the nose
-  bridge and upper cheeks only; body proportions constant,
-  never reduced or flattened. The generic lock fields in a
-  brief do not replace that block — paste it verbatim.
+- **The lock carries the negative.** Every prompt states
+  "No nose ring, no septum ring, no nostril jewellery" in
+  the character lock, and the negative prompt bans any
+  ring. `prompt_builder.py` drops a `nose_ring` field from
+  a stale brief instead of canonicalising it.
+- **Nothing to side-check.** QA no longer verifies ring
+  side (see `/yt-qa` v3.5.1): there is no ring to
+  side-check. A ring appearing in a render is logged as
+  an observation, not a failure.
+- **Aria datasheet lock.** The character lock IS still the
+  datasheet §8 block verbatim from the FINAL template (see
+  `templates/aria-datasheet-lock.md` in this pack): freckles
+  LIGHT, fine, scattered on the nose bridge and upper
+  cheeks only; body proportions constant, never reduced or
+  flattened. Only the ring line is gone. The generic lock
+  fields in a brief do not replace that block — paste it
+  verbatim.
 
 ## Check it before you ship it
 
 - Run the continuity checklist against the draft, frame by
-  frame if needed: hair, glasses, nose ring side, earrings,
+  frame if needed: hair, glasses, earrings,
   freckles, outfit, hands, feet, and landing.
 - Run the Short through `/yt-shorts-first` for hook, loop,
   and call to action, and through `/yt-publish` for AI

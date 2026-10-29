@@ -79,20 +79,14 @@ title-first gate in `/yt-anti-glitch`):
    directs only realistic motion, audio, and the loop back to
    frame 1. It invents nothing new about who or where.
 4. **Gate before Step 2.** If the hook frame shows any glitch —
-   a centre, septum, or nose-tip nose ring (v3.3.5),
    detached limbs, floaty anatomy, face morph, impossible
    physics — do NOT proceed. Simplify one rung down the
    skill-safety ladder (see `/yt-anti-glitch`) and re-lock the
    frame first.
-   **Nose gate, full rule (v3.3.6):** the ring must be on the
-   character's RIGHT nostril wing only (frontal view: image
-   LEFT), and the side is checked on a FRONTAL frame only —
-   a 30–45° diagonal action frame cannot settle side vs
-   centre. A centre, septum, or nose-tip ring FAILS, and a
-   second centre ring alongside a correct wing ring also
-   FAILS — that second ring was the exact arabesque defect
-   (v3.3.5), and this gate exists to catch it before the
-   video is generated, not after.
+   **No nose ring (v3.5.1):** the nose gate is retired. The
+   character wears no nose ring, so the hook frame is not
+   gated on ring side. A ring in the hook frame is an
+   observation, not a block.
    **Burst counting (v3.3.6):** every failed generation or
    segment regen for this concept counts toward the 2-fail
    glitch burst in `/yt-anti-glitch`. On the second

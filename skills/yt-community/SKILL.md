@@ -49,8 +49,17 @@ promise the video makes.
   viewer saw them — not a generic question, and not a second
   pinned comment competing with the vote. The comment-trigger
   detail from `/yt-story` is asked inside that vote or in a
-  reply. `publish_check.py` enforces this when the package
+  `publish_check.py` enforces this when the package
   carries `comparison_sides`.
+- **Duel vote comment (v3.5.1).** Template: "Voting closes
+  in 24 hours! Which one should I tackle tomorrow: A or
+  B?" The 24-hour window is promised only when the next
+  video will actually land within 24 hours. When the
+  window closes, the vote pin is replaced by the winner
+  announcement (the best comment may be pinned then, as
+  the replacement) — never a second pin alongside the
+  vote, and never "pinning the best comment" promised
+  inside the vote pin itself.
 - **Route:** where the video belongs to a series, the pinned
   comment points at the next episode or the long video, the
   same way Related Video does (`/yt-bridge`).

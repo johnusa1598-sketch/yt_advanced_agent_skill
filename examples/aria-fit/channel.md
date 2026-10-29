@@ -36,9 +36,8 @@ every number with your own channel's numbers before using it.
 ## Character spec, locked
 
 - Hair: curly dark hair in a big messy bun.
-- Face: thin GOLD wire-frame glasses, SMALL gold nose ring in
-  the character's RIGHT nostril wing only (in a frontal view, on the image's LEFT side), never septum, never centre, never nose tip, never two rings, SMALL silver
-  hoop earrings, light thin freckles.
+- Face: thin GOLD wire-frame glasses, SMALL silver
+  hoop earrings, light thin freckles. No nose ring, no septum ring, no nostril jewellery.
 - Outfit: leotard rotation, in fixed cycle order — purple
   (anchor, Slot 1), teal, black, royal blue, burgundy, then
   back to purple. One planned slot per video; the hook frame

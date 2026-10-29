@@ -1,5 +1,41 @@
 # Changelog
 
+## v3.5.1, Studio-blueprint adaptation + no-nose-ring character, 29 October 2026
+
+Two changes on the user's order of 29 October 2026. Skill count
+unchanged at 34, tool count unchanged at 18, file count
+unchanged at 141.
+
+- **Studio blueprint, useful parts only (yt-story, yt-community):**
+  Duel beat map compressed to the AI budget (~10s: hook 2s with
+  both sides named, Skill A ~3s, Skill B ~3s, payoff + vote 2s,
+  one A-to-B cut on motion); 24-hour vote window with the
+  winner-next-video follow-through, promised only when the next
+  video will actually land in 24 hours; duel title formula
+  "[Skill A] vs [Skill B] — YOU Decide!"; optional licence-safe
+  SFX accent at the hook text flash (no SFX library in the
+  workspace yet — source it licence-safe first). Deliberately
+  LEFT OUT: 12–18s length (AI budget is 8–12s), cuts every
+  1.5–2.5s and split screen (single continuous shot), slow-
+  motion at the peak (FINAL bans slow motion), a 4-second CTA
+  phase (parasocial tail cap is 2s), and "pinning the best
+  comment" promised inside the vote pin (one pinned comment
+  only, and it IS the vote; the best comment may replace the
+  vote pin after the window closes).
+- **No nose ring (yt-ai-prompt, yt-qa, yt-production,
+  yt-viral-loop, templates, examples, tests):** the v3.3.5 side
+  rule is retired on the user's decision — the demanded ring
+  rendered wrong (centre, septum, duplicated) in video after
+  video and weakened every video. Prompts now carry "No nose
+  ring, no septum ring, no nostril jewellery"; prompt_builder
+  drops a nose_ring field from stale briefs; QA no longer
+  gates ring side; the hook-frame nose gate is retired; the
+  scorecard --nose gate is removed; examples and tests carry
+  the new spec. A ring appearing in a render is an observation,
+  not a failure. Historical v3.3.5 CHANGELOG, README, and
+  plugin-description entries are NOT rewritten — history stays,
+  this entry records the reversal.
+
 ## v3.5.0, duel-format upgrade, 29 October 2026
 
 Channel data (user Studio data, October 2026) behind this

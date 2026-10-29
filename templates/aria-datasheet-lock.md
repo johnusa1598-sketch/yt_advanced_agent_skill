@@ -8,7 +8,7 @@ it verbatim into every generation prompt, in addition to the
 template's identity line. The generic lock fields in a brief
 do not replace it.
 
-> "Aria — the exact same woman in every video: warm olive skin with LIGHT, fine, scattered natural freckles on the nose bridge and upper cheeks only (soft sun freckles, never dark blotches); soft oval face, dark brown eyes, full natural brows, full natural lips; dark-brown curly hair in a large high messy bun with loose tendrils; thin gold wire-frame glasses; a SMALL gold nose ring in her RIGHT nostril only (as in the reference photo — viewer's left in front view); SMALL silver hoop earrings. Athletic gymnast body, identical in every scene: defined shoulders and arms, a full rounded bust, strong core with a narrow waist, BIG round full muscular glutes, powerful defined thighs and calves — lean and strong, never skinny or soft, never bulky. The same face, the same body, the same muscle definition in every frame."
+> "Aria — the exact same woman in every video: warm olive skin with LIGHT, fine, scattered natural freckles on the nose bridge and upper cheeks only (soft sun freckles, never dark blotches); soft oval face, dark brown eyes, full natural brows, full natural lips; dark-brown curly hair in a large high messy bun with loose tendrils; thin gold wire-frame glasses; SMALL silver hoop earrings. No nose ring, no septum ring, no nostril jewellery. Athletic gymnast body, identical in every scene: defined shoulders and arms, a full rounded bust, strong core with a narrow waist, BIG round full muscular glutes, powerful defined thighs and calves — lean and strong, never skinny or soft, never bulky. The same face, the same body, the same muscle definition in every frame."
 
 ## The locks inside the block
 
@@ -23,15 +23,16 @@ do not replace it.
   Bust/glutes/waist/hip/thigh proportions are constant
   across videos, outfits and angles.
 - **Accessory lock (datasheet §3):** thin gold wire-frame
-  glasses always on; SMALL gold nose ring, RIGHT nostril
-  only (in front view it appears on the viewer's LEFT);
-  SMALL silver hoop earrings. Any deviation = FAIL.
-- **Nose-ring wording (v3.3.5):** the block's "RIGHT nostril
-  only" is read with the full rule — character's RIGHT
-  nostril wing only, frontal view = image's LEFT, never
-  septum, never centre, never nose tip, never two rings
-  (see `/yt-ai-prompt`). A centre ring alongside a correct
-  wing ring still FAILS.
+  glasses always on; SMALL silver hoop earrings. No nose
+  ring, no septum ring, no nostril jewellery — the
+  character wears none. Glasses/earrings deviation = FAIL;
+  a ring appearing is an observation, not a gate failure
+  (see `/yt-qa` v3.5.1).
+- **No-nose-ring rule (v3.5.1, supersedes v3.3.5):** the
+  v3.3.5 side rule is retired. The character wears no nose
+  ring; prompts carry the explicit negative, and QA no
+  longer gates ring side (see `/yt-ai-prompt`, `/yt-qa`).
+
 - **QA enforcement:** the Datasheet Drift Check is mandatory
   before delivery — frame 0, one mid-skill full-body frame,
   and the ending close-up checked line by line against

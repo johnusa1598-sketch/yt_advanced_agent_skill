@@ -328,6 +328,27 @@ viewer is subscribing to an outcome, not a channel.
 The CTA still fits inside the payoff beat (2 seconds
 with the parasocial tail, then cut or loop).
 
+### Duel beat map, adapted from the Studio blueprint (v3.5.1)
+
+The blueprint's 12–18s shape does not fit the AI budget
+(8–12s, ~9s target), so the Duel runs compressed:
+- 0–2s: both sides named, in video order, stakes in one
+  line, over the first skill's mid-movement opening.
+- Skill A ~3s, Skill B ~3s: one cut, A to B, on motion
+  (segment assembly, /yt-production). No split screen,
+  no cuts every 1.5–2.5s, no slow-motion at the peak
+  (FINAL bans slow motion) — the peak is sustained
+  effort plus a timer/progress overlay, not a ramp.
+- Payoff + vote 2s: CTA inside the payoff beat, then
+  the loop bridge closes the video. No 4-second CTA
+  phase: the parasocial tail cap (2s) still holds.
+- Edit accent (optional): one licence-safe SFX accent
+  at the hook text flash (whoosh, hit, or ding). The
+  workspace holds no SFX library yet — source it
+  licence-safe first; never invent licensed audio.
+- Title formula: "[Skill A] vs [Skill B] — YOU Decide!
+  🤸 #shorts".
+
 ## Comment trigger (one per video)
 
 Include ONE small comment-worthy detail: a tiny Easter egg, a
