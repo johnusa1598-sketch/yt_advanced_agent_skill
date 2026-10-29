@@ -59,6 +59,20 @@ the one thing that made it different. Before proposing a new
 episode, read the log and reject any idea already done in the
 last ten episodes unless it is a deliberate sequel.
 
+## Vote-decides-next and ladder arcs (v3.5.0)
+
+Two series shapes from the Duel work:
+- **Vote-decides-next:** the episode log gains one field —
+  the vote result and whether it was honoured. An episode
+  whose promised follow-through never aired is logged as
+  a broken promise, and the next vote is expected to
+  underperform until one is honoured.
+- **Ladder arc:** Level 1 to Level 5 of one skill family,
+  hardest tier last, finale planned at episode one. The
+  log records the tier reached per episode; a ladder
+  that stalls mid-tier without a finale date is a
+  treadmill with extra steps.
+
 ## Character spec becomes a prompt lock
 
 The character spec is not only a bible entry. It is layer one

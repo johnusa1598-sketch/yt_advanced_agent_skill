@@ -29,6 +29,14 @@ promise the video makes.
 - **Presence:** stay in the thread for 30-60 minutes after
   pinning. First-hour replies, and specific prompts, beat
   generic calls to comment.
+- **First-hours replies (v3.5.0):** in the first few hours
+  after publishing, reply to the first 5–10 comments.
+  Replies are specific (answer the score, react to the
+  vote, ask the follow-up), never generic thanks. This
+  is the routine that turns the first viewers into the
+  core audience that returns for the next episode — and
+  it is manual, like everything in this skill: drafts
+  here, you post.
 - **Rotation:** rotate the format so the audience does not
   learn to ignore it - challenge one video, debate the next,
   question the one after. A bank of formats lives in

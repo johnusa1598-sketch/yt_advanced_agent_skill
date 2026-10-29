@@ -259,6 +259,75 @@ it; on a comparison Short the vote carries the ask (see
 `/yt-community` priority). Speed ramps are excluded: their
 slow portion is slow-motion footage, which FINAL bans.
 
+## Duel format — two skills, one question (v3.5.0)
+
+A Duel is a comparison Short with a vote, not two videos
+cut together. It works because the vote is a decision the
+viewer makes, and a decision replays: the channel's Poll
+Duel (Back Handspring vs Front Aerial, user Studio data
+October 2026: 16.4K views, 120.5% average view percentage)
+is the precedent — an average view percentage over 100%
+means viewers watched more than once, which is the vote
+and the loop doing their job, not a claim about ranking.
+
+One-way still holds: a Duel has ONE question ("A or B?"),
+and both skills serve it. A Duel that is really two
+unrelated tricks with a vote pasted on top is two videos
+and fails one-way. The question must be answerable from
+the video alone: the viewer must SEE both skills well
+enough to pick a side.
+
+Structure for a ~9s Duel (one continuous shot per skill,
+same rules as any Short):
+- 0–2s: BOTH sides named, in video order, with the
+  stakes in one line — "Back Handspring vs Front Aerial —
+  YOU pick the next skill." No setup, no greeting, no
+  channel intro (see /yt-shorts-first hook rules).
+- Skill A attempt: the full arc in miniature — struggle
+  visible, clean finish. Not a clip of a clip.
+- Skill B attempt: the same standard. A Duel where one
+  side is visibly weaker is rigged, and viewers read
+  rigged as fake — both sides must be genuinely hard
+  and genuinely clean.
+- Payoff + vote: the CTA sits inside the payoff beat
+  (see post-peak beat above), naming both sides in the
+  order the viewer saw them. The pinned comment is the
+  vote (see /yt-community vote rule) — one pinned
+  comment, one job; the vote carries the ask, and any
+  trigger detail is asked inside the vote or in a
+  reply, never as a competing pinned comment.
+- Follow-through (non-negotiable): the winning side
+  BECOMES the next video, and the next video says so
+  ("You voted Front Aerial — here it is"). A vote whose
+  winner never appears teaches viewers their vote did
+  not matter, and the next Duel gets no votes. See
+  /yt-community poll rules: a deciding vote is
+  reported in the video it decides.
+
+Duel variants that keep one question:
+- **Progression ladder:** Level 1 to Level 5 of one skill
+  family, hardest tier last. The question is "how far
+  does she get?" — the ladder IS the arc, and the
+  finale tier is planned before episode one (see
+  /yt-series: a series with no finale is a treadmill).
+- **Road to Mastering [skill]:** Day 1 vs Day 7 of one
+  skill. Same skill, visible progress — the question is
+  "did she get it yet?" The Day 1 attempt must be
+  honestly weaker, never faked worse than it was.
+- **Testing Your Challenge Requests:** the skill is the
+  one viewers asked for most. Name the request and the
+  requester count in the video ("most-voted request"),
+  attempt it clean, and say what happens to the
+  runner-up requests — or viewers stop requesting.
+
+Episodic CTA (v3.5.0): the subscribe ask names the
+next episode's stake, never a generic "subscribe".
+"Subscribe to see if she lands this on the beam
+tomorrow" beats "subscribe for more" because the
+viewer is subscribing to an outcome, not a channel.
+The CTA still fits inside the payoff beat (2 seconds
+with the parasocial tail, then cut or loop).
+
 ## Comment trigger (one per video)
 
 Include ONE small comment-worthy detail: a tiny Easter egg, a
@@ -281,3 +350,6 @@ comment. One pinned comment, one job.
 - The eye rule picked (lens or landing spot) and the loop
   mode picked (rebound or mid-takeoff cut).
 - The one comment trigger, named in one line.
+- For a Duel: both sides named in video order, the vote
+  question, and the follow-through promised (which video
+  the winner becomes).

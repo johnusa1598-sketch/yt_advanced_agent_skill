@@ -142,6 +142,19 @@ overrides it.
   is published). Diagnose in order: big first-3-second
   leak = hook problem; healthy VVSA but low completion =
   promise or body problem.
+- **Aria Fit channel benchmark (v3.5.0, user Studio data,
+  October 2026 — channel data, not a YouTube rule).**
+  Channel average viewed vs swiped away 59.8%; top Shorts
+  68–73%. The average sits below the reported healthy
+  range above; the top videos sit just under it.
+  Working target for a new Short: 68%+ viewed vs swiped
+  away. The gap between the average and the top is the
+  opportunity — it is a hook and first-2-seconds gap,
+  not a topic gap, because the same channel already
+  reaches 68–73% on its best hooks. Diagnose a Short
+  under 60% as a hook failure first, whatever its
+  topic; a Short at 68%+ with low completion is a
+  body/promise problem, not a hook problem.
 - **Hook formula:** statement in the first 3 seconds, then a
   proof point, then a promise, all in 8–12 seconds. Five
   patterns: visual disruption, face and voice, unexpected

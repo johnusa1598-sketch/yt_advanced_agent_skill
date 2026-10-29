@@ -1,5 +1,46 @@
 # Changelog
 
+## v3.5.0, duel-format upgrade, 29 October 2026
+
+Channel data (user Studio data, October 2026) behind this
+upgrade: channel average viewed vs swiped away 59.8%,
+top Shorts 68–73%; Poll Duel: Back Handspring vs Front
+Aerial 16.4K views at 120.5% average view percentage.
+The Duel is the format that closes the average-to-top
+gap: a vote is a decision, and a decision replays.
+Skill count unchanged at 34, tool count unchanged at
+18, file count unchanged at 141.
+
+- **Duel format, vote-decides-next, ladders, episodic
+  CTA (yt-story):** two skills, one question ("A or
+  B?"); both sides named in video order in the first
+  2 seconds, both attempts genuinely hard and clean,
+  vote CTA inside the payoff beat, pinned comment is
+  the vote; the winning side BECOMES the next video
+  and the next video says so. Variants: progression
+  ladder (Level 1 to Level 5, finale planned first),
+  Road to Mastering (Day 1 vs Day 7, honestly weaker
+  Day 1), Testing Your Challenge Requests (most-voted
+  request attempted, runner-ups addressed). Subscribe
+  ask names the next episode's stake, never generic.
+- **Vote-decides-next log field, ladder arcs
+  (yt-series):** episode log records the vote result
+  and whether it was honoured; an unhonoured promise
+  is logged as broken. Ladder arcs record the tier
+  reached per episode.
+- **First-hours replies (yt-community):** reply to the
+  first 5–10 comments in the first few hours, specific
+  replies only, manual as always.
+- **Aria Fit viewed-vs-swiped benchmark
+  (yt-algorithm):** channel average 59.8%, top 68–73%,
+  working target 68%+ for a new Short; under 60% is
+  diagnosed as a hook failure first.
+- **Deliberately unchanged:** yt-shorts-first (hook
+  rules already say no greeting/intro/setup, text
+  curiosity on frame one), yt-qa (vote-carries-the-ask
+  gate already exists), yt-package (vote enforcement
+  via publish_check.py unchanged).
+
 ## v3.4.5, hook-drop research upgrade, 28 October 2026
 
 Deep research (27 October 2026) into why AI Shorts
