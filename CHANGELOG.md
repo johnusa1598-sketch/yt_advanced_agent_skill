@@ -1,5 +1,23 @@
 # Changelog
 
+## v3.5.3, audit fixes, 30 October 2026
+
+Deep audit (30 October 2026) ke baad docs-only fixes — skill
+count unchanged at 34, tool count unchanged at 18, file count
+unchanged at 141, tests ALL PASS.
+
+- **yt-qa doc fix:** hard-gates paragraph se `--nose` hataya —
+  v3.5.1 me scorecard.py se retire ho chuka tha, doc use
+  ghalat live gate dikha raha tha (use follow karne par
+  `unrecognized arguments` error milta). Retirement note
+  barqarar hai.
+- **marketplace.json:** skill count 33 se 34 kiya, description
+  v3.5.2 tak update ki.
+- **README:** version log me v3.5.0 ki entry add ki aur
+  ascending order theek kiya (v3.4.5 → v3.5.0 → v3.5.1 →
+  v3.5.2 → v3.5.3); intro counts twenty-three skills /
+  twelve tools, test paragraph twelve newer tools.
+
 ## v3.5.2, plateau-breakout upgrade, 29 October 2026
 
 User-approved (widget tap) addition of the 5 items from the

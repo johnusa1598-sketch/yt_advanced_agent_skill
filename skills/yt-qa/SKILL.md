@@ -138,10 +138,10 @@ python3 scorecard.py --identity 1 --movement 3 --phone 2 --beats 2 --json
 
 A total of 8 with identity 1 still FAILS — the sub-thresholds
 are gates, not suggestions.
-**Hard gates in the tool (v3.3.6):** pass the evidence to
+**Hard gates in the tool (v3.3.6; --nose retired v3.5.1):** pass the evidence to
 `scorecard.py` and a failed gate fails the video even at
 10/10 — `--width/--height` (9:16 ratio, 720x1280 minimum),
-`--nose` (frontal-right only), `--slot` (one of the five
+`--slot` (one of the five
 rotation colours), `--lufs/--peak/--beat` (audio gate). Every
 run prints the gates the tool cannot verify — face gate,
 text-end rule, parasocial tail cap, slot vs previous video —
